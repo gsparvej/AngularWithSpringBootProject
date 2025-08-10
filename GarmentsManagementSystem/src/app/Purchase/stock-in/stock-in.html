@@ -1,0 +1,70 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card p-4 shadow">
+        <h4 class="text-center text-primary mb-4">Stock In Form</h4>
+
+        <form [formGroup]="formStockIn" (ngSubmit)="addStockIn()">
+          <!-- Item Dropdown -->
+          <div class="mb-3">
+            <label for="itemId" class="form-label">Select Item</label>
+            <select
+              class="form-select"
+              formControlName="itemId"
+              (change)="onItemSelect($event)"
+              id="itemId"
+            >
+              <option value="">-- Select Item --</option>
+              <option *ngFor="let i of inventory" [value]="i.id">
+                {{ i.categoryName }} ({{ i.quantity }})
+              </option>
+            </select>
+          </div>
+
+          <!-- Quantity Input -->
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input
+              type="number"
+              class="form-control"
+              id="quantity"
+              formControlName="quantity"
+              min="1"
+            />
+            <div
+              class="text-danger"
+              *ngIf="
+                formStockIn.get('quantity')?.touched &&
+                formStockIn.get('quantity')?.invalid
+              "
+            >
+              Quantity must be at least 1
+            </div>
+          </div>
+
+          <!-- Date Input -->
+          <div class="mb-3">
+            <label for="receivedTransactionDate" class="form-label">Received Date</label>
+            <input
+              type="date"
+              id="receivedTransactionDate"
+              class="form-control"
+              formControlName="receivedTransactionDate"
+            />
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-end">
+            <button
+              type="submit"
+              class="btn btn-success"
+              [disabled]="formStockIn.invalid"
+            >
+              Add Stock
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

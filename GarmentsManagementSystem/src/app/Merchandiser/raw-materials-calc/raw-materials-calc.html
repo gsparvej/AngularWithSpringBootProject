@@ -1,0 +1,95 @@
+<form [formGroup]="formRawMaterials">
+  <!-- Order form group -->
+  <div formGroupName="order" class="container">
+    <div class="col-md-4">
+      <label>Buyer's StyleCode</label>
+      <select class="form-select" formControlName="id">
+        <option value="">-- Select --</option>
+        <option *ngFor="let o of order" [value]="o.id">{{ o.bom.styleCode }}</option>
+      </select>
+    </div>
+    <div class="row mt-3 mb-3">
+      <h3 class="text-center">Short Sleeve Shirt</h3>
+      <div class="col-md-3">
+      <label class="text-center">Small</label>
+      <input class="form-control" formControlName="shortSmallSize" readonly />
+    </div>
+    <div class="col-md-3">
+      <label class="text-center">Medium</label>
+      <input class="form-control" formControlName="shortMediumSize" readonly />
+    </div>
+    <div class="col-md-3">
+      <label class="text-center">Large</label>
+      <input class="form-control" formControlName="shortLargeSize" readonly />
+    </div>
+      <div class="col-md-3">
+      <label class="text-center">XL</label>
+      <input class="form-control" formControlName="shortXLSize" readonly />
+    </div>
+</div>
+<div class="row">
+  <h3 class="text-center">Full Sleeve Shirt</h3>
+     <div class="col-md-3">
+      <label class="text-center">Small</label>
+      <input class="form-control" formControlName="fullSmallSize" readonly />
+    </div>
+    <div class="col-md-3">
+      <label class="text-center">Medium</label>
+      <input class="form-control" formControlName="fullMediumSize" readonly />
+    </div>
+    <div class="col-md-3">
+      <label class="text-center">Large</label>
+      <input class="form-control" formControlName="fullLargeSize" readonly />
+    </div>
+      <div class="col-md-3">
+      <label class="text-center">XL</label>
+      <input class="form-control" formControlName="fullXLSize" readonly />
+    </div>
+    </div>
+
+  </div>
+
+  <hr />
+
+  <div formGroupName="uom" class="row mt-3">
+    <div class="col-md-4">
+      <label>Product Name</label>
+      <select class="form-select" formControlName="id">
+        <option value="">-- Select --</option>
+        <option *ngFor="let o of uom" [value]="o.id">{{ o.productName }}</option>
+      </select>
+    </div>
+     <div class="col-md-2">
+      <label>Product Size</label>
+      <input class="form-control" formControlName="size" readonly />
+    </div>
+    <div class="col-md-2">
+      <label>result</label>
+      <input class="form-control" formControlName="result" readonly />
+    </div>
+  </div>
+
+  
+
+
+<hr/>
+
+
+ <hr />
+
+  <div formGroupName="bomView" class="row">
+    <div class="col-md-4">
+      <label>Product Name</label>
+      <select class="form-select" formControlName="id">
+        <option value="">-- Select --</option>
+        <option *ngFor="let o of bomView" [value]="o.id">{{ o.material }}</option>
+      </select>
+    </div>
+     <div class="col-md-2">
+      <label>Product Quantity</label>
+      <input class="form-control" formControlName="quantity" readonly />
+    </div>
+  </div>
+
+  <button class="btn btn-success mt-3" type="button">Save Raw Materials</button>
+</form>

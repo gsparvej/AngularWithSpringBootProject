@@ -1,0 +1,39 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Designations</h2>
+
+  <form [formGroup]="desigForm" (ngSubmit)="onSubmit()" class="row g-3">
+    <div class="col-md-6">
+      <label for="name" class="form-label">Name:</label>
+      <input id="designationTitle" formControlName="designationTitle" class="form-control" placeholder="Designation name" />
+    </div>
+
+    <div class="col-md-12">
+      <button type="submit" class="btn btn-primary me-2" [disabled]="desigForm.invalid">
+        {{ editing ? 'Update' : 'Add' }}
+      </button>
+      <button type="button" class="btn btn-secondary" (click)="cancelEdit()" *ngIf="editing">Cancel</button>
+    </div>
+  </form>
+
+  <hr class="my-4" />
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-bordered text-success">
+      <tr>
+        <th>ID</th>
+        <th>Designation Title</th>
+        <th style="width: 150px;">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let desig of designations">
+        <td>{{ desig.id }}</td>
+        <td>{{ desig.designationTitle }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2">Edit</button>
+          <button class="btn btn-sm btn-danger" >Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

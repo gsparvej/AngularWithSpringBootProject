@@ -1,0 +1,106 @@
+<!-- Include Font Awesome CDN in your index.html or main file -->
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+/>
+
+<div class="container border rounded p-4 my-4 shadow-sm" style="max-width: 700px;">
+  <h1 class="text-center text-success mb-4">
+    <i class="fa-solid fa-calendar-check me-2"></i>Attendance Activity Form
+  </h1>
+
+  <form [formGroup]="formGroup" method="post" (ngSubmit)="addLeave()" novalidate>
+    <!-- Leave Type -->
+    <div class="mb-3">
+      <label for="leaveType" class="form-label fw-semibold text-primary">
+        <i class="fa-solid fa-file-signature me-2"></i>Leave Type
+      </label>
+      <input
+        type="text"
+        id="leaveType"
+        formControlName="leaveType"
+        class="form-control border-primary"
+        placeholder="Enter leave type"
+        required
+      />
+    </div>
+
+    <!-- From Date -->
+    <div class="mb-3">
+      <label for="fromDate" class="form-label fw-semibold text-primary">
+        <i class="fa-solid fa-calendar-day me-2"></i>From Date
+      </label>
+      <input
+        type="date"
+        id="fromDate"
+        formControlName="fromDate"
+        class="form-control border-primary"
+        required
+      />
+    </div>
+
+    <!-- To Date -->
+    <div class="mb-3">
+      <label for="toDate" class="form-label fw-semibold text-primary">
+        <i class="fa-solid fa-calendar-day me-2"></i>To Date
+      </label>
+      <input
+        type="date"
+        id="toDate"
+        formControlName="toDate"
+        class="form-control border-primary"
+        required
+      />
+    </div>
+
+    <div class="row g-4">
+      <!-- Employee ID -->
+      <div class="col-md-6" formGroupName="employees">
+        <label for="employees" class="form-label fw-semibold text-primary">
+          <i class="fa-solid fa-id-badge me-2"></i>Employee ID
+        </label>
+        <select
+          id="employees"
+          formControlName="id"
+          class="form-select border-primary"
+          aria-label="Select Employee ID"
+          required
+        >
+          <option value="" disabled selected>Select Employee</option>
+          <option *ngFor="let emp of employee" [value]="emp.id">{{ emp.id }}</option>
+        </select>
+      </div>
+
+      <!-- Leave Status -->
+      <div class="col-md-6" formGroupName="leave_status">
+        <label for="leaveStatus" class="form-label fw-semibold text-primary">
+          <i class="fa-solid fa-toggle-on me-2"></i>Leave Status
+        </label>
+        <select
+          id="leaveStatus"
+          formControlName="status"
+          class="form-select border-primary"
+          aria-label="Select Leave Status"
+          required
+        >
+          <option value="" disabled selected>Select Status</option>
+          <option *ngFor="let s of status" [value]="s.status">{{ s.status }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="row mt-4">
+      <div class="col-md-6 d-grid">
+        <button type="submit" class="btn btn-success" [disabled]="formGroup.invalid">
+          <i class="fa-solid fa-floppy-disk me-2"></i>Save
+        </button>
+      </div>
+      <div class="col-md-6 d-grid">
+        <button type="reset" class="btn btn-danger">
+          <i class="fa-solid fa-rotate-left me-2"></i>Reset
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

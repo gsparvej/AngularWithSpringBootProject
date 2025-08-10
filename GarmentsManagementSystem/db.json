@@ -1,0 +1,1301 @@
+{
+  "employees": [
+    {
+      "id": "455a",
+      "name": "Md. Eiasin Prodhan",
+      "phoneNumber": "8789707097",
+      "email": "eiasin@gmail.com",
+      "joinDate": "2024-09-08",
+      "department": "3b5a",
+      "designation": "9472"
+    },
+    {
+      "id": "b527",
+      "name": "Md. Rakib Islam",
+      "phoneNumber": "978",
+      "email": "rakib@gmail.com",
+      "joinDate": "2025-03-07",
+      "department": "0781",
+      "designation": "978a"
+    },
+    {
+      "id": "638f",
+      "name": "Md. Parvej Hossen",
+      "phoneNumber": "01906",
+      "email": "parvej@gmail.com",
+      "joinDate": "2025-01-02",
+      "department": "3b5a",
+      "designation": "9472"
+    }
+  ],
+  "department": [
+    {
+      "id": "0781",
+      "name": "Production",
+      "designations": [
+        "d104",
+        "978a"
+      ]
+    },
+    {
+      "id": "3b5a",
+      "name": "Administration ",
+      "designations": [
+        "9472"
+      ]
+    },
+    {
+      "id": "649d",
+      "name": "Cutting",
+      "designations": [
+        "d104",
+        "978a"
+      ]
+    },
+    {
+      "id": "cf6d",
+      "name": "Sewing",
+      "designations": [
+        "d104",
+        "978a",
+        "16d7"
+      ]
+    },
+    {
+      "id": "456b",
+      "name": "HR",
+      "designations": [
+        "9472",
+        "b633"
+      ]
+    },
+    {
+      "id": "6966",
+      "name": "Merchandiser",
+      "designations": [
+        "d3a1",
+        "785e"
+      ]
+    },
+    {
+      "id": "5e3a",
+      "name": "Purchase",
+      "designations": [
+        "9472",
+        "d3a1"
+      ]
+    },
+    {
+      "id": "db22",
+      "name": "Management",
+      "designations": [
+        "b633"
+      ]
+    }
+  ],
+  "designation": [
+    {
+      "id": "d104",
+      "designationTitle": "Operator"
+    },
+    {
+      "id": "978a",
+      "designationTitle": "Supervisor"
+    },
+    {
+      "id": "53a2",
+      "designationTitle": "General Manager"
+    },
+    {
+      "id": "16d7",
+      "designationTitle": "Line QC"
+    },
+    {
+      "id": "9472",
+      "designationTitle": "Executive"
+    },
+    {
+      "id": "d3a1",
+      "designationTitle": "Manager"
+    },
+    {
+      "id": "785e",
+      "designationTitle": "Junior"
+    },
+    {
+      "id": "b633",
+      "designationTitle": "Admin"
+    }
+  ],
+  "attendance": [
+    {
+      "id": "5df0",
+      "attDate": "2025-07-06T17:10",
+      "atten_status": {
+        "status": "Absent"
+      },
+      "employees": {
+        "id": "764c",
+        "name": "Eiasin Prodhan"
+      }
+    },
+    {
+      "id": "92b6",
+      "attDate": "2025-07-09",
+      "atten_status": {
+        "status": "Present"
+      },
+      "employees": {
+        "id": "b527",
+        "name": "Md. Rakib Islam"
+      }
+    },
+    {
+      "id": "8126",
+      "attDate": "2025-07-09",
+      "atten_status": {
+        "status": "Absent"
+      },
+      "employees": {
+        "id": "236c",
+        "name": "Reja"
+      }
+    },
+    {
+      "id": "08f0",
+      "attDate": "2025-07-21T00:15",
+      "atten_status": {
+        "status": "Absent"
+      },
+      "employees": {
+        "id": "638f",
+        "name": "Md. Parvej Hossen"
+      }
+    }
+  ],
+  "atten_status": [
+    {
+      "id": "1",
+      "status": "Present"
+    },
+    {
+      "id": "2",
+      "status": "Absent"
+    },
+    {
+      "id": "3",
+      "status": "Late"
+    }
+  ],
+  "leave": [
+    {
+      "id": "1",
+      "leaveType": "Cas",
+      "fromDate": "01-06-2025",
+      "toDate": "03-06-2025",
+      "employees": {
+        "id": "1494",
+        "name": "Eiasin"
+      },
+      "leave_status": {
+        "id": "1",
+        "status": "Pending"
+      }
+    },
+    {
+      "id": "d84c",
+      "leaveType": "Marriage",
+      "fromDate": "2025-07-04",
+      "toDate": "2025-07-06",
+      "leave_status": {
+        "status": "Pending"
+      },
+      "employees": {
+        "id": "1494",
+        "name": "Eiasin"
+      }
+    },
+    {
+      "id": "ca37",
+      "leaveType": "Casual",
+      "fromDate": "2025-07-02",
+      "toDate": "2025-07-05",
+      "leave_status": {
+        "status": "Rejected"
+      },
+      "employees": {
+        "id": "764c",
+        "name": "Eiasin Prodhan"
+      },
+      "employee": {
+        "id": "b527",
+        "name": "Md. Rakib Islam",
+        "phoneNumber": "978",
+        "email": "rakib@gmail.com",
+        "joinDate": "2025-03-07",
+        "department": "0781",
+        "designation": "978a"
+      },
+      "status": {
+        "id": "2",
+        "status": "Approve"
+      }
+    },
+    {
+      "id": "40a1",
+      "leaveType": "ggjgj",
+      "fromDate": "2025-07-20",
+      "toDate": "2025-07-24",
+      "leave_status": {
+        "status": "Pending"
+      },
+      "employees": {
+        "id": "b527",
+        "name": "Md. Rakib Islam"
+      },
+      "employee": {
+        "id": "455a",
+        "name": "Md. Eiasin Prodhan",
+        "phoneNumber": "8789707097",
+        "email": "eiasin@gmail.com",
+        "joinDate": "2024-09-08",
+        "department": "3b5a",
+        "designation": "9472"
+      },
+      "status": {
+        "id": "2",
+        "status": "Approve"
+      }
+    }
+  ],
+  "leave_status": [
+    {
+      "id": "1",
+      "status": "Pending"
+    },
+    {
+      "id": "2",
+      "status": "Approve"
+    },
+    {
+      "id": "3",
+      "status": "Rejected"
+    }
+  ],
+  "payroll": [
+    {
+      "id": "1",
+      "month": "01-03-2025",
+      "basic": "5000",
+      "gross": "2000",
+      "total": "7000",
+      "employees": [
+        {
+          "id": "68b4",
+          "name": "Eiasin",
+          "phoneNumber": "3836",
+          "email": "rakib@gmail.com",
+          "joinDate": "2025-04-05"
+        }
+      ]
+    }
+  ],
+  "buyer": [
+    {
+      "id": "5df0",
+      "name": "L&M Industries Ltd.",
+      "country": "England",
+      "contactperson": "Parvej Hossen",
+      "phone": "8789090",
+      "email": "rakib@gmail.com",
+      "address": "London"
+    },
+    {
+      "id": "5950",
+      "name": "Badshah Group",
+      "country": "Bangladesh",
+      "contactperson": "Rakib",
+      "phone": "77868767",
+      "email": "badshah@gmail.com",
+      "address": "Mymensingh"
+    }
+  ],
+  "user": [
+    {
+      "id": "86db",
+      "name": "Eiasin",
+      "email": "eiasin@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/196037667?v=4",
+      "role": "admin"
+    },
+    {
+      "id": "e64b",
+      "name": "Rahmatullah",
+      "email": "rahmat@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/108518708?v=4",
+      "role": "hrexecutive"
+    },
+    {
+      "id": "399f",
+      "name": "Md. Rakib Islam",
+      "email": "rakib@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/196038058?v=4",
+      "role": "hradmin"
+    },
+    {
+      "id": "3293",
+      "name": "Mohammad Emran Hossain",
+      "email": "emranhss@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/21266856?v=4",
+      "role": "superadmin"
+    },
+    {
+      "id": "e376",
+      "name": "Sazid Mahmud Joy",
+      "email": "sazid@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/45362238?v=4",
+      "role": "merchandiserjunior"
+    },
+    {
+      "id": "3728",
+      "name": "Md. Rahim Khan",
+      "email": "mdrahim@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/196035214?v=4",
+      "role": "purchaseexecutive"
+    },
+    {
+      "id": "4696",
+      "name": "Md. Atiqul Islam",
+      "email": "atiq@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/196037602?v=4",
+      "role": "purchasemanager"
+    },
+    {
+      "id": "d834",
+      "name": "Md. Imran Mia",
+      "email": "imran@gmail.com",
+      "password": "12345",
+      "photo": "https://avatars.githubusercontent.com/u/195880852?v=4",
+      "role": "merchandisermanager"
+    }
+  ],
+  "uom": [
+    {
+      "id": "cd2c",
+      "productName": "Shirt",
+      "size": "XL",
+      "body": 1.52,
+      "sleeve": 0.12,
+      "pocket": 0.15,
+      "wastage": 2,
+      "shrinkage": 3,
+      "result": 1.8795
+    },
+    {
+      "id": "a555",
+      "productName": "Short Sleeve Shirt",
+      "size": "M",
+      "body": 1.3,
+      "sleeve": 0.15,
+      "pocket": 0.1,
+      "wastage": 2,
+      "shrinkage": 3,
+      "result": 1.6275
+    },
+    {
+      "id": "86b5",
+      "productName": "Short Shirt",
+      "size": "S",
+      "body": 1.4,
+      "sleeve": 0.1,
+      "pocket": 0.15,
+      "wastage": 2,
+      "shrinkage": 3,
+      "result": 1.7325
+    },
+    {
+      "id": "486b",
+      "productName": "Shirt P",
+      "size": "M",
+      "body": 0.9,
+      "sleeve": 0.5,
+      "pocket": 0.06,
+      "wastage": 2,
+      "shrinkage": 3,
+      "result": 1.533
+    }
+  ],
+  "bomview": [
+    {
+      "id": "d07f",
+      "serial": "1",
+      "material": "Woven knit fabric",
+      "element": "yards",
+      "quantity": 1.6275,
+      "unitPrice": 500,
+      "totalCost": 813.75,
+      "uom": {
+        "result": 1.6275
+      },
+      "bom": {
+        "styleCode": "TAN123",
+        "description": "Short Sleeve Shirt"
+      }
+    },
+    {
+      "id": "f808",
+      "serial": "2",
+      "material": "Plastic Button",
+      "element": "pcs",
+      "quantity": 9,
+      "unitPrice": 1.5,
+      "totalCost": 13.5,
+      "uom": {
+        "result": ""
+      },
+      "bom": {
+        "styleCode": "TAN123",
+        "description": "Short Sleeve Shirt"
+      }
+    },
+    {
+      "id": "f436",
+      "serial": "3",
+      "material": "Sewing Thread",
+      "element": "cone",
+      "quantity": 1,
+      "unitPrice": 2.5,
+      "totalCost": 2.5,
+      "uom": {
+        "result": ""
+      },
+      "bom": {
+        "styleCode": "TAN123",
+        "description": "Short Sleeve Shirt"
+      }
+    },
+    {
+      "id": "1c17",
+      "serial": "4",
+      "material": "Wash care tag",
+      "element": "",
+      "quantity": 4,
+      "unitPrice": 5,
+      "totalCost": 20,
+      "uom": {
+        "result": ""
+      },
+      "bom": {
+        "styleCode": "TAN123",
+        "description": "Short Sleeve Shirt"
+      }
+    },
+    {
+      "id": "0fe5",
+      "serial": "5",
+      "material": "Poly Bag",
+      "element": "pcs",
+      "quantity": 2,
+      "unitPrice": 5,
+      "totalCost": 10,
+      "uom": {
+        "result": ""
+      },
+      "bom": {
+        "styleCode": "TAN123",
+        "description": "Short Sleeve Shirt"
+      }
+    },
+    {
+      "id": "707f",
+      "serial": "6",
+      "material": "Light Weight Polyester Fabric",
+      "element": "yards",
+      "quantity": 0.9,
+      "unitPrice": 40,
+      "totalCost": 36,
+      "uom": {
+        "result": ""
+      },
+      "bom": {
+        "styleCode": "TAN123",
+        "description": "Short Sleeve Shirt"
+      }
+    }
+  ],
+  "bom": [
+    {
+      "id": "d0c7",
+      "styleCode": "TAN123",
+      "description": "Short Sleeve Shirt"
+    }
+  ],
+  "rawMaterials": [
+    {
+      "id": "3ae9",
+      "order": {
+        "id": "0bc2",
+        "smallSize": 12,
+        "mediumSize": 12,
+        "largeSize": 12
+      },
+      "uom": {
+        "size": "",
+        "result": ""
+      }
+    },
+    {
+      "id": "65b5",
+      "order": {
+        "id": "",
+        "smallSize": "",
+        "mediumSize": "",
+        "largeSize": ""
+      },
+      "uom": [
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        },
+        {
+          "id": "",
+          "size": "",
+          "result": ""
+        }
+      ]
+    }
+  ],
+  "order": [
+    {
+      "id": "bb52",
+      "buyerOrganization": "hjmhj",
+      "shippingAddress": "jhmjh",
+      "orderDate": "2025-07-02",
+      "deliveryDate": "2025-07-05",
+      "smallSize": 141,
+      "sPrice": 144,
+      "mediumSize": 14,
+      "mPrice": 14,
+      "largeSize": 14,
+      "lPrice": 14,
+      "subTotal": 20696,
+      "vat": 20,
+      "paidAmount": 20000,
+      "dueAmount": 696.2000000000007,
+      "remarks": "uik",
+      "bom": {
+        "styleCode": "RT123"
+      },
+      "orderStatus": {
+        "status": "Pending"
+      }
+    },
+    {
+      "id": "1eaa",
+      "buyerOrganization": "Atik Fashion House",
+      "shippingAddress": "Bogura",
+      "orderDate": "2025-07-22",
+      "deliveryDate": "2025-08-28",
+      "smallSize": 50,
+      "sPrice": 450,
+      "mediumSize": 50,
+      "mPrice": 580,
+      "largeSize": 50,
+      "lPrice": 600,
+      "subTotal": 81500,
+      "vat": 8,
+      "paidAmount": 30000,
+      "dueAmount": 51500.08,
+      "remarks": "good",
+      "bom": {
+        "styleCode": "RA765"
+      },
+      "orderStatus": {
+        "status": "Confirmed"
+      }
+    },
+    {
+      "id": "0bc2",
+      "buyerOrganization": "gfhngytj",
+      "shippingAddress": "yjhgytg",
+      "orderDate": "2025-07-22",
+      "deliveryDate": "2025-07-26",
+      "smallSize": 12,
+      "sPrice": 12,
+      "mediumSize": 12,
+      "mPrice": 12,
+      "largeSize": 12,
+      "lPrice": 12,
+      "subTotal": 432,
+      "vat": 1,
+      "paidAmount": 50,
+      "dueAmount": 382.01,
+      "total": 433,
+      "remarks": "ghj",
+      "bom": {
+        "styleCode": "PE737"
+      },
+      "orderStatus": {
+        "status": "Completed"
+      }
+    }
+  ],
+  "orderStatus": [
+    {
+      "id": "1",
+      "status": "Pending"
+    },
+    {
+      "id": "2",
+      "status": "Confirmed"
+    },
+    {
+      "id": "3",
+      "status": "Shipped"
+    },
+    {
+      "id": "4",
+      "status": "Completed"
+    }
+  ],
+  "prStatus": [
+    {
+      "id": "1",
+      "status": "Requesting"
+    },
+    {
+      "id": "2",
+      "status": "Pending"
+    },
+    {
+      "id": "3",
+      "status": "Approved"
+    }
+  ],
+  "po": [
+    {
+      "id": "d1cf",
+      "poNumber": "Po-0909",
+      "poDate": "2025-07-15",
+      "quantity": 1000,
+      "rate": 90,
+      "tax": 5.5,
+      "deliveryDate": "2025-08-05",
+      "termsAndCondition": "1. All goods must be delivered by the specified date.\n2. Payment will be made within 30 days of delivery & invoice receipt.\n3. Defective items must be replaced within 7 working days.\n4. The PO number must be mentioned on all delivery challans and invoices",
+      "subTotal": 90000,
+      "totalAmount": 94950,
+      "vendor": {
+        "id": "77d6",
+        "companyName": "Badshah Fabric Mills",
+        "contactPerson": "parvej",
+        "phone": "7878788"
+      },
+      "item": {
+        "categoryName": "Woven knit Fabric"
+      }
+    }
+  ],
+  "requsition": [
+    {
+      "id": "d72e",
+      "prDate": "2025-07-17",
+      "requestedBy": "Parvej",
+      "quantity": 100,
+      "approxUnitPrice": 3,
+      "totalEstPrice": 300,
+      "department": {
+        "name": "Sewing"
+      },
+      "item": {
+        "categoryName": "Sewing Thread"
+      },
+      "order": {
+        "id": "bb52"
+      },
+      "prStatus": {
+        "status": "Requesting"
+      }
+    },
+    {
+      "id": "3f2c",
+      "prDate": "2025-07-19",
+      "requestedBy": "gnghn",
+      "quantity": 34,
+      "approxUnitPrice": 45,
+      "totalEstPrice": 1530,
+      "department": {
+        "name": "Cutting"
+      },
+      "item": {
+        "categoryName": [
+          "Woven knit Fabric",
+          "Plastic Button",
+          "Sewing Thread"
+        ]
+      },
+      "order": {
+        "id": "bb52"
+      },
+      "prStatus": {
+        "status": "Requesting"
+      }
+    },
+    {
+      "id": "575e",
+      "prDate": "2025-07-19",
+      "requestedBy": "ujgjgyj",
+      "department": {
+        "name": "Cutting"
+      },
+      "item": {
+        "categoryName": [
+          "Sewing Thread"
+        ]
+      },
+      "order": {
+        "id": "bb52"
+      },
+      "prStatus": {
+        "status": "Requesting"
+      },
+      "categoryDetails": {
+        "Sewing Thread": {
+          "quantity": 0,
+          "unitPrice": 0,
+          "total": 0
+        }
+      },
+      "finalTotal": 0
+    },
+    {
+      "id": "b2b7",
+      "prDate": "2025-07-26",
+      "requestedBy": "tfhtyh",
+      "department": {
+        "name": "Sewing"
+      },
+      "item": {
+        "categoryName": [
+          "Sewing Thread"
+        ]
+      },
+      "order": {
+        "id": "bb52"
+      },
+      "prStatus": {
+        "status": "Pending"
+      },
+      "items": [
+        {
+          "categoryName": "Sewing Thread",
+          "unit": "Cone",
+          "quantity": 0,
+          "approxUnitPrice": 0,
+          "total": 0
+        }
+      ],
+      "totalEstPrice": 0
+    },
+    {
+      "id": "04ce",
+      "prDate": "2025-07-22",
+      "requestedBy": "habijabi",
+      "department": {
+        "name": "Administration "
+      },
+      "item": {
+        "categoryName": [
+          "Wash care tag"
+        ]
+      },
+      "order": {
+        "id": "bb52"
+      },
+      "prStatus": {
+        "status": "Requesting"
+      },
+      "items": [
+        {
+          "categoryName": "Wash care tag",
+          "unit": "Roll",
+          "quantity": 1,
+          "approxUnitPrice": 0,
+          "total": 0
+        }
+      ],
+      "totalEstPrice": 0
+    },
+    {
+      "id": "b157",
+      "prDate": "2025-07-23",
+      "requestedBy": "Rakib",
+      "quantity": 200,
+      "approxUnitPrice": 80,
+      "totalEstPrice": 16000,
+      "department": {
+        "name": "Sewing"
+      },
+      "item": {
+        "categoryName": "Woven knit Fabric"
+      },
+      "order": {
+        "id": "0bc2"
+      },
+      "prStatus": {
+        "status": "Requesting"
+      }
+    }
+  ],
+  "vendor": [
+    {
+      "id": "77d6",
+      "vendorName": "parvej",
+      "companyName": "Badshah Fabric Mills",
+      "contactPerson": "parvej",
+      "email": "badshahfabric@gmail.com",
+      "phone": "7878788",
+      "address": "Mymensingh, Bangladesh",
+      "tin": "",
+      "bin": "",
+      "vat": "67678"
+    },
+    {
+      "id": "2048",
+      "vendorName": "",
+      "companyName": "M&N Textiles",
+      "contactPerson": "Rakib",
+      "email": "mandn@gmail.com",
+      "phone": "897897897",
+      "address": "Chittagong",
+      "tin": "",
+      "bin": "",
+      "vat": "07452"
+    },
+    {
+      "id": "227c",
+      "vendorName": "",
+      "companyName": "Atik Textiles Ltd.",
+      "contactPerson": "Atik",
+      "email": "Atik@gmail.com",
+      "phone": "6657574",
+      "address": "Bogura",
+      "tin": "AT9080",
+      "bin": "",
+      "vat": ""
+    }
+  ],
+  "item": [
+    {
+      "id": "11c1",
+      "categoryName": "Woven knit Fabric",
+      "unit": "yards"
+    },
+    {
+      "id": "0ec8",
+      "categoryName": "Plastic Button",
+      "unit": "1 Gross = 144 pcs"
+    },
+    {
+      "id": "af5a",
+      "categoryName": "Sewing Thread",
+      "unit": "Cone"
+    },
+    {
+      "id": "4361",
+      "categoryName": "Wash care tag",
+      "unit": "Roll"
+    },
+    {
+      "id": "cde8",
+      "categoryName": "Poly Bag",
+      "unit": "Box"
+    },
+    {
+      "id": "b063",
+      "categoryName": "Light Weight Polyester Fabric",
+      "unit": "yards"
+    }
+  ],
+  "stokIn": [
+    {
+      "id": "40ce",
+      "item": {
+        "categoryName": ""
+      },
+      "inventory": {
+        "quantity": ""
+      }
+    },
+    {
+      "id": "ea1c",
+      "item": {
+        "categoryName": ""
+      },
+      "inventory": {
+        "quantity": ""
+      }
+    },
+    {
+      "id": "4c8e",
+      "item": {
+        "categoryName": ""
+      },
+      "inventory": {
+        "quantity": ""
+      }
+    },
+    {
+      "id": "1da1",
+      "item": {
+        "categoryName": ""
+      },
+      "inventory": {
+        "quantity": ""
+      }
+    },
+    {
+      "id": "391e",
+      "itemId": "11c1",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "26e0",
+      "itemId": "0ec8",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "3177",
+      "itemId": "0ec8",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "bd5e",
+      "itemId": "11c1",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "b064",
+      "itemId": "11c1",
+      "quantity": 123,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "63d4",
+      "itemId": "11c1",
+      "quantity": 2342,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "09dc",
+      "itemId": "11c1",
+      "quantity": 50,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "c47b",
+      "itemId": "af5a",
+      "quantity": 234,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "11c7",
+      "itemId": "0ec8",
+      "quantity": 500,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "b5d0",
+      "itemId": "0ec8",
+      "quantity": 34234,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "76ea",
+      "itemId": "0ec8",
+      "quantity": 123,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "c3da",
+      "itemId": "11c1",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "464e",
+      "itemId": "11c1",
+      "quantity": 12,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "50c0",
+      "itemId": "af5a",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "2add",
+      "itemId": "cde8",
+      "quantity": 50,
+      "receivedTransactionDate": "2025-07-15"
+    },
+    {
+      "id": "ed98",
+      "itemId": "4361",
+      "quantity": 5,
+      "receivedTransactionDate": "2025-07-16"
+    },
+    {
+      "id": "48a7",
+      "itemId": "0ec8",
+      "quantity": 10,
+      "receivedTransactionDate": "2025-07-18"
+    },
+    {
+      "id": "8150",
+      "itemId": "11c1",
+      "quantity": 100,
+      "receivedTransactionDate": "2025-07-23"
+    }
+  ],
+  "inventories": [
+    {
+      "quantity": 100,
+      "categoryName": "Woven knit Fabric",
+      "id": "11c1"
+    },
+    {
+      "quantity": 10,
+      "categoryName": "Plastic Button",
+      "id": "0ec8"
+    },
+    {
+      "quantity": 50,
+      "categoryName": "Sewing Thread",
+      "id": "af5a"
+    },
+    {
+      "quantity": 5,
+      "categoryName": "Wash care tag",
+      "id": "4361"
+    },
+    {
+      "quantity": 20,
+      "categoryName": "Poly Bag",
+      "id": "cde8"
+    },
+    {
+      "id": "b063",
+      "categoryName": "Light Weight Polyester Fabric",
+      "quantity": 0
+    }
+  ],
+  "stockOut": [
+    {
+      "id": "b4d4",
+      "itemId": "11c1",
+      "quantity": 112,
+      "transactionDate": "2025-07-15"
+    },
+    {
+      "id": "3fe7",
+      "itemId": "cde8",
+      "quantity": 30,
+      "transactionDate": "2025-07-15"
+    },
+    {
+      "id": "c3cf",
+      "itemId": "af5a",
+      "quantity": 50,
+      "transactionDate": "2025-07-16"
+    }
+  ],
+  "messages": [
+    {
+      "id": "d5aa",
+      "sender": "You",
+      "content": "hi",
+      "timestamp": "2025-07-22T06:19:52.012Z"
+    },
+    {
+      "id": "de17",
+      "sender": "You",
+      "content": "hello, whats up!",
+      "timestamp": "2025-07-22T06:20:12.216Z"
+    },
+    {
+      "id": "bb7f",
+      "sender": "You",
+      "content": "hello, guys!",
+      "timestamp": "2025-07-22T06:21:17.071Z"
+    },
+    {
+      "id": "a658",
+      "sender": "You",
+      "content": "hey",
+      "timestamp": "2025-07-22T06:26:20.704Z"
+    },
+    {
+      "id": "cb31",
+      "sender": "You",
+      "content": "nice",
+      "timestamp": "2025-07-22T06:26:35.172Z"
+    },
+    {
+      "id": "44b1",
+      "sender": "",
+      "content": "hello",
+      "timestamp": "2025-07-22T06:32:26.767Z"
+    },
+    {
+      "id": "08b7",
+      "sender": "",
+      "content": "hi",
+      "timestamp": "2025-07-22T06:32:48.055Z"
+    },
+    {
+      "id": "868c",
+      "sender": "Rahmatullah",
+      "content": "hello eiasin broooo",
+      "timestamp": "2025-07-22T06:43:52.736Z"
+    },
+    {
+      "id": "cff8",
+      "sender": "Rahmatullah",
+      "content": "fine, what about you ! Rahmatullah ?",
+      "timestamp": "2025-07-22T06:44:35.015Z"
+    },
+    {
+      "id": "fcac",
+      "sender": "Eiasin",
+      "content": "fine, what about Rahmatullah !",
+      "timestamp": "2025-07-22T06:46:29.310Z"
+    },
+    {
+      "id": "d1b6",
+      "sender": "Eiasin",
+      "content": "Tell me Your Project's Update ",
+      "timestamp": "2025-07-22T06:55:52.648Z"
+    },
+    {
+      "id": "7a8d",
+      "sender": "Rahmatullah",
+      "content": "Ops! Bro, I think I am so late about my Project but inshaallah i will do this in time. ",
+      "timestamp": "2025-07-22T06:57:07.497Z"
+    },
+    {
+      "id": "5707",
+      "sender": "Rahmatullah",
+      "content": "please, pray for me",
+      "timestamp": "2025-07-22T06:57:21.087Z"
+    },
+    {
+      "id": "c63d",
+      "sender": "Eiasin",
+      "content": "Sure bro, Don't be Upset, your work is awesome, i think your project will be the best. ",
+      "timestamp": "2025-07-22T06:58:20.246Z"
+    },
+    {
+      "id": "fdfc",
+      "sender": "Eiasin",
+      "content": "hello bro!",
+      "timestamp": "2025-07-22T09:15:17.914Z"
+    },
+    {
+      "id": "f9e5",
+      "sender": "Rahmatullah",
+      "content": "Hi",
+      "timestamp": "2025-07-22T09:15:38.522Z"
+    },
+    {
+      "id": "bd66",
+      "sender": "Rahmatullah",
+      "content": "hello eiasin , whats Up!",
+      "timestamp": "2025-07-22T09:16:50.826Z"
+    },
+    {
+      "id": "d217",
+      "sender": "Eiasin",
+      "content": "fine, what about You !",
+      "timestamp": "2025-07-22T09:17:16.490Z"
+    },
+    {
+      "id": "75d3",
+      "sender": "Eiasin",
+      "content": "hello istiaq vai ",
+      "timestamp": "2025-07-22T09:18:09.450Z"
+    },
+    {
+      "id": "849c",
+      "sender": "Rahmatullah",
+      "content": "hello, eiasin",
+      "timestamp": "2025-07-22T10:50:43.371Z"
+    },
+    {
+      "id": "081c",
+      "sender": "Eiasin",
+      "content": "hi, rahmat",
+      "timestamp": "2025-07-22T10:51:11.675Z"
+    },
+    {
+      "id": "f591",
+      "sender": "Mohammad Emran Hossain",
+      "content": "hey , everyOne!",
+      "timestamp": "2025-07-22T12:28:38.980Z"
+    },
+    {
+      "id": "dd75",
+      "sender": "Eiasin",
+      "content": "hello, atik vai",
+      "timestamp": "2025-07-22T18:13:32.350Z"
+    },
+    {
+      "id": "a304",
+      "sender": "Md. Atiqul Islam",
+      "content": "hiii, eiasin",
+      "timestamp": "2025-07-22T18:14:02.534Z"
+    }
+  ]
+}

@@ -1,0 +1,157 @@
+
+
+  <div class="container my-5">
+    <h2 class="mb-4 text-center fw-bold">Create New Order</h2>
+
+    <div class="card shadow rounded-4 p-4">
+      <form [formGroup]="orderForm" method="post">
+
+        <!-- Order Info Section -->
+        <div class="row g-3 mb-4">
+
+          <!-- Style Code -->
+          <div class="col-md-4" formGroupName="bom">
+            <label class="form-label">Style Code:</label>
+            <select class="form-select" formControlName="styleCode">
+              <option *ngFor="let s of styleCode" [ngValue]="s.styleCode">{{ s.styleCode }}</option>
+            </select>
+          </div>
+
+          <!-- Buyer Organization -->
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Buyer Organization</label>
+            <input type="text" class="form-control rounded-pill" formControlName="buyerOrganization" placeholder="Buyer Organization">
+          </div>
+
+          <!-- Shipping Address -->
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Shipping Address</label>
+            <textarea class="form-control rounded-3" rows="2" formControlName="shippingAddress" placeholder="Enter Shipping Address"></textarea>
+          </div>
+
+          <!-- Order Date -->
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Order Date</label>
+            <input type="date" class="form-control rounded-pill" formControlName="orderDate">
+          </div>
+
+          <!-- Delivery Date -->
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Delivery Date</label>
+            <input type="date" class="form-control rounded-pill" formControlName="deliveryDate">
+          </div>
+
+          <!-- Order Status -->
+          <div class="col-md-4" formGroupName="orderStatus">
+            <label class="form-label">Status:</label>
+            <select class="form-select" formControlName="status">
+              <option *ngFor="let s of status" [ngValue]="s.status">{{ s.status }}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <!-- Order Calculation Section -->
+        <div class="row g-4">
+
+          <div class="col-md-8">
+
+            <div class="card p-4 shadow-sm rounded-4">
+              <h5 class="mb-3 fw-semibold">Order Calculation</h5>
+
+              <div class="row g-3">
+
+                <!-- Small Size -->
+                <div class="col-md-6">
+                  <label class="form-label">Small Size (Qty)</label>
+                  <input type="number" class="form-control rounded-pill" formControlName="smallSize" placeholder="0">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Small Size Price (Per Piece)</label>
+                  <input type="number" class="form-control rounded-pill" formControlName="sPrice" placeholder="0.00">
+                </div>
+
+                <!-- Medium Size -->
+                <div class="col-md-6">
+                  <label class="form-label">Medium Size (Qty)</label>
+                  <input type="number" class="form-control rounded-pill" formControlName="mediumSize" placeholder="0">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Medium Size Price (Per Piece)</label>
+                  <input type="number" class="form-control rounded-pill" formControlName="mPrice" placeholder="0.00">
+                </div>
+
+                <!-- Large Size -->
+                <div class="col-md-6">
+                  <label class="form-label">Large Size (Qty)</label>
+                  <input type="number" class="form-control rounded-pill" formControlName="largeSize" placeholder="0">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Large Size Price (Per Piece)</label>
+                  <input type="number" class="form-control rounded-pill" formControlName="lPrice" placeholder="0.00">
+                </div>
+
+                <!-- Remarks -->
+                <div class="col-md-12">
+                  <label class="form-label">Remarks</label>
+                  <input type="text" class="form-control rounded-pill" formControlName="remarks" placeholder="Any remarks">
+                </div>
+
+                <!-- Calculate Button -->
+                <div class="col-12 text-center mt-3">
+                  <button type="button" class="btn btn-outline-primary rounded-pill px-5 shadow" (click)="subTotalCalculation()">Calculate</button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Summary Section -->
+          <div class="col-md-4">
+
+            <div class="card p-4 shadow-sm rounded-4 bg-light">
+              <h5 class="fw-semibold mb-3 text-center">Order Summary</h5>
+
+              <div class="mb-3">
+                <label class="form-label">Subtotal</label>
+                <input type="number" class="form-control rounded-pill" [value]="subTotal" formControlName="subTotal" placeholder="0.00">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">VAT</label>
+                <input type="number" class="form-control rounded-pill" formControlName="vat" placeholder="0.00">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Paid Amount</label>
+                <input type="number" class="form-control rounded-pill" formControlName="paidAmount" placeholder="0.00" (blur)="onFocusLost()">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Due Amount</label>
+                <input type="number" class="form-control rounded-pill" [value]="dueAmount" formControlName="dueAmount" placeholder="0.00">
+              </div>
+              <div class="mb-3">
+                <label class="form-label fw-bold">Total</label>
+                <input type="number" class="form-control rounded-pill fw-bold fs-5 text-end" [value]="total" formControlName="total" placeholder="0.00">
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-5">
+          <button type="submit" class="btn btn-success px-5 py-2 rounded-pill shadow-lg fw-bold" (click)="addOrder()">
+            Submit Order
+          </button>
+          <button type="button" class="btn btn-outline-secondary px-4 py-2 rounded-pill shadow-sm fw-semibold">
+            <i class="bi bi-printer me-2"></i> Print
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+

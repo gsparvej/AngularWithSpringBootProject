@@ -1,0 +1,49 @@
+<h5 class="text-secondary mt-4 mb-3">Select Size</h5>
+
+<div formArrayName="uom">
+  <div *ngFor="let group of uomArray.controls; let i = index" [formGroupName]="i" class="row mb-3">
+    <div class="col-md-5">
+      <label class="form-label">Select Size</label>
+      <select class="form-select" formControlName="id">
+        <option value="">-- Select --</option>
+        <option *ngFor="let u of uom" [value]="u.id">{{ u.size }}</option>
+      </select>
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Base Fabric</label>
+      <input type="text" class="form-control" formControlName="result" readonly />
+    </div>
+    <div class="col-md-3 d-flex align-items-end">
+      <button type="button" class="btn btn-danger" (click)="removeUom(i)" *ngIf="uomArray.length > 1">Remove</button>
+    </div>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary mt-2" (click)="addUom()">+ Add Size</button>
+<hr>
+
+<!-- Order form (unchanged) -->
+<div formGroupName="order" class="row">
+  <div class="col-md-4">
+    <label>Order</label>
+    <select class="form-select" formControlName="id">
+      <option value="">-- Select --</option>
+      <option *ngFor="let o of order" [value]="o.id">{{ o.id }}</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <label>Small</label>
+    <input class="form-control" formControlName="smallSize" />
+  </div>
+  <div class="col-md-2">
+    <label>Medium</label>
+    <input class="form-control" formControlName="mediumSize" />
+  </div>
+  <div class="col-md-2">
+    <label>Large</label>
+    <input class="form-control" formControlName="largeSize" />
+  </div>
+</div>
+
+<hr>
+<button class="btn btn-success mt-3" (click)="addRawMaterials()">Save Raw Materials</button>

@@ -32,7 +32,7 @@ public class DesignationRestController {
     }
 
     // Get one by id
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<Designation> getDesignationById(@PathVariable int id) {
         return designationService.findById(id)
                 .map(ResponseEntity::ok)

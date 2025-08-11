@@ -5,7 +5,7 @@ import java.util.List;
 public class DepartmentResponseDTO {
     private int id;
     private String name;
-    private List<Integer> designations;
+
 
 
     public int getId() {
@@ -24,11 +24,4 @@ public class DepartmentResponseDTO {
         this.name = name;
     }
 
-    public List<Integer> getDesignations() {
-        return designations;
-    }
-
-    public void setDesignations(List<Integer> designations) {
-        this.designations = designations;
-    }
 }

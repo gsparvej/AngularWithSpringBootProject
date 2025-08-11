@@ -12,6 +12,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/api/designation")
+@CrossOrigin("*")
 public class DesignationRestController {
 
     @Autowired

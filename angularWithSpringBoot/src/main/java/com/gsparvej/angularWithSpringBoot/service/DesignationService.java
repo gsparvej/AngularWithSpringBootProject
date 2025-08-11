@@ -1,6 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
 
+import com.gsparvej.angularWithSpringBoot.dto.DepartmentResponseDTO;
 import com.gsparvej.angularWithSpringBoot.dto.DesignationResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.entity.Designation;
@@ -22,31 +23,40 @@ public class DesignationService {
     @Autowired
     private IDepartmentRepo departmentRepo;
 
+    public Designation saveOrUpdate(Designation designation) {
+        return designationRepo.save(designation);
+    }
+
     public List<DesignationResponseDTO> getAllDesignationDTOs() {
         return designationRepo.findAll().stream().map(desig -> {
             DesignationResponseDTO dto = new DesignationResponseDTO();
             dto.setId(desig.getId());
             dto.setDesignationTitle(desig.getDesignationTitle());
 
-            if (desig.getDepartment() != null) {
-                dto.setDepartmentId(desig.getDepartment().getId());
-                dto.setDepartmentName(desig.getDepartment().getName());
+            Department department = desig.getDepartment();
+            if (department != null) {
+                DepartmentResponseDTO departmentDTO = new DepartmentResponseDTO();
+                departmentDTO.setId(department.getId());
+                departmentDTO.setName(department.getName());
+                dto.setDepartment(departmentDTO);
+
 
             }
             return dto;
         }).toList();
     }
 
-    @Transactional
-    public Designation create(Designation designation) {
-        if (designation.getDepartment() !=null) {
-            int departmentId = designation.getDepartment().getId();
-            Department department = departmentRepo.findById(departmentId)
-                    .orElseThrow(() -> new RuntimeException("Department Not Found with id " + departmentId));
-                    designation.setDepartment(department);
-        }
-        return designationRepo.save(designation);
-    }
+
+//    @Transactional
+//    public Designation create(Designation designation) {
+//        if (designation.getDepartment() !=null) {
+//            int departmentId = designation.getDepartment().getId();
+//            Department department = departmentRepo.findById(departmentId)
+//                    .orElseThrow(() -> new RuntimeException("Department Not Found with id " + departmentId));
+//                    designation.setDepartment(department);
+//        }
+//        return designationRepo.save(designation);
+//    }
 
     // Read One By Id
     public Optional<Designation> findById(int id) {

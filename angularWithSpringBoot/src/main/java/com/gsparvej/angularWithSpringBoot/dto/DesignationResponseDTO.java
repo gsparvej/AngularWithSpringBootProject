@@ -4,9 +4,7 @@ public class DesignationResponseDTO {
 
     private int id;
     private String designationTitle;
-    private int departmentId;
-    private String departmentName;
-
+   private DepartmentResponseDTO department;
 
     public int getId() {
         return id;
@@ -24,19 +22,11 @@ public class DesignationResponseDTO {
         this.designationTitle = designationTitle;
     }
 
-    public int getDepartmentId() {
-        return departmentId;
+    public DepartmentResponseDTO getDepartment() {
+        return department;
     }
 
-    public void setDepartmentId(int departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public String getDepartmentName() {
-        return departmentName;
-    }
-
-    public void setDepartmentName(String departmentName) {
-        this.departmentName = departmentName;
+    public void setDepartment(DepartmentResponseDTO department) {
+        this.department = department;
     }
 }

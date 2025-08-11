@@ -6,6 +6,7 @@ import { Department } from '../../../model/HR/department.model';
 import { Designation } from '../../../model/HR/designation.model';
 import { Attendance } from '../../../model/HR/attendance.model';
 import { Leave } from '../../../model/HR/leave.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -13,11 +14,11 @@ import { Leave } from '../../../model/HR/leave.model';
 export class HrService {
 
   baseUrlEmp: string = "http://localhost:3000/employees";
-  baseUrlDepart: string = "http://localhost:3000/department";
+ private baseUrlDepart = environment.apiBaseUrl + '/department';
   baseUrlAtten: string = "http://localhost:3000/attendance";
   baseUrlLeave: string = "http://localhost:3000/leave";
   baseUrlPay: string = "http://localhost:3000/payroll";
-  baseUrlDesig: string ="http://localhost:3000/designation";
+ private baseUrlDesig = environment.apiBaseUrl + '/designation';
   baseUrlAttendStatus: string = "http://localhost:3000/atten_status";
   baseUrlLeaveStatus: string = "http://localhost:3000/leave_status";
 

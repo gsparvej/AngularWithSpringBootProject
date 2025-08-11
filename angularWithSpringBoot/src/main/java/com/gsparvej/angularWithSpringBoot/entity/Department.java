@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "departments")
+@Table(name = "department")
 public class Department {
 
     @Id
@@ -15,7 +15,7 @@ public class Department {
 
     private String name;
 
-    @OneToMany(mappedBy = "departments" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL)
     @JsonIgnore
     private List<Designation> designations;
 

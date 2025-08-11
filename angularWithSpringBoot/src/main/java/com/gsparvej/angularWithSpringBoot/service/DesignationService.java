@@ -42,7 +42,7 @@ public class DesignationService {
         if (designation.getDepartment() !=null) {
             int departmentId = designation.getDepartment().getId();
             Department department = departmentRepo.findById(departmentId)
-                    .orElseThrow(() -> new RuntimeException("Department Not Found with id " + departmentId))
+                    .orElseThrow(() -> new RuntimeException("Department Not Found with id " + departmentId));
                     designation.setDepartment(department);
         }
         return designationRepo.save(designation);

@@ -57,10 +57,10 @@ private router: Router,
 
 
   }
-  getDepartmentName(id: string): string {
+  getDepartmentName(id: number): string {
     return this.departments.find(d => d.id == id)?.name || '';
   }
-  getDesignationTitle(id: string): string {
+  getDesignationTitle(id: number): string {
     return this.designations.find(desig => desig.id == id)?.designationTitle || '';
 
   }

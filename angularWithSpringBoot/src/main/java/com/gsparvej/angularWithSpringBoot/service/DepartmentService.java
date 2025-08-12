@@ -26,9 +26,6 @@ public class DepartmentService {
             List<Integer> designationsIds = depart.getDesignations().stream()
                     .map(d ->d.getId())
                     .toList();
-
-            dto.setDesignations(designationsIds);
-
             return dto;
         }).toList();
     }
@@ -37,7 +34,7 @@ public class DepartmentService {
         return departmentRepo.save(department);
     }
 
-
-    
-
+    public void deleteById(Integer id) {
+        departmentRepo.deleteById(id);
+    }
 }

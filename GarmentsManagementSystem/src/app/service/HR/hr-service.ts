@@ -65,8 +65,8 @@ saveEmployee(emp: Employee) : Observable<any> {
 
   }
 
-  deleteDesignation(id: string): Observable<void> {
-
+  deleteDesignation(id: number): Observable<void> {
+// ekhane sir / ta rakhe ni return line e 
     return this.http.delete<void>(`${this.baseUrlDesig}/${id}`);
   }
 
@@ -74,14 +74,10 @@ saveDesignation(deisg: Designation) : Observable<Designation> {
 
     return this.http.post<Designation>(this.baseUrlDesig,deisg);
   }
-
-  // getDesignationById(id: string): Observable<any> {
-
-  //   return this.http.get(this.baseUrlDesig+'/'+id);
-  // }
-  updateDesignation(desig: Designation): Observable<Designation> {
-
-   return this.http.put<Designation>(`${this.baseUrlDesig}/${desig.id}`,desig);
+ 
+  updateDesignation(id: number,desig: Designation): Observable<Designation> {
+// ekhane sir / ta rakhe ni return line e 
+   return this.http.put<Designation>(`${this.baseUrlDesig}${id}`, desig);
   }
 
 // Designation add, delete , update end
@@ -98,7 +94,7 @@ saveDesignation(deisg: Designation) : Observable<Designation> {
 
   }
 
-  deleteDepartment(id: string): Observable<void> {
+  deleteDepartment(id: number): Observable<void> {
 
     return this.http.delete<void>(`${this.baseUrlDepart}/${id}`);
   }
@@ -108,13 +104,12 @@ saveDepartment(dep: Department) : Observable<Department> {
     return this.http.post<Department>(this.baseUrlDepart,dep);
   }
 
-  getDepartmentById(id: string): Observable<any> {
+  getDepartmentById(id: number): Observable<Department> {
 
-    return this.http.get(this.baseUrlDepart+'/'+id);
+    return this.http.get<Department>(`${this.baseUrlDepart}${id}`);
   }
-  updateDepartment(dep: Department): Observable<Department> {
-
-   return this.http.put<Department>(`${this.baseUrlDepart}/${dep.id}`,dep);
+  updateDepartment(id: number, depart: Department): Observable<Department> {
+    return this.http.put<Department>(`${this.baseUrlDepart}${id}`, depart);
   }
 
 

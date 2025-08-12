@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/designation")
+@RequestMapping("/api/designation/")
 @CrossOrigin("*")
 public class DesignationRestController {
 
@@ -20,31 +20,30 @@ public class DesignationRestController {
 
     // Create
 
-    @PostMapping
-    public ResponseEntity<Designation> createDesignation(@RequestBody Designation designation) {
-        Designation created = designationService.create(designation);
-        return ResponseEntity.ok(created);
+    @GetMapping("")
+    public List<DesignationResponseDTO> getAllDesignation() {
+        return designationService.getAllDesignationDTOs();
+    }
+    @PostMapping("")
+    public Designation saveDesignation(@RequestBody Designation designation) {
+        return designationService.saveOrUpdate(designation);
     }
 
-    @GetMapping
-    public ResponseEntity<List<DesignationResponseDTO>> getAllDesignations() {
-        List<DesignationResponseDTO> list = designationService.getAllDesignationDTOs();
-        return ResponseEntity.ok(list);
-    }
-
-    // Get one by id
     @GetMapping("/{id}")
-    public ResponseEntity<Designation> getDesignationById(@PathVariable int id) {
+    public Designation getById(@PathVariable Integer id) {
         return designationService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElseThrow(() -> new RuntimeException("Designation not found"));
     }
-    // delete by Id
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteDesignation(@PathVariable int id) {
+    public void deleteById(@PathVariable Integer id) {
         designationService.delete(id);
-        return ResponseEntity.noContent().build();
     }
+    @PutMapping("{id}")
+    public Designation update(@PathVariable Integer id, @RequestBody Designation designation) {
+        return designationService.update(id, designation);
+    }
+
+
 
 
 }

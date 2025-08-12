@@ -1,13 +1,12 @@
-export class Designation {
+import { Department } from "./department.model";
 
-    id? : string;
-    designationTitle  : string;
+export interface Designation {
 
-     constructor(id: string, designationTitle: string) {
-        
-    this.id = id;
-    this.designationTitle = designationTitle;
-  }
+    id? : number;
+    designationTitle?  : string;
+    department?: Department;
+
+     
     
     
 }

@@ -25,7 +25,7 @@ export class ViewAllDepartment implements OnInit{
     this.department = this.hrService.getAllDepartment(); 
   }
 
-  getDepartById(id:string): void{
+  getDepartById(id:number): void{
 
       this.hrService.getDepartmentById(id).subscribe({
 
@@ -49,7 +49,7 @@ export class ViewAllDepartment implements OnInit{
   }
 
 
-deleteDepart(id: string ): void {
+deleteDepart(id: number ): void {
 
 this.hrService.deleteDepartment(id).subscribe({
 

@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HrService } from '../../service/HR/hr-service';
 import { Router } from '@angular/router';
 import { Department } from '../../../model/HR/department.model';
-import { Designation } from '../../../model/HR/designation.model';
 
 @Component({
   selector: 'app-add-department',
@@ -11,65 +10,80 @@ import { Designation } from '../../../model/HR/designation.model';
   templateUrl: './add-department.html',
   styleUrl: './add-department.css'
 })
-export class AddDepartment implements OnInit{
+export class AddDepartment implements OnInit {
 
-  departForm !: FormGroup;
-  designations: Designation[] = [];
+  departments: Department[] = [];
+  departForm!: FormGroup;
+  editMode = false;
+  editId?: number;
 
   constructor(
     private hrService: HrService,
-    private router : Router,
-    private formBuilder : FormBuilder,
+    private router: Router,
+    private formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef
+  ) {}
 
-  ){
-    this.departForm = this.formBuilder.group({
-      name: ['', Validators.required],
-      designations: [[], Validators.required]
-    });
-  }
   ngOnInit(): void {
-    this.loadDesignations();
+    // ✅ Initialize the form here
+    this.departForm = this.formBuilder.group({
+      name: ['', Validators.required]
+    });
+
+    this.loadDepartments();
   }
 
-  loadDesignations(){
-    this.hrService.getAllDesignation().subscribe(data => {
-      this.designations = data;
-      this.cdr.detectChanges();
+  loadDepartments(): void {
+    this.hrService.getAllDepartment().subscribe(data => {
+      this.departments = data;
+      this.cdr.markForCheck();
     });
   }
 
-  onSubmit(){
-    if (this.departForm.invalid ) return;
-    const department: Department = this.departForm.value;
-    this.hrService.saveDepartment(department).subscribe(() => {
-      alert('Department Added Successfully!');
-      this.departForm.reset();
-    });
+  onSubmit(): void {
+    if (this.departForm.invalid) {
+      this.departForm.markAllAsTouched(); // ✅ Show validation errors
+      return;
+    }
+
+    const departData: Department = this.departForm.value;
+
+    if (this.editMode && this.editId !== undefined) {
+      this.hrService.updateDepartment(this.editId, departData).subscribe(() => {
+        this.loadDepartments(); // ✅ was missing ()
+        this.resetForm();
+        this.cdr.markForCheck();
+      });
+    } else {
+      this.hrService.saveDepartment(departData).subscribe(() => {
+        this.loadDepartments();
+        this.resetForm();
+        this.cdr.markForCheck();
+      });
+    }
   }
 
-  // addDepartment(): void {
-  //   const department : Department = {...this.departForm.value};
-  //   this.hrService.saveDepartment(department).subscribe({
-  
-  //     next: (res) => {
-  
-  //       console.log(res,'Added Succesfully');
-  //       this.departForm.reset();
-  //       this.router.navigate(['/viewAllDepart']);
-  
-  //     },
-  //     error: (err) => {
-  //       console.log(err,'Data Not Saved ! Please Check Console')
-  
-  //     }
-  
-  
-  
-  //   });
-  
-  
-  
-  //   }
+  onEdit(depart: Department): void {
+    this.editMode = true;
+    this.editId = depart.id;
+    this.departForm.patchValue({
+      name: depart.name
+    });
+    this.cdr.markForCheck();
+  }
 
+  onDelete(id?: number): void {
+    if (id && confirm('Are you sure you want to delete this department?')) {
+      this.hrService.deleteDepartment(id).subscribe(() => {
+        this.loadDepartments();
+        this.cdr.markForCheck();
+      });
+    }
+  }
+
+  resetForm(): void {
+    this.editMode = false;
+    this.editId = undefined;
+    this.departForm.reset();
+  }
 }

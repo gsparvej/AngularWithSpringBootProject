@@ -64,25 +64,21 @@ public class DesignationService {
     }
 
     // Update by ID
-    public Designation update(int id, Designation updateddesignation) {
-        Designation existing = designationRepo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Designation not found with id " + id));
+public Designation update(Integer id, Designation updateDesignation) {
+        return designationRepo.findById(id).map(existingDesig -> {
+            existingDesig.setDesignationTitle(updateDesignation.getDesignationTitle());
 
-        existing.setDesignationTitle(updateddesignation.getDesignationTitle());
-
-        if (updateddesignation.getDepartment() != null) {
-            // Optionally verify district exists
-            Department department = departmentRepo.findById(updateddesignation.getDepartment().getId())
-                    .orElseThrow(() -> new RuntimeException("Department not found with id " + updateddesignation.getDepartment().getId()));
-            existing.setDepartment(department);
-        }
-
-        return designationRepo.save(existing);
-    }
+            // update department if provided
+            if(updateDesignation.getDepartment() != null) {
+                existingDesig.setDepartment(updateDesignation.getDepartment());
+            }
+            return designationRepo.save(existingDesig);
+        }).orElseThrow(() -> new RuntimeException("Designation not found with id  " +id));
+}
 
     // delete by id
 
-    public void delete(int id) {
+    public void delete(Integer id) {
         designationRepo.deleteById(id);
     }
 

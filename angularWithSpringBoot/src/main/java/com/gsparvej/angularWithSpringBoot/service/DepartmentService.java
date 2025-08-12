@@ -24,11 +24,12 @@ public class DepartmentService {
             dto.setName(depart.getName());
 
             List<Integer> designationsIds = depart.getDesignations().stream()
-                    .map(d ->d.getId())
+                    .map(d -> d.getId())
                     .toList();
             return dto;
         }).toList();
     }
+
 
     public Department saveDepartment(Department department) {
         return departmentRepo.save(department);

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/designation/")
+@RequestMapping("/api/designation")
 @CrossOrigin("*")
 public class DesignationRestController {
 

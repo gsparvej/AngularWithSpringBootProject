@@ -22,8 +22,8 @@ public class DepartmentRestController {
     private DepartmentService departmentService;
 
     @GetMapping("")
-    public List<DepartmentResponseDTO> getAllDepartment() {
-        return departmentService.getAllDepartmentDTOs();
+    public List<Department> getAllDepartment() {
+        return departmentService.getAllDepartments();
     }
 
     // Get single Country by id

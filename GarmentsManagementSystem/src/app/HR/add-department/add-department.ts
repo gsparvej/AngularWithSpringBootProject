@@ -25,12 +25,12 @@ export class AddDepartment implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // ✅ Initialize the form here
+     this.loadDepartments();
     this.departForm = this.formBuilder.group({
       name: ['', Validators.required]
     });
 
-    this.loadDepartments();
+   
   }
 
   loadDepartments(): void {
@@ -42,7 +42,7 @@ export class AddDepartment implements OnInit {
 
   onSubmit(): void {
     if (this.departForm.invalid) {
-      this.departForm.markAllAsTouched(); // ✅ Show validation errors
+      this.departForm.markAllAsTouched(); 
       return;
     }
 
@@ -50,7 +50,7 @@ export class AddDepartment implements OnInit {
 
     if (this.editMode && this.editId !== undefined) {
       this.hrService.updateDepartment(this.editId, departData).subscribe(() => {
-        this.loadDepartments(); // ✅ was missing ()
+        this.loadDepartments(); 
         this.resetForm();
         this.cdr.markForCheck();
       });

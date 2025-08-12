@@ -1,16 +1,20 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
 import com.gsparvej.angularWithSpringBoot.dto.DesignationResponseDTO;
+import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.entity.Designation;
+import com.gsparvej.angularWithSpringBoot.repository.IDepartmentRepo;
 import com.gsparvej.angularWithSpringBoot.service.DesignationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/designation")
 @CrossOrigin("*")
 public class DesignationRestController {
@@ -18,15 +22,25 @@ public class DesignationRestController {
     @Autowired
     private DesignationService designationService;
 
+    @Autowired
+    private IDepartmentRepo departmentRepo;
+
     // Create
 
     @GetMapping("")
     public List<DesignationResponseDTO> getAllDesignation() {
         return designationService.getAllDesignationDTOs();
     }
-    @PostMapping("")
-    public Designation saveDesignation(@RequestBody Designation designation) {
-        return designationService.saveOrUpdate(designation);
+
+    @PostMapping
+    public ResponseEntity<Designation> createDesignation(
+            @RequestBody Designation designation
+
+    ) {
+        Department department = departmentRepo.findById(designation.getDepartment().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Department not found"));
+        Designation saved = designationService.saveOrUpdate(designation, department);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")

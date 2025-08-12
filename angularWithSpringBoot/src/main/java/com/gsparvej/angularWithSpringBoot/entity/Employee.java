@@ -1,13 +1,12 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "employees")
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,15 +16,17 @@ public class Employee {
     private String email;
     private Date joinDate;
 
-    public Employee() {
-    }
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "designation_id")
+    private Designation designation;
 
-    public Employee(Integer id, String name, String phoneNumber, String email, Date joinDate) {
-        this.id = id;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.joinDate = joinDate;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "department_id")
+    private Department department;
+
+
+
+    public Employee() {
     }
 
     public Integer getId() {
@@ -66,5 +67,21 @@ public class Employee {
 
     public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
+    }
+
+    public Designation getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(Designation designation) {
+        this.designation = designation;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

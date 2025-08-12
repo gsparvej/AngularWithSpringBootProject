@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/api/department")
 @CrossOrigin("*")
 public class DepartmentRestController {
@@ -22,8 +22,8 @@ public class DepartmentRestController {
     private DepartmentService departmentService;
 
     @GetMapping("")
-    public List<Department> getAllDepartment() {
-        return departmentService.getAllDepartments();
+    public List<DepartmentResponseDTO> getAllDepartment() {
+        return departmentService.getAllDepartmentDTOs();
     }
 
     // Get single Country by id

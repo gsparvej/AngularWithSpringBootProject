@@ -13,43 +13,43 @@ import { environment } from '../../environments/environment';
 })
 export class HrService {
 
-  baseUrlEmp: string = "http://localhost:3000/employees";
- private baseUrlDepart = environment.apiBaseUrl + '/department';
+  private baseUrlEmp = environment.apiBaseUrl + '/employee';
+  private baseUrlDepart = environment.apiBaseUrl + '/department';
   baseUrlAtten: string = "http://localhost:3000/attendance";
   baseUrlLeave: string = "http://localhost:3000/leave";
   baseUrlPay: string = "http://localhost:3000/payroll";
- private baseUrlDesig = environment.apiBaseUrl + '/designation';
+  private baseUrlDesig = environment.apiBaseUrl + '/designation';
   baseUrlAttendStatus: string = "http://localhost:3000/atten_status";
   baseUrlLeaveStatus: string = "http://localhost:3000/leave_status";
 
   constructor(private http: HttpClient) { }
 
 
-// Employee add, delete, Update start
+  // Employee add, delete, Update start
 
-getAllEmployee(): Observable<any>{
+  getAllEmployee(): Observable<any> {
 
     return this.http.get(this.baseUrlEmp);
 
   }
 
-deleteEmployee(id: string): Observable<any> {
+  deleteEmployee(id: string): Observable<any> {
 
-    return this.http.delete(this.baseUrlEmp+'/'+id);
+    return this.http.delete(this.baseUrlEmp + '/' + id);
   }
 
-saveEmployee(emp: Employee) : Observable<any> {
+  saveEmployee(emp: Employee): Observable<any> {
 
-    return this.http.post(this.baseUrlEmp,emp);
+    return this.http.post(this.baseUrlEmp, emp);
   }
 
   getEmployeeById(id: string): Observable<any> {
 
-    return this.http.get(this.baseUrlEmp+'/'+id);
+    return this.http.get(this.baseUrlEmp + '/' + id);
   }
   updateEmployee(id: string, emp: Employee): Observable<any> {
 
-   return this.http.put(this.baseUrlEmp+'/'+id,emp);
+    return this.http.put(this.baseUrlEmp + '/' + id, emp);
   }
 
 
@@ -59,36 +59,36 @@ saveEmployee(emp: Employee) : Observable<any> {
 
   // Designation add, delete , update start
 
-  getAllDesignation(): Observable<Designation[]>{
+  getAllDesignation(): Observable<Designation[]> {
 
     return this.http.get<Designation[]>(this.baseUrlDesig);
 
   }
 
   deleteDesignation(id: number): Observable<void> {
-// ekhane sir / ta rakhe ni return line e 
+    // ekhane sir / ta rakhe ni return line e 
     return this.http.delete<void>(`${this.baseUrlDesig}/${id}`);
   }
 
-saveDesignation(deisg: Designation) : Observable<Designation> {
+  saveDesignation(deisg: Designation): Observable<Designation> {
 
-    return this.http.post<Designation>(this.baseUrlDesig,deisg);
-  }
- 
-  updateDesignation(id: number,desig: Designation): Observable<Designation> {
-// ekhane sir / ta rakhe ni return line e 
-   return this.http.put<Designation>(`${this.baseUrlDesig}${id}`, desig);
+    return this.http.post<Designation>(this.baseUrlDesig, deisg);
   }
 
-// Designation add, delete , update end
+  updateDesignation(id: number, desig: Designation): Observable<Designation> {
+    // ekhane sir / ta rakhe ni return line e 
+    return this.http.put<Designation>(`${this.baseUrlDesig}${id}`, desig);
+  }
+
+  // Designation add, delete , update end
 
 
 
 
 
-//  Department add, delete , update start
+  //  Department add, delete , update start
 
- getAllDepartment(): Observable<Department[]>{
+  getAllDepartment(): Observable<Department[]> {
 
     return this.http.get<Department[]>(this.baseUrlDepart);
 
@@ -99,9 +99,9 @@ saveDesignation(deisg: Designation) : Observable<Designation> {
     return this.http.delete<void>(`${this.baseUrlDepart}/${id}`);
   }
 
-saveDepartment(dep: Department) : Observable<Department> {
+  saveDepartment(dep: Department): Observable<Department> {
 
-    return this.http.post<Department>(this.baseUrlDepart,dep);
+    return this.http.post<Department>(this.baseUrlDepart, dep);
   }
 
   getDepartmentById(id: number): Observable<Department> {
@@ -109,16 +109,16 @@ saveDepartment(dep: Department) : Observable<Department> {
     return this.http.get<Department>(`${this.baseUrlDepart}${id}`);
   }
   updateDepartment(id: number, depart: Department): Observable<Department> {
-    return this.http.put<Department>(`${this.baseUrlDepart}${id}`, depart);
+    return this.http.put<Department>(`${this.baseUrlDepart}/${id}`, depart);
   }
 
 
-//  Department add, delete , update end
+  //  Department add, delete , update end
 
 
-// ?Attendance add, delete, view update start
+  // ?Attendance add, delete, view update start
 
-getAllAttendance(): Observable<any>{
+  getAllAttendance(): Observable<any> {
 
     return this.http.get(this.baseUrlAtten);
 
@@ -126,34 +126,34 @@ getAllAttendance(): Observable<any>{
 
   deleteAttendance(id: string): Observable<any> {
 
-    return this.http.delete(this.baseUrlAtten+'/'+id);
+    return this.http.delete(this.baseUrlAtten + '/' + id);
   }
 
-saveAttendance(atten: Attendance) : Observable<any> {
+  saveAttendance(atten: Attendance): Observable<any> {
 
-    return this.http.post(this.baseUrlAtten,atten);
+    return this.http.post(this.baseUrlAtten, atten);
   }
 
   getAttendanceById(id: string): Observable<any> {
 
-    return this.http.get(this.baseUrlAtten+'/'+id);
+    return this.http.get(this.baseUrlAtten + '/' + id);
   }
   updateAttendance(id: string, atten: Attendance): Observable<any> {
 
-   return this.http.put(this.baseUrlAtten+'/'+id,atten);
+    return this.http.put(this.baseUrlAtten + '/' + id, atten);
   }
 
 
-// ?Attendance add, delete, view update end
+  // ?Attendance add, delete, view update end
 
 
 
 
 
 
-// Leave add, delete, view , update start 
+  // Leave add, delete, view , update start 
 
-getAllLeave(): Observable<any>{
+  getAllLeave(): Observable<any> {
 
     return this.http.get(this.baseUrlLeave);
 
@@ -161,34 +161,34 @@ getAllLeave(): Observable<any>{
 
   deleteLeave(id: string): Observable<any> {
 
-    return this.http.delete(this.baseUrlLeave+'/'+id);
+    return this.http.delete(this.baseUrlLeave + '/' + id);
   }
 
-saveLeave(leave: Leave) : Observable<any> {
+  saveLeave(leave: Leave): Observable<any> {
 
-    return this.http.post(this.baseUrlLeave,leave);
+    return this.http.post(this.baseUrlLeave, leave);
   }
 
   getLeaveById(id: string): Observable<any> {
 
-    return this.http.get(this.baseUrlLeave+'/'+id);
+    return this.http.get(this.baseUrlLeave + '/' + id);
   }
   updateLeave(id: string, leave: Leave): Observable<any> {
 
-   return this.http.put(this.baseUrlLeave+'/'+id,leave);
+    return this.http.put(this.baseUrlLeave + '/' + id, leave);
   }
 
 
-// Leave add, delete, view , update end 
+  // Leave add, delete, view , update end 
 
 
 
-getAllAttendStatus(): Observable<any>{
+  getAllAttendStatus(): Observable<any> {
 
     return this.http.get(this.baseUrlAttendStatus);
 
   }
-  getAllLeaveStatus(): Observable<any>{
+  getAllLeaveStatus(): Observable<any> {
 
     return this.http.get(this.baseUrlLeaveStatus);
 

@@ -13,6 +13,8 @@ public class DepartmentService {
 
     @Autowired
     private IDepartmentRepo departmentRepo;
+
+
     public List<Department> getAllDepartments() {
         return departmentRepo.findAll();
     }

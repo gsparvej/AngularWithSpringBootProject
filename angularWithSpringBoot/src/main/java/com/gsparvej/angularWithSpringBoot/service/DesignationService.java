@@ -23,9 +23,12 @@ public class DesignationService {
     @Autowired
     private IDepartmentRepo departmentRepo;
 
-    public Designation saveOrUpdate(Designation designation) {
+    public Designation saveOrUpdate(Designation designation, Department department) {
+        designation.setDepartment(department);
         return designationRepo.save(designation);
     }
+
+
 
     public List<DesignationResponseDTO> getAllDesignationDTOs() {
         return designationRepo.findAll().stream().map(desig -> {

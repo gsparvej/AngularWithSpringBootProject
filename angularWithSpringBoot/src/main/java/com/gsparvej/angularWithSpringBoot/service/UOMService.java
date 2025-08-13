@@ -20,7 +20,8 @@ public class UOMService {
     }
     public UOM saveUom(UOM uom) {
 
-
+        float p = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
+        uom.setBaseFabric(p);
         return uomRepo.save(uom);
     }
     public void deleteById(Integer id) {
@@ -33,8 +34,9 @@ public class UOMService {
 //    }
 
 
-    public float calculateBaseFabric(UOM  uom) {
-     uom.getBaseFabric() = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
-     return uom.getBaseFabric();
-    }
+//    public void calculateBaseFabric(UOM  uom) {
+//    float p = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
+//    uom.setBaseFabric(p);
+//
+//    }
 }

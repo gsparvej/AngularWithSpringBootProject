@@ -7,46 +7,48 @@ import { Bom } from '../../../model/Merchandiser/bom.model';
 import { Bomview } from '../../../model/Merchandiser/bomview.model';
 import { Order } from '../../../model/Merchandiser/order.model';
 import { RawMaterialsModel } from '../../../model/Merchandiser/raw.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MerchandiserService {
 
-   baseUrlBuyer: string = "http://localhost:3000/buyer";
-   baseUrlUOM: string = "http://localhost:3000/uom";
-   baseUrlBomView: string = "http://localhost:3000/bomview";
-   baseUrlBom: string = "http://localhost:3000/bom";
-   baseUrlOrder: string = "http://localhost:3000/order";
-   baseUrlOrderStatus: string = "http://localhost:3000/orderStatus";
-   baseUrlRawMaterials: string ="http://localhost:3000/rawMaterials";
+  private baseUrlBuyer = environment.apiBaseUrl + '/buyer';
+
+  private baseUrlUOM = environment.apiBaseUrl + '/uom';
+  baseUrlBomView: string = "http://localhost:3000/bomview";
+  baseUrlBom: string = "http://localhost:3000/bom";
+  baseUrlOrder: string = "http://localhost:3000/order";
+  baseUrlOrderStatus: string = "http://localhost:3000/orderStatus";
+  baseUrlRawMaterials: string = "http://localhost:3000/rawMaterials";
 
 
   constructor(private http: HttpClient) { }
 
 
   // buyer add, update, delete ,view start
-  getAllBuyer(): Observable<any>{
-  
-      return this.http.get(this.baseUrlBuyer);
-  
-    }
-  
- saveBuyer(buy: Buyer) : Observable<any> {
-    
-  return this.http.post(this.baseUrlBuyer,buy);
+  getAllBuyer(): Observable<any> {
+
+    return this.http.get(this.baseUrlBuyer);
+
+  }
+
+  saveBuyer(buy: Buyer): Observable<any> {
+
+    return this.http.post(this.baseUrlBuyer, buy);
   }
 
 
 
   getBuyerById(id: string): Observable<any> {
-  
-      return this.http.get(this.baseUrlBuyer+'/'+id);
-    }
-    updateBuyer(id: string, buy: Buyer): Observable<any> {
-  
-     return this.http.put(this.baseUrlBuyer+'/'+id,buy);
-    }
+
+    return this.http.get(this.baseUrlBuyer + '/' + id);
+  }
+  updateBuyer(id: string, buy: Buyer): Observable<any> {
+
+    return this.http.put(this.baseUrlBuyer + '/' + id, buy);
+  }
 
 
 
@@ -54,102 +56,102 @@ export class MerchandiserService {
 
   // UOM add, update , delete , view start
 
-  getAllUom(): Observable<any>{
-  
+  getAllUom(): Observable<any> {
+
     return this.http.get(this.baseUrlUOM);
   }
 
- saveUom(uom: Uom) : Observable<any> {
-    
-    return this.http.post(this.baseUrlUOM,uom);
- }
- deleteUom(id: string): Observable<any> {
+  saveUom(uom: Uom): Observable<any> {
 
-    return this.http.delete(this.baseUrlUOM+'/'+id);
+    return this.http.post(this.baseUrlUOM, uom);
+  }
+  deleteUom(id: string): Observable<any> {
+
+    return this.http.delete(this.baseUrlUOM + '/' + id);
   }
 
-   getUomById(id: string): Observable<any> {
+  getUomById(id: string): Observable<any> {
 
-    return this.http.get(this.baseUrlUOM+'/'+id);
+    return this.http.get(this.baseUrlUOM + '/' + id);
   }
-   updateManagement(id: string, uom: Uom): Observable<any> {
-  
-     return this.http.put(this.baseUrlUOM+'/'+id,uom);
-    }
+  updateManagement(id: string, uom: Uom): Observable<any> {
+
+    return this.http.put(this.baseUrlUOM + '/' + id, uom);
+  }
 
 
   // UOM add, update , delete , view end
 
 
 
-   // BOM add, update , delete , view start
+  // BOM add, update , delete , view start
 
-  getAllBom(): Observable<any>{
-  
+  getAllBom(): Observable<any> {
+
     return this.http.get(this.baseUrlBom);
   }
 
-  saveBom(bom: Bom) : Observable<any> {
-    
-    return this.http.post(this.baseUrlBom,bom);
- }
+  saveBom(bom: Bom): Observable<any> {
 
- // BOM add, update , delete , view end
+    return this.http.post(this.baseUrlBom, bom);
+  }
 
-// BOMBOMVIEW add, update , delete , view start
+  // BOM add, update , delete , view end
 
- getAllBomView(): Observable<any>{
-  
+  // BOMBOMVIEW add, update , delete , view start
+
+  getAllBomView(): Observable<any> {
+
     return this.http.get(this.baseUrlBomView);
   }
 
-  saveBomView(bomview: Bomview) : Observable<any> {
-    
-    return this.http.post(this.baseUrlBomView,bomview);
- }
+  saveBomView(bomview: Bomview): Observable<any> {
 
- getBomByStyle(styleCode: string): Observable<any>{
-  return this.http.get(this.baseUrlBomView + "?bom.styleCode=" + styleCode);
- }
+    return this.http.post(this.baseUrlBomView, bomview);
+  }
 
- // BOMBOMVIEW add, update , delete , view end
+  getBomByStyle(styleCode: string): Observable<any> {
+    return this.http.get(this.baseUrlBomView + "?bom.styleCode=" + styleCode);
+  }
 
- // Order add, update, delete, view start
+  // BOMBOMVIEW add, update , delete , view end
+
+  // Order add, update, delete, view start
 
 
- getAllOrder(): Observable<any> {
-  return this.http.get(this.baseUrlOrder);
- }
- saveOder(order: Order): Observable<any> {
-  return this.http.post(this.baseUrlOrder, order);
- }
+  getAllOrder(): Observable<any> {
+    return this.http.get(this.baseUrlOrder);
+  }
+  saveOder(order: Order): Observable<any> {
+    return this.http.post(this.baseUrlOrder, order);
+  }
 
 
 
   // Order add, update, delete, view end
-getAllOrderStatus(): Observable<any> {
-  return this.http.get(this.baseUrlOrderStatus);
-}
+  getAllOrderStatus(): Observable<any> {
+    return this.http.get(this.baseUrlOrderStatus);
+  }
 
-   // OrderStatus add, update, delete, view start
-
-
-
-   // OrderStatus add, update, delete, view end
+  // OrderStatus add, update, delete, view start
 
 
-    viewFullOrder(id: string): Observable<any> {
-    return this.http.get(this.baseUrlOrder+'/'+id);
+
+  // OrderStatus add, update, delete, view end
+
+
+  viewFullOrder(id: string): Observable<any> {
+    return this.http.get(this.baseUrlOrder + '/' + id);
   }
 
   // raw materials /////////////////
 
-  
- getAllRawMaterials(): Observable<any> {
-  return this.http.get(this.baseUrlRawMaterials);
- }
- saveRawMaterials(raw: RawMaterialsModel): Observable<any> {
-  return this.http.post(this.baseUrlRawMaterials, raw);
- }
+
+  getAllRawMaterials(): Observable<any> {
+    return this.http.get(this.baseUrlRawMaterials);
+  }
+  saveRawMaterials(raw: RawMaterialsModel): Observable<any> {
+    return this.http.post(this.baseUrlRawMaterials, raw);
+  }
 
 }

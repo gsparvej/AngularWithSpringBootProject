@@ -18,7 +18,7 @@ export class AddUom implements OnInit{
   pocket!: number;     
   wastage !: number; 
   shrinkage!: number;
-  result ! : number;
+  baseFabric ! : number;
 
   consumptions: Consumption[] = [];
   formUom !: FormGroup;
@@ -41,6 +41,7 @@ export class AddUom implements OnInit{
       pocket: [''],
       wastage: [''],
      shrinkage: [''],
+     baseFabric: ['']
 
         
 
@@ -55,7 +56,7 @@ export class AddUom implements OnInit{
   addUom():void {
     this.totalConsumption();
     const uom : Uom = {...this.formUom.value,
-      result : this.result
+      result : this.baseFabric
 
     };
     this.merchandiserService.saveUom(uom).subscribe({
@@ -81,12 +82,12 @@ export class AddUom implements OnInit{
 //  return totalConsumption;
 // }
 
-baseFabric(): void {
+TotalBaseFabric(): void {
 
-  this.result= this.body+ this.pocket + this.sleeve;
+  this.baseFabric= this.body+ this.pocket + this.sleeve;
 }
 totalLossFabric(): void{
-  this.result = this.wastage+ this.shrinkage;
+  this.baseFabric = this.wastage+ this.shrinkage;
 }
 // totalAllowance(): void<any> {
 //   this.result = this.baseFabric() + (this.baseFabric() * (this.totalLossFabric() / 100));
@@ -100,7 +101,7 @@ totalConsumption(): void {
   this.wastage = this.formUom.value.wastage;
   this.shrinkage = this.formUom.value.shrinkage;
 
-  this.result = (this.body+ this.pocket + this.sleeve) + 
+  this.baseFabric = (this.body+ this.pocket + this.sleeve) + 
   ((this.body+ this.pocket + this.sleeve)*(( this.wastage + this.shrinkage) / 100))
 
 }

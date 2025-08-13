@@ -41,7 +41,7 @@ export class AddBomView implements OnInit {
       unitPrice: [''],
       totalCost: [''],
       uom: this.formBuilder.group({
-        result: [''],
+        baseFabric: [''],
       }),
       bom: this.formBuilder.group({
         styleCode: [''],
@@ -79,8 +79,8 @@ export class AddBomView implements OnInit {
 
 
 
-    this.formBomView.get('uom')?.get('result')?.valueChanges.subscribe(result => {
-      const selectedStatus = this.uom.find(s => s.result === result);
+    this.formBomView.get('uom')?.get('baseFabric')?.valueChanges.subscribe(result => {
+      const selectedStatus = this.uom.find(s => s.baseFabric === result);
       if (selectedStatus) {
 
         this.formBomView.patchValue({ uom: selectedStatus });

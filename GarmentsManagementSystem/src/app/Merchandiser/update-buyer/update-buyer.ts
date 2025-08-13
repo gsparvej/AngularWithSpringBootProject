@@ -11,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class UpdateBuyer implements OnInit{
   id: string = '';
-  buyer: Buyer = new Buyer();
+  buyer:any;
 
   constructor(
     private merchandiserService: MerchandiserService,

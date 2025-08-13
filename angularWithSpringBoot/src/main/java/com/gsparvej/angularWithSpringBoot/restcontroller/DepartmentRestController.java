@@ -26,7 +26,7 @@ public class DepartmentRestController {
         return departmentService.getAllDepartmentDTOs();
     }
 
-    // Get single Country by id
+    // Get single Department by id
     @GetMapping("/{id}")
     public ResponseEntity<Department> getDepartmentById(@PathVariable int id) {
         Optional<Department> department = departmentService.getAllDepartments()
@@ -63,7 +63,7 @@ public class DepartmentRestController {
 
     }
 
-    // Delete country by ID
+    // Delete department by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteDepartment(@PathVariable int id) {
         Optional<Department> existingDepartOpt = departmentService.getAllDepartments()

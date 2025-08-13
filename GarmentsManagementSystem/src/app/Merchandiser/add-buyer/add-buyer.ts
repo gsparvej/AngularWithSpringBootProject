@@ -25,10 +25,11 @@ export class AddBuyer implements OnInit{
 
        name :[''],
        country :[''],
-       contactperson :[''],
+       contactPerson :[''],
        phone :[''],
        email :[''],
        address :[''],
+       website :['']
 
 
     });

@@ -1,13 +1,14 @@
 
-export class Buyer{
+export interface Buyer{
 
-    id !: string;
-    name!: string;
-    country!: string;
-    contactperson! : string;
-    phone! : string;
-    email!: string;
-    address!: string;
+    id : number;
+    name: string;
+    country: string;
+    contactPerson : string;
+    phone : string;
+    email: string;
+    address: string;
+    website: string;
 
 
 

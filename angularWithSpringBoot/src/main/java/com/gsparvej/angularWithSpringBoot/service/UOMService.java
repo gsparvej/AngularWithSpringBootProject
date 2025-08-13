@@ -20,7 +20,7 @@ public class UOMService {
     }
     public UOM saveUom(UOM uom) {
 
-        float p = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
+        float p = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + ((uom.getBody()+uom.getPocket()+uom.getSleeve())*((uom.getWastage()+ uom.getShrinkage())/100));
         uom.setBaseFabric(p);
         return uomRepo.save(uom);
     }

@@ -19,14 +19,22 @@ public class UOMService {
         return uomRepo.findAll();
     }
     public UOM saveUom(UOM uom) {
+
+
         return uomRepo.save(uom);
     }
     public void deleteById(Integer id) {
         uomRepo.deleteById(id);
     }
 
-    public double calculateBaseFabric(float body, float sleeve, float pocket, float wastage, float shrinkage , float baseFabric) {
-     baseFabric = (body+pocket+sleeve) + ((body+pocket+sleeve)*((wastage+ shrinkage)/100));
-     return baseFabric;
+//    public double calculateBaseFabric(float body, float sleeve, float pocket, float wastage, float shrinkage , float baseFabric) {
+//     baseFabric = (body+pocket+sleeve) + ((body+pocket+sleeve)*((wastage+ shrinkage)/100));
+//     return baseFabric;
+//    }
+
+
+    public float calculateBaseFabric(UOM  uom) {
+     uom.getBaseFabric() = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
+     return uom.getBaseFabric();
     }
 }

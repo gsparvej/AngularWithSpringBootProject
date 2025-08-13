@@ -4,7 +4,7 @@
       <label for="designationTitle" class="form-label">Designation Title</label>
       <input type="text" id="designationTitle" formControlName="designationTitle" class="form-control" />
       <div *ngIf="desigForm.get('designationTitle')?.invalid && desigForm.get('designationTitle')?.touched" class="text-danger">
-        Name is required.
+        Designation  Title is required.
       </div>
     </div>
 
@@ -15,7 +15,7 @@
         <option *ngFor="let d of departments" [value]="d.id">{{ d.name }}</option>
       </select>
       <div *ngIf="desigForm.get('department.id')?.invalid && desigForm.get('department.id')?.touched" class="text-danger">
-        District is required.
+        Department Name is required.
       </div>
     </div>
 

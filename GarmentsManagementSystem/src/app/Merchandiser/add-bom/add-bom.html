@@ -1,15 +1,21 @@
 <div class="container border rounded my-3">
-    <h1 class="text-center text-success">Bill Of Materials (BOM) </h1>
+    <h1 class="text-center text-success">BOM Style </h1>
 
     <form [formGroup]="formBom" method="post">
  <div class="row">
     <div class="col-md-6">
      <label for="" class="form-label">Style Code </label>
-    <input type="text" class="form-control" id="name" formControlName="styleCode" placeholder="ABC">
+    <input type="text" class="form-control" id="name" formControlName="styleCode" placeholder="**ABC**">
   </div>
+
+  <div class="col-md-6">
+     <label for="" class="form-label">Style Type </label>
+    <input type="text" class="form-control" id="name" formControlName="styleType" placeholder="Casual">
+  </div>
+
   <div class="col-md-6">
     <label for="" class="form-label">Description</label>
-    <input type="text" class="form-control" id="description" formControlName="description" placeholder="Dhaka">
+    <input type="text" class="form-control" id="description" formControlName="description" placeholder="**Shirt**">
   </div>
  </div>
     <div class="row mt-3 text-center">

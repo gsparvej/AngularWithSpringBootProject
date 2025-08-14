@@ -2,6 +2,8 @@ package com.gsparvej.angularWithSpringBoot.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "bomStyle")
 public class BomStyle {
@@ -14,14 +16,18 @@ public class BomStyle {
     private String styleType;
     private String description;
 
+    @OneToMany(mappedBy = "bomStyle" , cascade = CascadeType.ALL)
+    private List<BOM> boms;
+
     public BomStyle() {
     }
 
-    public BomStyle(int id, String styleCode, String styleType, String description) {
+    public BomStyle(int id, String styleCode, String styleType, String description, List<BOM> boms) {
         this.id = id;
         this.styleCode = styleCode;
         this.styleType = styleType;
         this.description = description;
+        this.boms = boms;
     }
 
     public int getId() {
@@ -54,5 +60,13 @@ public class BomStyle {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<BOM> getBoms() {
+        return boms;
+    }
+
+    public void setBoms(List<BOM> boms) {
+        this.boms = boms;
     }
 }

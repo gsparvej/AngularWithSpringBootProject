@@ -25,7 +25,8 @@ export class AddBom implements OnInit{
    this.formBom = this.formBuilder.group({
 
     styleCode :[''],
-    description :[''],
+    styleType:[''],
+    description :['']
 
    });
   }

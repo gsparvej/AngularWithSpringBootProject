@@ -3,6 +3,8 @@ package com.gsparvej.angularWithSpringBoot.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "uom")
 public class UOM {
@@ -22,10 +24,13 @@ public class UOM {
     private float shrinkage;
     private float baseFabric;
 
+    @OneToMany(mappedBy = "uom" , cascade = CascadeType.ALL)
+    private List<BOM> boms;
+
     public UOM() {
     }
 
-    public UOM(int id, String productName, String size, float body, float sleeve, float pocket, float wastage, float shrinkage, float baseFabric) {
+    public UOM(int id, String productName, String size, float body, float sleeve, float pocket, float wastage, float shrinkage, float baseFabric, List<BOM> boms) {
         this.id = id;
         this.productName = productName;
         this.size = size;
@@ -35,6 +40,7 @@ public class UOM {
         this.wastage = wastage;
         this.shrinkage = shrinkage;
         this.baseFabric = baseFabric;
+        this.boms = boms;
     }
 
     public int getId() {
@@ -107,5 +113,13 @@ public class UOM {
 
     public void setBaseFabric(float baseFabric) {
         this.baseFabric = baseFabric;
+    }
+
+    public List<BOM> getBoms() {
+        return boms;
+    }
+
+    public void setBoms(List<BOM> boms) {
+        this.boms = boms;
     }
 }

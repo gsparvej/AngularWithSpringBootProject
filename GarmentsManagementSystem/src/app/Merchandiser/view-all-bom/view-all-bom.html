@@ -39,6 +39,7 @@
         <tr>
           <th>ID</th>
           <th>Style Code</th>
+           <th>Style Type</th>
           <th>Description</th>
           <th>BOM</th>
         </tr>
@@ -47,6 +48,7 @@
         <tr *ngFor="let b of bom | async">
           <td>{{b.id}}</td>
           <td>{{b.styleCode}}</td>
+           <td>{{b.styleType}}</td>
           <td>{{b.description}}</td>
           <td>
             <button class="btn btn-outline-custom btn-sm" (click)="bomDetails(b.styleCode)">

@@ -10,5 +10,5 @@ import java.util.Optional;
 
 @Repository
 public interface IBOMRepo extends JpaRepository<BOM, Integer> {
-     Optional<BOM> findByStyleCode(String styleCode);
+     Optional<BOM> findBOMSBybomStyleStyleCode(String bomStyleStyleCode);
 }

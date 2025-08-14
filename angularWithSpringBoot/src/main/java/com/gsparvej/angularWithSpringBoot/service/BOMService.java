@@ -42,7 +42,7 @@ public class BOMService {
                 .orElseThrow(() -> new RuntimeException("BOM not found"));
     }
     public Optional<BOM> getBomByStyleCode(String styleCode) {
-        return bomRepo.findByStyleCode(styleCode);
+        return bomRepo.findBOMSBybomStyleStyleCode(styleCode);
 
     }
 }

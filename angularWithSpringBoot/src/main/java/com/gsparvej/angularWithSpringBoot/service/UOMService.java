@@ -34,9 +34,9 @@ public class UOMService {
 //    }
 
 
-//    public void calculateBaseFabric(UOM  uom) {
-//    float p = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
-//    uom.setBaseFabric(p);
-//
-//    }
+    public void calculateBaseFabric(UOM  uom) {
+    float p = (uom.getBody()+uom.getPocket()+uom.getSleeve()) + (uom.getBody()+uom.getPocket()+uom.getSleeve()*((uom.getWastage()+ uom.getShrinkage())/100));
+    uom.setBaseFabric(p);
+
+    }
 }

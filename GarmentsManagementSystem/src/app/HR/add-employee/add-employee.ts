@@ -14,10 +14,15 @@ import { Designation } from '../../../model/HR/designation.model';
 })
 export class AddEmployee implements OnInit{
 
-  allDepartments: Department[] = [];
-  allDesignations: Designation[] = [];  // Filtered Designations
+  allDepartments: any[] = [];
+  allDesignations: any[] = [];  // Filtered Designations
 
   filteredDesignations: Designation[] = [];
+
+
+  selectedDepartment: number = 0;
+  selectedDesignation: number = 0;
+
   formGroup!: FormGroup;
 
   constructor(
@@ -40,8 +45,26 @@ export class AddEmployee implements OnInit{
   }
 
   ngOnInit(): void {
+    this.loadDepartment();
      this.hrService.getAllDepartment().subscribe(data => this.allDepartments = data);
      this.hrService.getAllDesignation().subscribe(data => this.allDesignations = data);
+
+  }
+
+
+
+  onDepartmentChange() {
+    this.allDesignations = [];
+    this.selectedDesignation = 0;
+
+    if(this.selectedDepartment) {
+      this.hrService.getDesignationByDepartment(this.selectedDepartment).subscribe(data => {
+        this.allDesignations = data;
+        console.log(data);
+        this.cdr.markForCheck();
+      });
+
+    }
 
   }
 
@@ -70,22 +93,22 @@ export class AddEmployee implements OnInit{
   }
 
 
-//   loadDepartment(): void {
+  loadDepartment(): void {
 
-//     this.hrService.getAllDepartment().subscribe({
+    this.hrService.getAllDepartment().subscribe({
 
-//       next: (dep) => {
-//         this.departments = dep;
+      next: (dep) => {
+        this.allDepartments = dep;
 
-//       },
-//       error: (err) => {
+      },
+      error: (err) => {
 
-//         console.log(err);
-//       }
+        console.log(err);
+      }
 
-//     });
+    });
 
-//   }
+  }
 
 //   loadDesignation(): void {
 

@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './update-employee.css'
 })
 export class UpdateEmployee implements OnInit {
-  id: string = '';
+  id: number = 0;
   employee: Employee = new Employee();
   depart: Department[] = [];
   desig: Designation[] = [];

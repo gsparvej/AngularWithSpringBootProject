@@ -66,12 +66,12 @@ private router: Router,
   }
 
 
-  getEmpById(id:string): void{
+  getEmpById(id:number): void{
       this.router.navigate(['/updateEmp',id]); 
   }
 
 
-deleteEmp(id: string ): void {
+deleteEmp(id: number ): void {
 if (confirm('Are You sure ! want to delete this employee?')) {
   this.hrService.deleteEmployee(id).subscribe(() => {
     alert('Deleted ! ');
@@ -79,7 +79,7 @@ if (confirm('Are You sure ! want to delete this employee?')) {
   });
 }
   }
-  gotoViewProfile(id: string): void{
+  gotoViewProfile(id: number): void{
     this.router.navigate(['/viewProfile',id]);
 
   }

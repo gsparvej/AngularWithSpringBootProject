@@ -17,8 +17,9 @@ export class MerchandiserService {
   private baseUrlBuyer = environment.apiBaseUrl + '/buyer';
 
   private baseUrlUOM = environment.apiBaseUrl + '/uom';
+   private baseUrlBom = environment.apiBaseUrl + '/bomstyle';
   baseUrlBomView: string = "http://localhost:3000/bomview";
-  private baseUrlBom = environment.apiBaseUrl + '/bomstyle';
+ 
   baseUrlOrder: string = "http://localhost:3000/order";
   baseUrlOrderStatus: string = "http://localhost:3000/orderStatus";
   baseUrlRawMaterials: string = "http://localhost:3000/rawMaterials";

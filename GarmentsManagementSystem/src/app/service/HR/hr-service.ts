@@ -15,10 +15,14 @@ export class HrService {
 
   private baseUrlEmp = environment.apiBaseUrl + '/employee';
   private baseUrlDepart = environment.apiBaseUrl + '/department';
+  private baseUrlDesig = environment.apiBaseUrl + '/designation';
+
+
+
   baseUrlAtten: string = "http://localhost:3000/attendance";
   baseUrlLeave: string = "http://localhost:3000/leave";
   baseUrlPay: string = "http://localhost:3000/payroll";
-  private baseUrlDesig = environment.apiBaseUrl + '/designation';
+
   baseUrlAttendStatus: string = "http://localhost:3000/atten_status";
   baseUrlLeaveStatus: string = "http://localhost:3000/leave_status";
 
@@ -33,7 +37,12 @@ export class HrService {
 
   }
 
-  deleteEmployee(id: string): Observable<any> {
+  getDesignationByDepartment(departmentId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrlEmp}/${departmentId}`);
+
+  }
+
+  deleteEmployee(id: number): Observable<any> {
 
     return this.http.delete(this.baseUrlEmp + '/' + id);
   }
@@ -43,15 +52,14 @@ export class HrService {
     return this.http.post(this.baseUrlEmp, emp);
   }
 
-  getEmployeeById(id: string): Observable<any> {
+  getEmployeeById(id: number): Observable<any> {
 
     return this.http.get(this.baseUrlEmp + '/' + id);
   }
-  updateEmployee(id: string, emp: Employee): Observable<any> {
+  updateEmployee(id: number, emp: Employee): Observable<any> {
 
     return this.http.put(this.baseUrlEmp + '/' + id, emp);
   }
-
 
   // Employee add, delete, Update end
 
@@ -108,6 +116,8 @@ export class HrService {
 
     return this.http.get<Department>(`${this.baseUrlDepart}${id}`);
   }
+
+
   updateDepartment(id: number, depart: Department): Observable<Department> {
     return this.http.put<Department>(`${this.baseUrlDepart}/${id}`, depart);
   }

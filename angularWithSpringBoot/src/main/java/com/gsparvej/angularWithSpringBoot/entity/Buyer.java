@@ -2,6 +2,8 @@ package com.gsparvej.angularWithSpringBoot.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "buyers")
 public class Buyer {
@@ -18,10 +20,13 @@ public class Buyer {
     private String address;
     private String website;
 
+    @OneToMany(mappedBy = "buyer" , cascade = CascadeType.ALL)
+    private List<Order> orders;
+
     public Buyer() {
     }
 
-    public Buyer(int id, String name, String country, String contactPerson, String phone, String email, String address, String website) {
+    public Buyer(int id, String name, String country, String contactPerson, String phone, String email, String address, String website, List<Order> orders) {
         this.id = id;
         this.name = name;
         this.country = country;
@@ -30,6 +35,7 @@ public class Buyer {
         this.email = email;
         this.address = address;
         this.website = website;
+        this.orders = orders;
     }
 
     public int getId() {
@@ -94,5 +100,13 @@ public class Buyer {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 }

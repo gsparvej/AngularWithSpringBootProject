@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.entity.Buyer;
 import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.entity.Designation;
 import com.gsparvej.angularWithSpringBoot.entity.Employee;
@@ -14,6 +15,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/employee")
@@ -40,6 +43,12 @@ public class EmployeeRestController {
     private IDesignationRepo designationRepo;
 
 
+    @GetMapping("")
+    public List<Employee> getAllEmp() {
+        return employeeService.getAllEmployees();
+    }
+
+
     @PostMapping
     public ResponseEntity<Employee> createEmployee(
             @RequestBody Employee employee
@@ -52,6 +61,8 @@ public class EmployeeRestController {
         Employee saved = employeeService.saveOrUpdate(employee,designation,department);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
+
 
 
 }

@@ -17,16 +17,21 @@ public class BomStyle {
     private String description;
 
     @OneToMany(mappedBy = "bomStyle" , cascade = CascadeType.ALL)
+    private List<Order> orders;
+
+
+    @OneToMany(mappedBy = "bomStyle" , cascade = CascadeType.ALL)
     private List<BOM> boms;
 
     public BomStyle() {
     }
 
-    public BomStyle(int id, String styleCode, String styleType, String description, List<BOM> boms) {
+    public BomStyle(int id, String styleCode, String styleType, String description, List<Order> orders, List<BOM> boms) {
         this.id = id;
         this.styleCode = styleCode;
         this.styleType = styleType;
         this.description = description;
+        this.orders = orders;
         this.boms = boms;
     }
 
@@ -60,6 +65,14 @@ public class BomStyle {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     public List<BOM> getBoms() {

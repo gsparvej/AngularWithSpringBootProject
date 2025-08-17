@@ -1,11 +1,10 @@
 import { Bom } from "./bom.model";
+import { Buyer } from "./buyer.model";
 import { OrderStatus } from "./orderStatus.model";
 
 export interface Order{
 
     id?: number;
-    buyerOrganization: string;
-    shippingAddress: string;
     orderDate: Date;
     deliveryDate: Date;
 
@@ -38,7 +37,8 @@ export interface Order{
     total: number;
     remarks: string;
     orderStatus: string;
-    bom: Bom
+    bom: Bom;
+    buyer: Buyer
 
    
 

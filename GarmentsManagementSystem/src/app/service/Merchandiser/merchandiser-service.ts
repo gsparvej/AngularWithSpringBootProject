@@ -17,10 +17,10 @@ export class MerchandiserService {
   private baseUrlBuyer = environment.apiBaseUrl + '/buyer';
 
   private baseUrlUOM = environment.apiBaseUrl + '/uom';
-   private baseUrlBom = environment.apiBaseUrl + '/bomstyle';
+  private baseUrlBom = environment.apiBaseUrl + '/bomstyle';
   baseUrlBomView: string = "http://localhost:3000/bomview";
- 
-  baseUrlOrder: string = "http://localhost:3000/order";
+
+  private baseUrlOrder = environment.apiBaseUrl + '/order';
   baseUrlOrderStatus: string = "http://localhost:3000/orderStatus";
   baseUrlRawMaterials: string = "http://localhost:3000/rawMaterials";
 
@@ -141,7 +141,7 @@ export class MerchandiserService {
   // OrderStatus add, update, delete, view end
 
 
-  viewFullOrder(id: string): Observable<any> {
+  viewFullOrder(id: number): Observable<any> {
     return this.http.get(this.baseUrlOrder + '/' + id);
   }
 

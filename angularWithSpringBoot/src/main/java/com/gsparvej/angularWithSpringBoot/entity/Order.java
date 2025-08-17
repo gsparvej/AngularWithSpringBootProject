@@ -49,12 +49,13 @@ public class Order {
     private double total;
 
     private String remarks;
+    private String orderStatus;
 
 
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bomstyle_id")
-    private BomStyle bomstyle;
+    private BomStyle bomStyle;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -64,7 +65,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, Date orderDate, Date deliveryDate, int shortSmallSize, double shortSPrice, int shortMediumSize, double shortMPrice, int shortLargeSize, double shortLPrice, int shortXLSize, double shortXLPrice, int fullSmallSize, double fullSPrice, int fullMediumSize, double fullMPrice, int fullLargeSize, double fullLPrice, int fullXLSize, double fullXLPrice, double subTotal, double vat, double paidAmount, double dueAmount, double total, String remarks, BomStyle bomstyle, Buyer buyer) {
+    public Order(int id, Date orderDate, Date deliveryDate, int shortSmallSize, double shortSPrice, int shortMediumSize, double shortMPrice, int shortLargeSize, double shortLPrice, int shortXLSize, double shortXLPrice, int fullSmallSize, double fullSPrice, int fullMediumSize, double fullMPrice, int fullLargeSize, double fullLPrice, int fullXLSize, double fullXLPrice, double subTotal, double vat, double paidAmount, double dueAmount, double total, String remarks, String orderStatus, BomStyle bomStyle, Buyer buyer) {
         this.id = id;
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
@@ -90,7 +91,8 @@ public class Order {
         this.dueAmount = dueAmount;
         this.total = total;
         this.remarks = remarks;
-        this.bomstyle = bomstyle;
+        this.orderStatus = orderStatus;
+        this.bomStyle = bomStyle;
         this.buyer = buyer;
     }
 
@@ -290,16 +292,24 @@ public class Order {
         return remarks;
     }
 
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
     public void setRemarks(String remarks) {
         this.remarks = remarks;
     }
 
-    public BomStyle getBomstyle() {
-        return bomstyle;
+    public BomStyle getBomStyle() {
+        return bomStyle;
     }
 
-    public void setBomstyle(BomStyle bomstyle) {
-        this.bomstyle = bomstyle;
+    public void setBomStyle(BomStyle bomStyle) {
+        this.bomStyle = bomStyle;
     }
 
     public Buyer getBuyer() {

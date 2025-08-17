@@ -9,17 +9,18 @@
         <th>Buyer Organization</th>
         <th>Style Code</th>
         <th>Delivery Date</th>
-        <th>Status</th>
+        <!-- <th>Status</th> -->
         <th>Action</th>
     </tr>
 </thead>
 <tbody>
     <tr *ngFor = "let l of orders ">
         <td>{{l.id}}</td>
-        <td>{{l.buyerOrganization}}</td>
+        <td>{{l.buyer.name}}</td>
+       
         <td>{{l.bom.styleCode}}</td>
          <td>{{l.deliveryDate}}</td>
-          <td>{{l.orderStatus.status}}</td>
+      
         <td>
             <button class="btn btn-warning m-1 p-1" (click)="getOrderById(l.id!)">View</button>
         </td>

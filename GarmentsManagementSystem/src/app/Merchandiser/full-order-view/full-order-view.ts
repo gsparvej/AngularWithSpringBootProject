@@ -13,7 +13,7 @@ import { forkJoin } from 'rxjs';
 })
 export class FullOrderView implements OnInit{
 
- id!: string;
+ id!: number;
   order! : Order;
 
   orders: Order[ ] = [];

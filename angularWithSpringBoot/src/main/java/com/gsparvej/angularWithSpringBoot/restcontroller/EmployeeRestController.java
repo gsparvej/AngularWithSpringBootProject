@@ -49,7 +49,7 @@ public class EmployeeRestController {
     }
 
 
-    @PostMapping
+    @PostMapping("")
     public ResponseEntity<Employee> createEmployee(
             @RequestBody Employee employee
 

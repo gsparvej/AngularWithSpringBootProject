@@ -47,7 +47,7 @@ export class HalfViewOrder implements OnInit{
     });
   }
 
-  getOrderById(id: string): void {
+  getOrderById(id: number): void {
     this.router.navigate(['/fullOrderView', id]);
   }
 

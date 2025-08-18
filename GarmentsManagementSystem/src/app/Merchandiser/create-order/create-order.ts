@@ -45,7 +45,7 @@ export class CreateOrder implements OnInit {
     remarks!: string;
 
 
-  styleCode: Bom[] = [];
+  bom: Bom[] = [];
   status: OrderStatus[] = [];
 
   orderForm!: FormGroup;
@@ -101,7 +101,7 @@ export class CreateOrder implements OnInit {
 
     //  Subscribe for Style Code Changes
     this.orderForm.get('bom')?.get('id')?.valueChanges.subscribe(id => {
-      const selectedDescription = this.styleCode.find(b => b.id === id);
+      const selectedDescription = this.bom.find(b => b.id === id);
       if (selectedDescription) {
         this.orderForm.patchValue({ bom: selectedDescription });
       }
@@ -163,7 +163,7 @@ export class CreateOrder implements OnInit {
   loadStyle(): void {
     this.merchandiserService.getAllBom().subscribe({
       next: (styleList) => {
-        this.styleCode = styleList;
+        this.bom = styleList;
       },
       error: (err) => {
         console.log(err);

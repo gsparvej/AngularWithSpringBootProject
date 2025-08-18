@@ -14,7 +14,7 @@
         <div class="col-md-4" formGroupName="bom">
           <label class="form-label">Style Code:</label>
           <select class="form-select" formControlName="styleCode">
-            <option *ngFor="let s of styleCode" [ngValue]="s.styleCode">{{ s.styleCode }}</option>
+            <option *ngFor="let s of bom" [ngValue]="s.id">{{ s.styleCode }}</option>
           </select>
         </div>
 
@@ -48,7 +48,7 @@
         <div class="col-md-4" formGroupName="orderStatus">
           <label class="form-label">Status:</label>
           <select class="form-select" formControlName="status">
-            <option *ngFor="let s of status" [ngValue]="s.status">{{ s.status }}</option>
+            <option *ngFor="let s of status" [ngValue]="s.id">{{ s.status }}</option>
           </select>
         </div>
 
@@ -82,7 +82,8 @@
               <!-- Medium Size -->
               <div class="col-md-6">
                 <label class="form-label">Medium Size (Qty)</label>
-                <input type="number" class="form-control rounded-pill" formControlName="shortMediumSize" placeholder="0">
+                <input type="number" class="form-control rounded-pill" formControlName="shortMediumSize"
+                  placeholder="0">
               </div>
               <div class="col-md-6">
                 <label class="form-label">Medium Size Price (Per Piece)</label>
@@ -106,7 +107,8 @@
               </div>
               <div class="col-md-6">
                 <label class="form-label">XL Size Price (Per Piece)</label>
-                <input type="number" class="form-control rounded-pill" formControlName="shortXLPrice" placeholder="0.00">
+                <input type="number" class="form-control rounded-pill" formControlName="shortXLPrice"
+                  placeholder="0.00">
               </div>
             </div>
 
@@ -158,12 +160,14 @@
               <!-- Remarks -->
               <div class="col-md-12">
                 <label class="form-label">Remarks</label>
-                <input type="text" class="form-control rounded-pill" formControlName="remarks" placeholder="Any remarks">
+                <input type="text" class="form-control rounded-pill" formControlName="remarks"
+                  placeholder="Any remarks">
               </div>
 
               <!-- Calculate Button -->
               <div class="col-12 text-center mt-3">
-                <button type="button" class="btn btn-outline-primary rounded-pill px-5 shadow" (click)="subTotalCalculation()">
+                <button type="button" class="btn btn-outline-primary rounded-pill px-5 shadow"
+                  (click)="subTotalCalculation()">
                   <i class="bi bi-calculator me-2"></i>Calculate
                 </button>
               </div>
@@ -187,8 +191,8 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Paid Amount</label>
-              <input type="number" class="form-control rounded-pill" formControlName="paidAmount"
-                (blur)="onFocusLost()" placeholder="0.00">
+              <input type="number" class="form-control rounded-pill" formControlName="paidAmount" (blur)="onFocusLost()"
+                placeholder="0.00">
             </div>
             <div class="mb-3">
               <label class="form-label">Due Amount</label>

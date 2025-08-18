@@ -46,8 +46,8 @@ export class AddEmployee implements OnInit{
 
   ngOnInit(): void {
     this.loadDepartment();
-     this.hrService.getAllDepartment().subscribe(data => this.allDepartments = data);
-     this.hrService.getAllDesignation().subscribe(data => this.allDesignations = data);
+    this.loadDesignation();
+  
 
   }
 
@@ -99,6 +99,7 @@ export class AddEmployee implements OnInit{
 
       next: (dep) => {
         this.allDepartments = dep;
+        this.cdr.detectChanges();
 
       },
       error: (err) => {
@@ -110,22 +111,22 @@ export class AddEmployee implements OnInit{
 
   }
 
-//   loadDesignation(): void {
+  loadDesignation(): void {
 
-//     this.hrService.getAllDesignation().subscribe({
+    this.hrService.getAllDesignation().subscribe({
 
-//       next: (dep) => {
-//         this.designations = dep;
+      next: (dep) => {
+        this.allDesignations = dep;
 
-//       },
-//       error: (err) => {
+      },
+      error: (err) => {
 
-//         console.log(err);
-//       }
+        console.log(err);
+      }
 
-//     });
+    });
 
-//   }
+  }
 
 //   addEmp(): void {
 

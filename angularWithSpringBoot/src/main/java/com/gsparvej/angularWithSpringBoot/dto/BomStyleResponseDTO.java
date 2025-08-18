@@ -4,6 +4,14 @@ public class BomStyleResponseDTO {
     private int id;
     private String styleCode;
 
+    public BomStyleResponseDTO() {
+    }
+
+    public BomStyleResponseDTO(int id, String styleCode) {
+        this.id = id;
+        this.styleCode = styleCode;
+    }
+
     public int getId() {
         return id;
     }

@@ -2,6 +2,8 @@ package com.gsparvej.angularWithSpringBoot.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "designations")
 public class Designation {
@@ -17,13 +19,17 @@ public class Designation {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @OneToMany(mappedBy = "designation", cascade = CascadeType.ALL)
+    private List<Employee> employees;
+
     public Designation() {
     }
 
-    public Designation(int id, String designationTitle, Department department) {
+    public Designation(int id, String designationTitle, Department department, List<Employee> employees) {
         this.id = id;
         this.designationTitle = designationTitle;
         this.department = department;
+        this.employees = employees;
     }
 
     public int getId() {
@@ -48,5 +54,13 @@ public class Designation {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

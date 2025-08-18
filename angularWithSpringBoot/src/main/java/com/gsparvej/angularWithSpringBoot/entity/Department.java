@@ -18,14 +18,18 @@ public class Department {
     @OneToMany(mappedBy = "department" , cascade = CascadeType.ALL)
     private List<Designation> designations;
 
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<Employee> employees;
+
 
     public Department() {
     }
 
-    public Department(int id, String name, List<Designation> designations) {
+    public Department(int id, String name, List<Designation> designations, List<Employee> employees) {
         this.id = id;
         this.name = name;
         this.designations = designations;
+        this.employees = employees;
     }
 
     public int getId() {
@@ -50,5 +54,13 @@ public class Department {
 
     public void setDesignations(List<Designation> designations) {
         this.designations = designations;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -57,7 +57,10 @@ public class DesignationRestController {
         return designationService.update(id, designation);
     }
 
-
+    @GetMapping("/by-department/{departId}")
+    public List<DesignationResponseDTO> getByDepartment(@PathVariable int departId) {
+        return designationService.getByDepartmentId(departId);
+    }
 
 
 }

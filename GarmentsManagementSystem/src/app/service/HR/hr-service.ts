@@ -19,6 +19,7 @@ export class HrService {
 
 
 
+
   baseUrlAtten: string = "http://localhost:3000/attendance";
   baseUrlLeave: string = "http://localhost:3000/leave";
   baseUrlPay: string = "http://localhost:3000/payroll";
@@ -38,9 +39,10 @@ export class HrService {
   }
 
   getDesignationByDepartment(departmentId: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrlEmp}/${departmentId}`);
+    return this.http.get<any[]>(`${this.baseUrlDesig}/by-department/${departmentId}`);
 
   }
+
 
   deleteEmployee(id: number): Observable<any> {
 

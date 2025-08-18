@@ -4,7 +4,17 @@ public class DesignationResponseDTO {
 
     private int id;
     private String designationTitle;
-   private DepartmentResponseDTO department;
+    private DepartmentResponseDTO department;
+
+
+    public DesignationResponseDTO() {
+    }
+
+    public DesignationResponseDTO(int id, String designationTitle, DepartmentResponseDTO department) {
+        this.id = id;
+        this.designationTitle = designationTitle;
+        this.department = department;
+    }
 
     public int getId() {
         return id;

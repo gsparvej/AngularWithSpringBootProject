@@ -54,8 +54,15 @@ export class AddEmployee implements OnInit{
 
 
   onDepartmentChange() {
+
+    this.selectedDepartment = this.formGroup.get('department')?.value;
+
+    console.log(this.selectedDepartment);
+
     this.allDesignations = [];
     this.selectedDesignation = 0;
+
+
 
     if(this.selectedDepartment) {
       this.hrService.getDesignationByDepartment(this.selectedDepartment).subscribe(data => {

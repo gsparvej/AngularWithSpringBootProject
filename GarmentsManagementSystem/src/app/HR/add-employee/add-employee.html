@@ -53,7 +53,7 @@
 
       <div class="form-group mb-2">
         <label>Department</label>
-        <select class="form-select" [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+        <select class="form-select" formControlName="department" (change)="onDepartmentChange()">
           <option value="">-- Select Department --</option>
           <option *ngFor="let d of allDepartments" [value]="d.id">{{ d.name }}</option>
         </select>
@@ -61,7 +61,7 @@
 
       <div class="form-group mb-3">
         <label>Designation</label>
-        <select class="form-select" [(ngModel)]="selectedDesignation">
+        <select class="form-select" formControlName="designation">
           <option value="">-- Select Designation Title --</option>
           <option *ngFor="let ps of allDesignations" [value]="ps.id">{{ ps.designationTitle }}</option>
         </select>

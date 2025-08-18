@@ -29,7 +29,6 @@ public class DesignationService {
     }
 
 
-
     public List<DesignationResponseDTO> getAllDesignationDTOs() {
         return designationRepo.findAll().stream().map(desig -> {
             DesignationResponseDTO dto = new DesignationResponseDTO();
@@ -67,22 +66,30 @@ public class DesignationService {
     }
 
     // Update by ID
-public Designation update(Integer id, Designation updateDesignation) {
+    public Designation update(Integer id, Designation updateDesignation) {
         return designationRepo.findById(id).map(existingDesig -> {
             existingDesig.setDesignationTitle(updateDesignation.getDesignationTitle());
 
             // update department if provided
-            if(updateDesignation.getDepartment() != null) {
+            if (updateDesignation.getDepartment() != null) {
                 existingDesig.setDepartment(updateDesignation.getDepartment());
             }
             return designationRepo.save(existingDesig);
-        }).orElseThrow(() -> new RuntimeException("Designation not found with id  " +id));
-}
+        }).orElseThrow(() -> new RuntimeException("Designation not found with id  " + id));
+    }
 
     // delete by id
 
     public void delete(Integer id) {
         designationRepo.deleteById(id);
+    }
+
+    // DivisionService
+    public List<DesignationResponseDTO> getByDepartmentId(int departmentId) {
+        return designationRepo.findByDepartmentId(departmentId)
+                .stream()
+                .map(d -> new DesignationResponseDTO(d.getId(), d.getDesignationTitle(), null))
+                .toList();
     }
 
 }

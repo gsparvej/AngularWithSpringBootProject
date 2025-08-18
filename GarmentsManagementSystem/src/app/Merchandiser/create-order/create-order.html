@@ -18,18 +18,20 @@
           </select>
         </div>
 
-        <!-- Buyer Organization -->
-        <div class="col-md-4">
-          <label class="form-label fw-semibold">Buyer Organization</label>
-          <input type="text" class="form-control rounded-pill" formControlName="buyerOrganization"
-            placeholder="Buyer Organization">
+        <div class="row">
+          <!-- Buyer Organization -->
+        <div class="col-md-4" formGroupName="buyer">
+          <label class="form-label">Buyer Name:</label>
+          <select class="form-select" formControlName="name">
+            <option *ngFor="let b of buyer" [ngValue]="b.id">{{ b.name }}</option>
+          </select>
         </div>
 
         <!-- Shipping Address -->
         <div class="col-md-4">
           <label class="form-label fw-semibold">Shipping Address</label>
-          <textarea class="form-control rounded-3" rows="2" formControlName="shippingAddress"
-            placeholder="Enter Shipping Address"></textarea>
+         <input type="text" class="form-control" formControlName="address" readonly />
+        </div>
         </div>
 
         <!-- Order Date -->
@@ -43,15 +45,6 @@
           <label class="form-label fw-semibold">Delivery Date</label>
           <input type="date" class="form-control rounded-pill" formControlName="deliveryDate">
         </div>
-
-        <!-- Order Status -->
-        <div class="col-md-4" formGroupName="orderStatus">
-          <label class="form-label">Status:</label>
-          <select class="form-select" formControlName="status">
-            <option *ngFor="let s of status" [ngValue]="s.id">{{ s.status }}</option>
-          </select>
-        </div>
-
       </div>
 
       <hr class="my-4">

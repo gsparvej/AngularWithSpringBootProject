@@ -75,17 +75,7 @@ export class AddEmployee implements OnInit{
 
   }
 
-  // onDepartmentChange(){
-  //   const selectedDepartId = this.formGroup.value.department;
-  //   const selectedDepartment = this.allDepartments.find(d => d.id == selectedDepartId);
-  //   this.cdr.detectChanges();
-  //   if(selectedDepartment){
-  //     this.filteredDesignations = this.allDesignations.filter(desig => selectedDepartment.designations.includes(desig.id!));
-  //     this.formGroup.patchValue({designation: ''});
-
-
-  //   }
-  // }
+  
   onSubmit(){
     if ( this.formGroup.invalid) return;
 
@@ -135,26 +125,6 @@ export class AddEmployee implements OnInit{
 
   }
 
-//   addEmp(): void {
 
-// const emp : Employee = {...this.formGroup.value};
-// this.hrService.saveEmployee(emp).subscribe({
-
-//   next: (employee) => {
-//     console.log(employee,'added Successfully ! ');
-//     this.loadDepartment();
-//     this.loadDesignation();
-//     this.formGroup.reset();
-//     this.router.navigate(['/viewAllEmp']);
-//   },
-//   error: (err) => {
-//     console.log(err);
-//   }
-
-
-// })
-
-
-//   }
 }
 

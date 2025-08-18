@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
 import { Router } from '@angular/router';
 import { Order } from '../../../model/Merchandiser/order.model';
+import { Buyer } from '../../../model/Merchandiser/buyer.model';
 
 @Component({
   selector: 'app-create-order',
@@ -14,8 +15,7 @@ import { Order } from '../../../model/Merchandiser/order.model';
 })
 export class CreateOrder implements OnInit {
 
-  buyerOrganization!: string;
-    shippingAddress!: string;
+
     orderDate!: Date;
     deliveryDate!: Date;
 
@@ -43,10 +43,12 @@ export class CreateOrder implements OnInit {
     dueAmount!: number;
     total!: number;
     remarks!: string;
+    orderStatus!: string;
 
 
   bom: Bom[] = [];
-  status: OrderStatus[] = [];
+  buyer: Buyer[] = [];
+
 
   orderForm!: FormGroup;
 
@@ -93,9 +95,8 @@ export class CreateOrder implements OnInit {
       bom: this.formBuilder.group({
         styleCode: ['', Validators.required]
       }),
-
-      orderStatus: this.formBuilder.group({
-        status: ['', Validators.required]
+      buyer: this.formBuilder.group({
+        id: ['', Validators.required]
       })
     });
 
@@ -107,17 +108,20 @@ export class CreateOrder implements OnInit {
       }
     });
 
-    //  Subscribe for Order Status Changes
-    this.orderForm.get('orderStatus')?.get('id')?.valueChanges.subscribe(id => {
-      const selectedStatus = this.status.find(s => s.id === id);
-      if (selectedStatus) {
-        this.orderForm.patchValue({ orderStatus: selectedStatus });
-      }
-    });
+    this.orderForm.get('buyer')?.get('id')?.valueChanges.subscribe( id => {
+      const selectedName = this.buyer.find(b => b.id === id);
+      if(selectedName) {
+        this.orderForm.patchValue({buyer: selectedName});
 
-    //  Load Initial Data
-    this.loadOrderStatus();
+      }
+    })
+
+
+
+
+
     this.loadStyle();
+    this.loadBuyer();
   }
 
   //  Add Order Method
@@ -136,7 +140,6 @@ export class CreateOrder implements OnInit {
     this.merchandiserService.saveOder(order).subscribe({
       next: (savedOrder) => {
         console.log(savedOrder, 'Order Successfully Saved!');
-        this.loadOrderStatus();
         this.loadStyle();
         this.orderForm.reset();
         this.router.navigate(['']);  // Redirect after save
@@ -146,19 +149,6 @@ export class CreateOrder implements OnInit {
       }
     });
   }
-
-  //  Load Order Status List
-  loadOrderStatus(): void {
-    this.merchandiserService.getAllOrderStatus().subscribe({
-      next: (statusList) => {
-        this.status = statusList;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
-
   //  Load BOM Styles List
   loadStyle(): void {
     this.merchandiserService.getAllBom().subscribe({
@@ -166,6 +156,17 @@ export class CreateOrder implements OnInit {
         this.bom = styleList;
       },
       error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+  loadBuyer(): void {
+    this.merchandiserService.getAllBuyer().subscribe({
+      next: (bu) => {
+        this.buyer = bu;
+      },
+      error : (err) => {
         console.log(err);
       }
     });

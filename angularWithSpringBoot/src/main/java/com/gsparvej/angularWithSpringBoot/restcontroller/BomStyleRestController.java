@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.BomStyleResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.BomStyle;
 import com.gsparvej.angularWithSpringBoot.entity.Buyer;
 import com.gsparvej.angularWithSpringBoot.service.BomStyleService;
@@ -18,9 +19,14 @@ public class BomStyleRestController {
     @Autowired
     private BomStyleService bomStyleService;
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<BomStyle> getAllBomStyle() {
         return bomStyleService.getAllBomStyle();
+    }
+
+    @GetMapping("")
+    public List<BomStyleResponseDTO> getAllBomStyleDtos() {
+        return bomStyleService.getAllBomStyleResponseDTOS();
     }
 
     @PostMapping("")

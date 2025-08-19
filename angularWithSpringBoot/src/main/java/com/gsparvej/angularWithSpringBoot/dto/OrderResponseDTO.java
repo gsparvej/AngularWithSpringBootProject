@@ -10,6 +10,17 @@ public class OrderResponseDTO {
     private BomStyleResponseDTO bomStyle;
     private BuyerResponseDTO buyer;
 
+
+    public OrderResponseDTO() {
+    }
+
+    public OrderResponseDTO(int id, Date deliveryDate, BomStyleResponseDTO bomStyle, BuyerResponseDTO buyer) {
+        this.id = id;
+        this.deliveryDate = deliveryDate;
+        this.bomStyle = bomStyle;
+        this.buyer = buyer;
+    }
+
     public int getId() {
         return id;
     }

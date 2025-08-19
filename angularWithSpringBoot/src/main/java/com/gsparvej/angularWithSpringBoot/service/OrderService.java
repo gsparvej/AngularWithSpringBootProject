@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -52,31 +53,31 @@ public class OrderService {
 
 
     public List<OrderResponseDTO> getAllOrderResponseDTOS() {
-        return orderRepo.findAll().stream().map(or -> {
-            OrderResponseDTO dto = new OrderResponseDTO();
-            dto.setId(or.getId());
-            dto.setDeliveryDate(or.getDeliveryDate());
+        return orderRepo.findAll().stream()
+                .map(or -> {
+                    OrderResponseDTO dto = new OrderResponseDTO();
+                    dto.setId(or.getId());
+                    dto.setDeliveryDate(or.getDeliveryDate());
 
-            BomStyle bomStyle = or.getBomStyle();
-            if (bomStyle != null) {
-                BomStyleResponseDTO bomStyleResponseDTO = new BomStyleResponseDTO();
-                bomStyleResponseDTO.setId(bomStyle.getId());
-                bomStyleResponseDTO.setStyleCode(bomStyle.getStyleCode());
-                dto.setBomStyle(bomStyleResponseDTO);
+                    // Map BomStyle
+                    if (or.getBomStyle() != null) {
+                        BomStyle bomStyle = or.getBomStyle();
+                        dto.setBomStyle(new BomStyleResponseDTO(
+                        ));
+                    }
 
-            }
+                    // Map Buyer
+                    if (or.getBuyer() != null) {
+                        Buyer buyer = or.getBuyer();
+                        dto.setBuyer(new BuyerResponseDTO(
+                                buyer.getId(),
+                                buyer.getName()
+                        ));
+                    }
 
-            Buyer buyer = or.getBuyer();
-            if (buyer != null) {
-                BuyerResponseDTO buyerResponseDTO = new BuyerResponseDTO();
-                buyerResponseDTO.setId(buyer.getId());
-                buyerResponseDTO.setName(buyer.getName());
-                dto.setBuyer(buyerResponseDTO);
-
-            }
-
-
-            return dto;
-        }).toList();
+                    return dto;
+                })
+                .collect(Collectors.toList()); // safer for Java 8/11
     }
+
 }

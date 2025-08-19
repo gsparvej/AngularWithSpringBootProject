@@ -595,6 +595,22 @@
         "styleCode": "JHDG",
         "description": "Shirt"
       }
+    },
+    {
+      "id": "2a9a",
+      "serial": "1",
+      "material": "hgf",
+      "element": "fghgf",
+      "quantity": 1.8444,
+      "unitPrice": 500,
+      "totalCost": 922.2,
+      "uom": {
+        "baseFabric": ""
+      },
+      "bom": {
+        "styleCode": "PE007",
+        "description": "Short Sleeve Shirt"
+      }
     }
   ],
   "bom": [

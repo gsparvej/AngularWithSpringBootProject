@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class BomStyle {
 
 
     @OneToMany(mappedBy = "bomStyle" , cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<BOM> boms;
 
     public BomStyle() {

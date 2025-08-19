@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
+import com.gsparvej.angularWithSpringBoot.dto.EmployeeDTO;
 import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.entity.Designation;
 import com.gsparvej.angularWithSpringBoot.entity.Employee;
@@ -23,9 +24,24 @@ public class EmployeeService {
     @Autowired
     private IDesignationRepo designationRepo;
 
-    public List<Employee> getAllEmployees() {
-        return employeeRepo.findAll();
+    public List<EmployeeDTO> getAllEmployees() {
+        List<Employee> employees = employeeRepo.findAll();
+        List<EmployeeDTO> dtoList = employees.stream().map(e -> new EmployeeDTO(
+                e.getId(),
+                e.getName(),
+                e.getPhoneNumber(),
+                e.getEmail(),
+                e.getJoinDate(),
+                e.getDesignation().getDesignationTitle(),
+                e.getDesignation().getDepartment().getName()
+        )).toList();
+
+        return dtoList;
     }
+
+
+
+
     public Optional<Employee> getEmployeeById(Integer id) {
         return employeeRepo.findById(id);
     }

@@ -1,6 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -25,6 +26,7 @@ public class UOM {
     private float baseFabric;
 
     @OneToMany(mappedBy = "uom" , cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<BOM> boms;
 
     public UOM() {

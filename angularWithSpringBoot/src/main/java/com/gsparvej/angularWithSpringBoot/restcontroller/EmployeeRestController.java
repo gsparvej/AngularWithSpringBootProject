@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.EmployeeDTO;
 import com.gsparvej.angularWithSpringBoot.entity.Buyer;
 import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.entity.Designation;
@@ -44,7 +45,7 @@ public class EmployeeRestController {
 
 
     @GetMapping("")
-    public List<Employee> getAllEmp() {
+    public List<EmployeeDTO> getAllEmp() {
         return employeeService.getAllEmployees();
     }
 

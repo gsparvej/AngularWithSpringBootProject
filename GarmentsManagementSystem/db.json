@@ -611,6 +611,38 @@
         "styleCode": "PE007",
         "description": "Short Sleeve Shirt"
       }
+    },
+    {
+      "id": "16b1",
+      "serial": "1",
+      "material": "gyjy",
+      "element": "ythjyt",
+      "quantity": 1.8444,
+      "unitPrice": 500,
+      "totalCost": 922.2,
+      "uom": {
+        "baseFabric": ""
+      },
+      "bom": {
+        "styleCode": "PE007",
+        "description": "Short Sleeve Shirt"
+      }
+    },
+    {
+      "id": "bbd6",
+      "serial": "3",
+      "material": "hhth",
+      "element": "thgtyh",
+      "quantity": 72,
+      "unitPrice": 5,
+      "totalCost": 360,
+      "uom": {
+        "baseFabric": ""
+      },
+      "bom": {
+        "styleCode": "PE007",
+        "description": "Short Sleeve Shirt"
+      }
     }
   ],
   "bom": [

@@ -55,4 +55,12 @@ public class BOMRestController {
         BOM saved = bomService.saveOrUpdate(bom,style, uom);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
+
+    @GetMapping("/style/{styleCode}")
+    public List<BOM> getBOMsByStyleCode(@PathVariable String styleCode) {
+        return bomService.getBOMsByStyleCode(styleCode);
+    }
+
+
 }

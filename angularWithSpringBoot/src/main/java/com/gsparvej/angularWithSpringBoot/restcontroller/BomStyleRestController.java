@@ -4,7 +4,9 @@ import com.gsparvej.angularWithSpringBoot.dto.BomStyleResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.BomStyle;
 import com.gsparvej.angularWithSpringBoot.entity.Buyer;
 import com.gsparvej.angularWithSpringBoot.service.BomStyleService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,11 +31,11 @@ public class BomStyleRestController {
         return bomStyleService.getAllBomStyleResponseDTOS();
     }
 
-    @PostMapping("")
+    @PostMapping(value = "", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
     public ResponseEntity<BomStyle> createBomStyle(@RequestBody BomStyle bomStyle) {
-        BomStyle savedStyle = bomStyleService.saveBomStyle(bomStyle);
-        return ResponseEntity.ok(savedStyle);
+        return ResponseEntity.ok(bomStyle); // For testing, just return what you receive
     }
+
 
     // Get single BomStyle by id
     @GetMapping("/{id}")

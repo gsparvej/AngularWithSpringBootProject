@@ -41,9 +41,15 @@ public class BOMService {
         return bomRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("BOM not found"));
     }
-    public Optional<BOM> getBomByStyleCode(String styleCode) {
-        return bomRepo.findBOMSBybomStyleStyleCode(styleCode);
 
+
+    // ✅ New Service Method: Get BOMs by Style Code
+    public List<BOM> getBOMsByStyleCode(String styleCode) {
+        return bomRepo.findAllByStyleCode(styleCode);
     }
+
+
+
+
 }
 

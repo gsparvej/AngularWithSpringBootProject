@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.BuyerResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.Buyer;
 import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.service.BuyerService;
@@ -18,9 +19,13 @@ public class BuyerRestController {
     @Autowired
     private BuyerService buyerService;
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Buyer> getAllBuyers() {
         return buyerService.getAllBuyers();
+    }
+    @GetMapping("")
+    public List<BuyerResponseDTO> getAllBuyersDtos() {
+        return buyerService.getAllBuyerResponseDTOS();
     }
 
 

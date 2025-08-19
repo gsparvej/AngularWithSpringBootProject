@@ -12,7 +12,7 @@ import { VendorModel } from '../../../model/Purchase/vendor.model';
 })
 export class ViewVendorPro implements OnInit{
 
-  id!: string;
+  id!: number;
   ven!: VendorModel;
   vendor: VendorModel[] = [];
 

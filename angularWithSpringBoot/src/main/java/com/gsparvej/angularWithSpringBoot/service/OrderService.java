@@ -53,31 +53,25 @@ public class OrderService {
 
 
     public List<OrderResponseDTO> getAllOrderResponseDTOS() {
-        return orderRepo.findAll().stream()
-                .map(or -> {
-                    OrderResponseDTO dto = new OrderResponseDTO();
-                    dto.setId(or.getId());
-                    dto.setDeliveryDate(or.getDeliveryDate());
+        return orderRepo.findAll().stream().map(order -> {
+            OrderResponseDTO dto = new OrderResponseDTO();
+            dto.setId(order.getId());
 
-                    // Map BomStyle
-                    if (or.getBomStyle() != null) {
-                        BomStyle bomStyle = or.getBomStyle();
-                        dto.setBomStyle(new BomStyleResponseDTO(
-                        ));
-                    }
+            dto.setDeliveryDate(order.getDeliveryDate());
 
-                    // Map Buyer
-                    if (or.getBuyer() != null) {
-                        Buyer buyer = or.getBuyer();
-                        dto.setBuyer(new BuyerResponseDTO(
-                                buyer.getId(),
-                                buyer.getName()
-                        ));
-                    }
+            Buyer buyer = order.getBuyer();
+            if (buyer != null) {
+                BuyerResponseDTO buyerResponseDTO = new BuyerResponseDTO();
+                buyerResponseDTO.setId(buyer.getId());
+                buyerResponseDTO.setName(buyer.getName());
 
-                    return dto;
-                })
-                .collect(Collectors.toList()); // safer for Java 8/11
+                dto.setBuyer(buyerResponseDTO);
+
+
+            }
+            return dto;
+        }).toList();
     }
+
 
 }

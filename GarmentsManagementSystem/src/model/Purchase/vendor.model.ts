@@ -1,6 +1,6 @@
 
 export class VendorModel{
-    id!: string;
+    id!: number;
     vendorName!: string;
     companyName!: string;
     contactPerson!: string;

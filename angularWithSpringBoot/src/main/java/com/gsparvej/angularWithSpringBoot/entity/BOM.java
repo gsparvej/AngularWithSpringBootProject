@@ -15,9 +15,9 @@ public class BOM {
     private int serial;
     private String material;
     private String unit;
-    private int quantity;
-    private int unitPrice;
-    private int totalCost;
+    private float quantity;
+    private float unitPrice;
+    private float totalCost;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uom_id")
@@ -30,7 +30,7 @@ public class BOM {
     public BOM() {
     }
 
-    public BOM(int id, int serial, String material, String unit, int quantity, int unitPrice, int totalCost, UOM uom, BomStyle bomStyle) {
+    public BOM(int id, int serial, String material, String unit, float quantity, float unitPrice, float totalCost, UOM uom, BomStyle bomStyle) {
         this.id = id;
         this.serial = serial;
         this.material = material;
@@ -74,27 +74,27 @@ public class BOM {
         this.unit = unit;
     }
 
-    public int getQuantity() {
+    public float getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(float quantity) {
         this.quantity = quantity;
     }
 
-    public int getUnitPrice() {
+    public float getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(int unitPrice) {
+    public void setUnitPrice(float unitPrice) {
         this.unitPrice = unitPrice;
     }
 
-    public int getTotalCost() {
+    public float getTotalCost() {
         return totalCost;
     }
 
-    public void setTotalCost(int totalCost) {
+    public void setTotalCost(float totalCost) {
         this.totalCost = totalCost;
     }
 

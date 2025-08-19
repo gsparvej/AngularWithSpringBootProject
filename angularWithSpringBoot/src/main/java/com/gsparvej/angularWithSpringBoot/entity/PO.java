@@ -38,4 +38,118 @@ public class PO {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false)
     private RawItems rawItem;
+
+    public PO() {
+    }
+
+    public PO(int id, String poNumber, Date poDate, float quantity, float rate, float subTotal, float totalAmount, float tax, Date deliveryDate, String termsAndCondition, Vendor vendor, RawItems rawItem) {
+        this.id = id;
+        this.poNumber = poNumber;
+        this.poDate = poDate;
+        this.quantity = quantity;
+        this.rate = rate;
+        this.subTotal = subTotal;
+        this.totalAmount = totalAmount;
+        this.tax = tax;
+        this.deliveryDate = deliveryDate;
+        this.termsAndCondition = termsAndCondition;
+        this.vendor = vendor;
+        this.rawItem = rawItem;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getPoNumber() {
+        return poNumber;
+    }
+
+    public void setPoNumber(String poNumber) {
+        this.poNumber = poNumber;
+    }
+
+    public Date getPoDate() {
+        return poDate;
+    }
+
+    public void setPoDate(Date poDate) {
+        this.poDate = poDate;
+    }
+
+    public float getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(float quantity) {
+        this.quantity = quantity;
+    }
+
+    public float getRate() {
+        return rate;
+    }
+
+    public void setRate(float rate) {
+        this.rate = rate;
+    }
+
+    public float getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(float subTotal) {
+        this.subTotal = subTotal;
+    }
+
+    public float getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(float totalAmount) {
+        this.totalAmount = totalAmount;
+    }
+
+    public float getTax() {
+        return tax;
+    }
+
+    public void setTax(float tax) {
+        this.tax = tax;
+    }
+
+    public Date getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    public void setDeliveryDate(Date deliveryDate) {
+        this.deliveryDate = deliveryDate;
+    }
+
+    public String getTermsAndCondition() {
+        return termsAndCondition;
+    }
+
+    public void setTermsAndCondition(String termsAndCondition) {
+        this.termsAndCondition = termsAndCondition;
+    }
+
+    public Vendor getVendor() {
+        return vendor;
+    }
+
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
+    }
+
+    public RawItems getRawItem() {
+        return rawItem;
+    }
+
+    public void setRawItem(RawItems rawItem) {
+        this.rawItem = rawItem;
+    }
 }

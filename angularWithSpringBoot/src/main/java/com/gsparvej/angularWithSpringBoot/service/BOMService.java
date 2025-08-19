@@ -29,13 +29,18 @@ public class BOMService {
     }
 
     public BOM saveOrUpdate(BOM bom) {
-       Optional< BomStyle> bomStyle= bomStyleRepo.findById(bom.getBomStyle().getId());
-       Optional<UOM> uom= uomRepo.findById(bom.getUom().getId());
+        BomStyle bomStyle = bomStyleRepo.findById(bom.getBomStyle().getId())
+                .orElseThrow(() -> new RuntimeException("BomStyle not found with id: " + bom.getBomStyle().getId()));
+
+        UOM uom = uomRepo.findById(bom.getUom().getId())
+                .orElseThrow(() -> new RuntimeException("UOM not found with id: " + bom.getUom().getId()));
 
         bom.setBomStyle(bomStyle);
         bom.setUom(uom);
+
         return bomRepo.save(bom);
     }
+
 
     public void deleteById(Integer id) {
         bomRepo.deleteById(id);

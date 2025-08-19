@@ -16,7 +16,7 @@ export class AddBomView implements OnInit {
 
   serial!: number;
   material!: string;
-  element!: string;
+  unit!: string;
   quantity!: number;
   unitPrice!: number;
   totalCost!: number;
@@ -32,68 +32,51 @@ export class AddBomView implements OnInit {
     private formBuilder: FormBuilder,
     private cdr: ChangeDetectorRef
   ) { }
+
   ngOnInit(): void {
+    // ✅ Setup form with nested groups
     this.formBomView = this.formBuilder.group({
       serial: [''],
       material: [''],
-      element: [''],
+      unit: [''],
       quantity: [''],
       unitPrice: [''],
       totalCost: [''],
-      uom: [''],
-      bom:  ['']
-
-
-
-
+      uom: this.formBuilder.group({
+        id: ['']
+      }),
+      bomStyle: this.formBuilder.group({
+        id: ['']
+      })
     });
 
     this.loadBomBom();
     this.loadUom();
 
-
-
-    // eituk code use kori ni , ***
-
-      this.formBomView.get('bom')?.get('styleCode')?.valueChanges.subscribe(styleCode => {
-      const selectedStyleCode = this.bom.find(b => b.styleCode === styleCode);
-      if(selectedStyleCode) {
-
-        this.formBomView.patchValue({bom: selectedStyleCode});
+    // ✅ Watch for changes in selected BOM id
+    this.formBomView.get('bomStyle')?.get('id')?.valueChanges.subscribe(id => {
+      const selectedBom = this.bom.find(b => b.id === id);
+      if (selectedBom) {
+        console.log('Selected BOM:', selectedBom);
       }
-     });
+    });
 
-    //   this.formBomView.get('bom')?.get('description')?.valueChanges.subscribe(description => {
-    //   const selectedDescription = this.bom.find(b => b.description === description);
-    //   if(selectedDescription) {
-
-    //     this.formBomView.patchValue({bom: selectedDescription});
-    //   }
-    //  });
-
-
-
-
-    this.formBomView.get('uom')?.get('baseFabric')?.valueChanges.subscribe(result => {
-      const selectedStatus = this.uom.find(s => s.baseFabric === result);
-      if (selectedStatus) {
-
-        this.formBomView.patchValue({ uom: selectedStatus });
+    // ✅ Watch for changes in selected UOM id
+    this.formBomView.get('uom')?.get('id')?.valueChanges.subscribe(id => {
+      const selectedUom = this.uom.find(u => u.id === id);
+      if (selectedUom) {
+        console.log('Selected UOM:', selectedUom);
       }
     });
   }
 
   addBomBomView(): void {
+    // ✅ Directly use form value
+    const bomview: Bomview = this.formBomView.value;
 
-    const bomview: Bomview = { ...this.formBomView.value,
-      uom: {id: this.formBomView.value('result')},
-      bom: {id: this.formBomView.value('styleCode')}
-
-     };
     this.merchandiserService.saveBomView(bomview).subscribe({
-
       next: (bomview) => {
-        console.log(bomview, 'bomview Successfully ! ');
+        console.log(bomview, 'bomview Successfully !');
         this.loadBomBom();
         this.loadUom();
         this.formBomView.reset();
@@ -102,49 +85,33 @@ export class AddBomView implements OnInit {
       error: (err) => {
         console.log(err);
       }
-
-
-    })
-
-
+    });
   }
 
-
   loadBomBom(): void {
-
     this.merchandiserService.getAllBom().subscribe({
-
       next: (bom) => {
         this.bom = bom;
         this.cdr.detectChanges();
-
       },
       error: (err) => {
-
         console.log(err);
       }
-
     });
-
   }
 
   loadUom(): void {
-
     this.merchandiserService.getAllUom().subscribe({
-
       next: (s) => {
         this.uom = s;
         this.cdr.detectChanges();
-
       },
       error: (err) => {
-
         console.log(err);
       }
-
     });
-
   }
+
   totalCostingPerRow(): void {
     const quantity = this.formBomView.get('quantity')?.value || 0;
     const unitPrice = this.formBomView.get('unitPrice')?.value || 0;
@@ -154,13 +121,10 @@ export class AddBomView implements OnInit {
 
     // 🔧 Save it in the form control as well
     this.formBomView.get('totalCost')?.setValue(totalCost);
-
     this.cdr.detectChanges();
   }
-
 
   onFocusLost() {
     this.totalCostingPerRow();
   }
-
 }

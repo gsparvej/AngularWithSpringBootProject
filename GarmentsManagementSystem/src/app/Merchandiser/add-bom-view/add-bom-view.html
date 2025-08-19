@@ -13,28 +13,23 @@
                 <input type="text" class="form-control" id="" formControlName="material">
             </div>
             <div class="col-md-3">
-                <label for="" class="form-label">Unite</label>
-                <input type="text" class="form-control" id="" formControlName="element">
+                <label for="" class="form-label">Unit</label>
+                <input type="text" class="form-control" id="" formControlName="unit">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 " formGroupName="uom">
-
+            <div class="col-md-4" formGroupName="uom">
                 <label for="" class="form-label">Base Fabric:</label>
-                <select id="" formControlName="result" class="form-select">
+                <select formControlName="id" class="form-select">
                     <option *ngFor="let u of uom" [ngValue]="u.id">{{u.baseFabric}}</option>
                 </select>
-
             </div>
 
-
-            <div class="col-md-4 " formGroupName="bom">
-
+            <div class="col-md-4" formGroupName="bomStyle">
                 <label for="" class="form-label">Style Code:</label>
-                <select id="" formControlName="styleCode" class="form-select">
+                <select formControlName="id" class="form-select">
                     <option *ngFor="let b of bom" [ngValue]="b.id">{{b.styleCode}}</option>
                 </select>
-
             </div>
 
             <div class="col-md-4">

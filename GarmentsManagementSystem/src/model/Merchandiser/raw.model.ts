@@ -4,7 +4,7 @@ import { Uom } from "./uom.model";
 
 export class RawMaterialsModel {
 
-    id?: string;
+    id?: number;
     totalQuantity!: number;
 
     order!: Order;

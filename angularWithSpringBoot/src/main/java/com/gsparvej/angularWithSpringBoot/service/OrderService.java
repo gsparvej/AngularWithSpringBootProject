@@ -38,11 +38,36 @@ public class OrderService {
         return orderRepo.findById(id);
     }
     public Order saveOrUpdate(Order order, BomStyle bomStyle, Buyer buyer) {
+        // Relations
         order.setBomStyle(bomStyle);
         order.setBuyer(buyer);
-        return orderRepo.save(order);
 
+        // Calculate subtotal
+        double subTotal =
+                (order.getShortSmallSize() * order.getShortSPrice()) +
+                        (order.getShortMediumSize() * order.getShortMPrice()) +
+                        (order.getShortLargeSize() * order.getShortLPrice()) +
+                        (order.getShortXLSize() * order.getShortXLPrice()) +
+                        (order.getFullSmallSize() * order.getFullSPrice()) +
+                        (order.getFullMediumSize() * order.getFullMPrice()) +
+                        (order.getFullLargeSize() * order.getFullLPrice()) +
+                        (order.getFullXLSize() * order.getFullXLPrice());
+
+        order.setSubTotal(subTotal);
+
+        // VAT (assuming vat in percentage from UI)
+        double vatAmount = (order.getVat() != 0 ? order.getVat() : 0);
+        double total = subTotal + vatAmount;
+        order.setTotal(total);
+
+        // Due Amount
+        double paidAmount = (order.getPaidAmount() != 0 ? order.getPaidAmount() : 0);
+        double dueAmount = total - paidAmount;
+        order.setDueAmount(dueAmount);
+
+        return orderRepo.save(order);
     }
+
     public void deleteById(Integer id) {
         orderRepo.deleteById(id);
     }

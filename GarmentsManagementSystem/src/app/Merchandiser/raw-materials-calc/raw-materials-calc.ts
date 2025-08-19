@@ -31,7 +31,7 @@ export class RawMaterialsCalc implements OnInit {
   ngOnInit(): void {
     this.formRawMaterials = this.fb.group({
       order: this.fb.group({
-        id: [''],
+      
         shortSmallSize: [''],
         shortSPrice: [''],
         shortMediumSize: [''],

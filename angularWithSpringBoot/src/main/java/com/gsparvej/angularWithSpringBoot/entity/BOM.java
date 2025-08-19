@@ -21,12 +21,10 @@ public class BOM {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "uom_id")
-    @JsonBackReference
     private UOM uom;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bomstyle_id")
-    @JsonBackReference
     private BomStyle bomStyle;
 
     public BOM() {

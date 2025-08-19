@@ -26,7 +26,7 @@ public class UOM {
     private float baseFabric;
 
     @OneToMany(mappedBy = "uom" , cascade = CascadeType.ALL)
-    @JsonManagedReference
+
     private List<BOM> boms;
 
     public UOM() {

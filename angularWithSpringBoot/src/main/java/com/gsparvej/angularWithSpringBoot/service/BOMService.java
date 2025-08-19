@@ -28,7 +28,10 @@ public class BOMService {
         return bomRepo.findById(id);
     }
 
-    public BOM saveOrUpdate(BOM bom, BomStyle bomStyle, UOM uom) {
+    public BOM saveOrUpdate(BOM bom) {
+       Optional< BomStyle> bomStyle= bomStyleRepo.findById(bom.getBomStyle().getId());
+       Optional<UOM> uom= uomRepo.findById(bom.getUom().getId());
+
         bom.setBomStyle(bomStyle);
         bom.setUom(uom);
         return bomRepo.save(bom);

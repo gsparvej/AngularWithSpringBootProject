@@ -48,11 +48,8 @@ public class BOMRestController {
             @RequestBody BOM bom
 
     ) {
-        BomStyle style = bomStyleRepo.findById(bom.getBomStyle().getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "BomStyle not found"));
-        UOM uom = uomRepo.findById(bom.getUom().getId())
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UOM not found"));
-        BOM saved = bomService.saveOrUpdate(bom,style, uom);
+
+        BOM saved = bomService.saveOrUpdate(bom);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
 

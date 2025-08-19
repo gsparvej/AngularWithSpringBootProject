@@ -22,7 +22,6 @@ public class BomStyle {
 
 
     @OneToMany(mappedBy = "bomStyle" , cascade = CascadeType.ALL)
-    @JsonManagedReference
     private List<BOM> boms;
 
     public BomStyle() {

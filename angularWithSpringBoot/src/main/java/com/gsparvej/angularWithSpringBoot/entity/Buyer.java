@@ -1,5 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class Buyer {
     private String address;
     private String website;
 
-    @OneToMany(mappedBy = "buyer" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "buyer", cascade = CascadeType.ALL)
     private List<Order> orders;
 
     public Buyer() {

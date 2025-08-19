@@ -22,7 +22,7 @@
 
                 <label for="" class="form-label">Base Fabric:</label>
                 <select id="" formControlName="result" class="form-select">
-                    <option *ngFor="let u of uom" [ngValue]="u.baseFabric">{{u.baseFabric}}</option>
+                    <option *ngFor="let u of uom" [ngValue]="u.id">{{u.baseFabric}}</option>
                 </select>
 
             </div>
@@ -32,7 +32,7 @@
 
                 <label for="" class="form-label">Style Code:</label>
                 <select id="" formControlName="styleCode" class="form-select">
-                    <option *ngFor="let b of bom" [ngValue]="b.styleCode">{{b.styleCode}}</option>
+                    <option *ngFor="let b of bom" [ngValue]="b.id">{{b.styleCode}}</option>
                 </select>
 
             </div>

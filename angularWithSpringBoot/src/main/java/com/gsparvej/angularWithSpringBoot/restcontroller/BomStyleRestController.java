@@ -31,9 +31,10 @@ public class BomStyleRestController {
         return bomStyleService.getAllBomStyleResponseDTOS();
     }
 
-    @PostMapping(value = "", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
+    @PostMapping("")
     public ResponseEntity<BomStyle> createBomStyle(@RequestBody BomStyle bomStyle) {
-        return ResponseEntity.ok(bomStyle); // For testing, just return what you receive
+        BomStyle savedstyle = bomStyleService.saveBomStyle(bomStyle);
+        return ResponseEntity.ok(savedstyle);// For testing, just return what you receive
     }
 
 

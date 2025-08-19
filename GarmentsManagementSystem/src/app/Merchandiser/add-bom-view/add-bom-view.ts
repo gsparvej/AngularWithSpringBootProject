@@ -40,14 +40,9 @@ export class AddBomView implements OnInit {
       quantity: [''],
       unitPrice: [''],
       totalCost: [''],
-      uom: this.formBuilder.group({
-        baseFabric: [''],
-      }),
-      bom: this.formBuilder.group({
-        styleCode: [''],
-        description: ['']
+      uom: [''],
+      bom:  ['']
 
-      })
 
 
 
@@ -90,7 +85,11 @@ export class AddBomView implements OnInit {
 
   addBomBomView(): void {
 
-    const bomview: Bomview = { ...this.formBomView.value };
+    const bomview: Bomview = { ...this.formBomView.value,
+      uom: {id: this.formBomView.value('result')},
+      bom: {id: this.formBomView.value('styleCode')}
+
+     };
     this.merchandiserService.saveBomView(bomview).subscribe({
 
       next: (bomview) => {

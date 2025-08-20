@@ -11,27 +11,38 @@
       <div class="row g-3 mb-4">
 
         <!-- Style Code -->
-        <div class="col-md-4" formGroupName="bom">
+       <div class="row">
+         <div class="col-md-4" formGroupName="bom">
           <label class="form-label">Style Code:</label>
           <select class="form-select" formControlName="id">
             <option *ngFor="let s of bom" [ngValue]="s.id">{{ s.styleCode }}</option>
           </select>
         </div>
 
+        <div class="col-md-4">
+          <label for="orderStatus">Order Status:</label>
+          <select id="orderStatus" name="orderStatus">
+            <option value="Pending">Pending</option>
+            <option value="Confirmed">Confirmed</option>
+          </select>
+
+        </div>
+       </div>
+
         <div class="row">
           <!-- Buyer Organization -->
-        <div class="col-md-4" formGroupName="buyer">
-          <label class="form-label">Buyer Name:</label>
-          <select class="form-select" formControlName="id">
-            <option *ngFor="let b of buyer" [ngValue]="b.id">{{ b.name }}</option>
-          </select>
-        </div>
+          <div class="col-md-4" formGroupName="buyer">
+            <label class="form-label">Buyer Name:</label>
+            <select class="form-select" formControlName="id">
+              <option *ngFor="let b of buyer" [ngValue]="b.id">{{ b.name }}</option>
+            </select>
+          </div>
 
-        <!-- Shipping Address -->
-        <div class="col-md-4">
-          <label class="form-label fw-semibold">Shipping Address</label>
-         <input type="text" class="form-control" formControlName="address" readonly />
-        </div>
+          <!-- Shipping Address -->
+          <div class="col-md-4">
+            <label class="form-label fw-semibold">Shipping Address</label>
+            <input type="text" class="form-control" formControlName="address" readonly />
+          </div>
         </div>
 
         <!-- Order Date -->

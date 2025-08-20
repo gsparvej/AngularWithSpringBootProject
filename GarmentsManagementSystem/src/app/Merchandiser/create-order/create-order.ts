@@ -16,34 +16,34 @@ import { Buyer } from '../../../model/Merchandiser/buyer.model';
 export class CreateOrder implements OnInit {
 
 
-    orderDate!: Date;
-    deliveryDate!: Date;
+  orderDate!: Date;
+  deliveryDate!: Date;
 
-    shortSmallSize!: number;
-    shortSPrice!: number;
-    shortMediumSize!: number;
-    shortMPrice!: number;
-    shortLargeSize!: number;
-    shortLPrice!: number;
-    shortXLSize!: number;
-    shortXLPrice!: number;
+  shortSmallSize!: number;
+  shortSPrice!: number;
+  shortMediumSize!: number;
+  shortMPrice!: number;
+  shortLargeSize!: number;
+  shortLPrice!: number;
+  shortXLSize!: number;
+  shortXLPrice!: number;
 
-    fullSmallSize!: number;
-    fullSPrice!: number;
-    fullMediumSize!: number;
-    fullMPrice!: number;
-    fullLargeSize!: number;
-    fullLPrice!: number;
-    fullXLSize!: number;
-    fullXLPrice!: number;
+  fullSmallSize!: number;
+  fullSPrice!: number;
+  fullMediumSize!: number;
+  fullMPrice!: number;
+  fullLargeSize!: number;
+  fullLPrice!: number;
+  fullXLSize!: number;
+  fullXLPrice!: number;
 
-    subTotal!:number;
-    vat!: number;
-    paidAmount!: number;
-    dueAmount!: number;
-    total!: number;
-    remarks!: string;
-    orderStatus!: string;
+  subTotal!: number;
+  vat!: number;
+  paidAmount!: number;
+  dueAmount!: number;
+  total!: number;
+  remarks!: string;
+  orderStatus!: string;
 
 
   bom: BomStyle[] = [];
@@ -59,10 +59,8 @@ export class CreateOrder implements OnInit {
   ) { }
 
   ngOnInit(): void {
-  
+
     this.orderForm = this.formBuilder.group({
-      buyerOrganization: ['', Validators.required],
-      shippingAddress: ['', Validators.required],
       orderDate: ['', Validators.required],
       deliveryDate: ['', Validators.required],
 
@@ -91,9 +89,10 @@ export class CreateOrder implements OnInit {
       dueAmount: [''],
       total: [''],
       remarks: [''],
+      orderStatus: [''],
 
       bom: this.formBuilder.group({
-        styleCode: ['', Validators.required]
+        id: ['', Validators.required]
       }),
       buyer: this.formBuilder.group({
         id: ['', Validators.required]
@@ -108,10 +107,10 @@ export class CreateOrder implements OnInit {
       }
     });
 
-    this.orderForm.get('buyer')?.get('id')?.valueChanges.subscribe( id => {
+    this.orderForm.get('buyer')?.get('id')?.valueChanges.subscribe(id => {
       const selectedName = this.buyer.find(b => b.id === id);
-      if(selectedName) {
-        this.orderForm.patchValue({buyer: selectedName});
+      if (selectedName) {
+        this.orderForm.patchValue({ buyer: selectedName });
 
       }
     })
@@ -131,12 +130,13 @@ export class CreateOrder implements OnInit {
       return;
     }
 
-    const order: Order = { ...this.orderForm.value,
+    const order: Order = {
+      ...this.orderForm.value,
 
       subTotal: this.subTotal,
       total: this.total,
       dueAmount: this.dueAmount
-     };
+    };
     this.merchandiserService.saveOder(order).subscribe({
       next: (savedOrder) => {
         console.log(savedOrder, 'Order Successfully Saved!');
@@ -166,7 +166,7 @@ export class CreateOrder implements OnInit {
       next: (bu) => {
         this.buyer = bu;
       },
-      error : (err) => {
+      error: (err) => {
         console.log(err);
       }
     });
@@ -174,7 +174,7 @@ export class CreateOrder implements OnInit {
 
 
 
-  subTotalCalculation(): void{
+  subTotalCalculation(): void {
 
     this.shortSmallSize = this.orderForm.value.shortSmallSize;
     this.shortSPrice = this.orderForm.value.shortSPrice;
@@ -196,19 +196,19 @@ export class CreateOrder implements OnInit {
 
 
 
-    this.subTotal = (this.shortSmallSize* this.shortSPrice) + 
-                    (this.shortMediumSize* this.shortMPrice )+
-                     (this.shortLargeSize* this.shortLPrice)+
-                     (this.shortXLSize* this.shortXLPrice)+
-                     (this.fullSmallSize* this.fullSPrice) + 
-                    (this.fullMediumSize* this.fullMPrice )+
-                     (this.fullLargeSize* this.fullLPrice)+
-                     (this.fullXLSize* this.fullXLPrice);
-    
+    this.subTotal = (this.shortSmallSize * this.shortSPrice) +
+      (this.shortMediumSize * this.shortMPrice) +
+      (this.shortLargeSize * this.shortLPrice) +
+      (this.shortXLSize * this.shortXLPrice) +
+      (this.fullSmallSize * this.fullSPrice) +
+      (this.fullMediumSize * this.fullMPrice) +
+      (this.fullLargeSize * this.fullLPrice) +
+      (this.fullXLSize * this.fullXLPrice);
+
 
   }
-  dueAmountCalculation(){
-    
+  dueAmountCalculation() {
+
     this.shortSmallSize = this.orderForm.value.shortSmallSize;
     this.shortSPrice = this.orderForm.value.shortSPrice;
     this.shortMediumSize = this.orderForm.value.shortMediumSize;
@@ -229,23 +229,23 @@ export class CreateOrder implements OnInit {
 
 
 
-    this.subTotal = (this.shortSmallSize* this.shortSPrice) + 
-                    (this.shortMediumSize* this.shortMPrice )+
-                     (this.shortLargeSize* this.shortLPrice)+
-                     (this.shortXLSize* this.shortXLPrice)+
-                     (this.fullSmallSize* this.fullSPrice) + 
-                    (this.fullMediumSize* this.fullMPrice )+
-                     (this.fullLargeSize* this.fullLPrice)+
-                     (this.fullXLSize* this.fullXLPrice);
+    this.subTotal = (this.shortSmallSize * this.shortSPrice) +
+      (this.shortMediumSize * this.shortMPrice) +
+      (this.shortLargeSize * this.shortLPrice) +
+      (this.shortXLSize * this.shortXLPrice) +
+      (this.fullSmallSize * this.fullSPrice) +
+      (this.fullMediumSize * this.fullMPrice) +
+      (this.fullLargeSize * this.fullLPrice) +
+      (this.fullXLSize * this.fullXLPrice);
 
     this.vat = this.orderForm.value.vat;
     this.paidAmount = this.orderForm.value.paidAmount;
 
-    this.dueAmount = this.subTotal+ (this.vat/100) - this.paidAmount;
+    this.dueAmount = this.subTotal + (this.vat / 100) - this.paidAmount;
   }
 
   totalCalculations() {
-     this.shortSmallSize = this.orderForm.value.shortSmallSize;
+    this.shortSmallSize = this.orderForm.value.shortSmallSize;
     this.shortSPrice = this.orderForm.value.shortSPrice;
     this.shortMediumSize = this.orderForm.value.shortMediumSize;
     this.shortMPrice = this.orderForm.value.shortMPrice;
@@ -265,19 +265,19 @@ export class CreateOrder implements OnInit {
 
 
 
-    this.subTotal = (this.shortSmallSize* this.shortSPrice) + 
-                    (this.shortMediumSize* this.shortMPrice )+
-                     (this.shortLargeSize* this.shortLPrice)+
-                     (this.shortXLSize* this.shortXLPrice)+
-                     (this.fullSmallSize* this.fullSPrice) + 
-                    (this.fullMediumSize* this.fullMPrice )+
-                     (this.fullLargeSize* this.fullLPrice)+
-                     (this.fullXLSize* this.fullXLPrice);
+    this.subTotal = (this.shortSmallSize * this.shortSPrice) +
+      (this.shortMediumSize * this.shortMPrice) +
+      (this.shortLargeSize * this.shortLPrice) +
+      (this.shortXLSize * this.shortXLPrice) +
+      (this.fullSmallSize * this.fullSPrice) +
+      (this.fullMediumSize * this.fullMPrice) +
+      (this.fullLargeSize * this.fullLPrice) +
+      (this.fullXLSize * this.fullXLPrice);
     this.vat = this.orderForm.value.vat;
     this.total = this.subTotal + this.vat;
   }
 
-  onFocusLost(){
+  onFocusLost() {
     this.dueAmountCalculation();
     this.totalCalculations();
   }

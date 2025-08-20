@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Buyer } from '../../../model/Merchandiser/buyer.model';
 import { Uom } from '../../../model/Merchandiser/uom.model';
-import { Bom } from '../../../model/Merchandiser/bom.model';
+import { BomStyle } from '../../../model/Merchandiser/bom.model';
 import { Bomview } from '../../../model/Merchandiser/bomview.model';
 import { Order } from '../../../model/Merchandiser/order.model';
 import { RawMaterialsModel } from '../../../model/Merchandiser/raw.model';
@@ -17,9 +17,19 @@ export class MerchandiserService {
   private baseUrlBuyer = environment.apiBaseUrl + '/buyer';
 
   private baseUrlUOM = environment.apiBaseUrl + '/uom';
+
+
+
+  
   private baseUrlBom = environment.apiBaseUrl + '/bomstyle';
 
+
+  
+
   private baseUrlBomView = environment.apiBaseUrl + '/bom';
+
+
+
 
   private baseUrlOrder = environment.apiBaseUrl + '/order';
 
@@ -100,7 +110,7 @@ export class MerchandiserService {
     return this.http.get(this.baseUrlBom);
   }
 
-  saveBom(bom: Bom): Observable<any> {
+  saveBom(bom: BomStyle): Observable<any> {
 
     return this.http.post(this.baseUrlBom, bom);
   }

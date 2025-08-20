@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Bom } from '../../../model/Merchandiser/bom.model';
 import { Uom } from '../../../model/Merchandiser/uom.model';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
 import { Router } from '@angular/router';
 import { Bomview } from '../../../model/Merchandiser/bomview.model';
+import { BomStyle } from '../../../model/Merchandiser/bom.model';
 
 @Component({
   selector: 'app-add-bom-view',
@@ -21,7 +21,7 @@ export class AddBomView implements OnInit {
   unitPrice!: number;
   totalCost!: number;
 
-  bom: Bom[] = [];
+  bomStyle: BomStyle[] = [];
   uom: Uom[] = [];
 
   formBomView!: FormGroup;
@@ -55,7 +55,7 @@ export class AddBomView implements OnInit {
 
     // ✅ Watch for changes in selected BOM id
     this.formBomView.get('bomStyle')?.get('id')?.valueChanges.subscribe(id => {
-      const selectedBom = this.bom.find(b => b.id === id);
+      const selectedBom = this.bomStyle.find(b => b.id === id);
       if (selectedBom) {
         console.log('Selected BOM:', selectedBom);
       }
@@ -90,8 +90,8 @@ export class AddBomView implements OnInit {
 
   loadBomBom(): void {
     this.merchandiserService.getAllBom().subscribe({
-      next: (bom) => {
-        this.bom = bom;
+      next: (bomStyle) => {
+        this.bomStyle = bomStyle;
         this.cdr.detectChanges();
       },
       error: (err) => {

@@ -1,6 +1,6 @@
-import { Bom } from "./bom.model";
+import { BomStyle } from "./bom.model";
 import { Buyer } from "./buyer.model";
-import { OrderStatus } from "./orderStatus.model";
+
 
 export interface Order{
 
@@ -37,7 +37,7 @@ export interface Order{
     total: number;
     remarks: string;
     orderStatus: string;
-    bom: Bom;
+    bom: BomStyle;
     buyer: Buyer
 
    

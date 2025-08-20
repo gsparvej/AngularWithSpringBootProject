@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
 import { Router } from '@angular/router';
-import { Bom } from '../../../model/Merchandiser/bom.model';
+import { BomStyle } from '../../../model/Merchandiser/bom.model';
 
 @Component({
   selector: 'app-add-bom',
@@ -31,7 +31,7 @@ export class AddBom implements OnInit{
    });
   }
   addBom(): void {
-        const bom : Bom = {...this.formBom.value};
+        const bom : BomStyle = {...this.formBom.value};
         this.merchandiserService.saveBom(bom).subscribe({
       
           next: (res) => {

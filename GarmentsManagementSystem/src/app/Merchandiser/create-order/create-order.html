@@ -13,7 +13,7 @@
         <!-- Style Code -->
         <div class="col-md-4" formGroupName="bom">
           <label class="form-label">Style Code:</label>
-          <select class="form-select" formControlName="styleCode">
+          <select class="form-select" formControlName="id">
             <option *ngFor="let s of bom" [ngValue]="s.id">{{ s.styleCode }}</option>
           </select>
         </div>
@@ -22,7 +22,7 @@
           <!-- Buyer Organization -->
         <div class="col-md-4" formGroupName="buyer">
           <label class="form-label">Buyer Name:</label>
-          <select class="form-select" formControlName="name">
+          <select class="form-select" formControlName="id">
             <option *ngFor="let b of buyer" [ngValue]="b.id">{{ b.name }}</option>
           </select>
         </div>

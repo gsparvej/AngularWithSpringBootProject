@@ -77,7 +77,7 @@
         <tr>
           <th>SI</th>
           <th>Materials</th>
-          <th>Element</th>
+          <th>Unit</th>
           <th>Base Fabric</th>
           <th>Quantity</th>
           <th>Unit Price</th>
@@ -88,8 +88,8 @@
         <tr *ngFor="let a of bomview | async">
           <td>{{a.serial}}</td>
           <td>{{a.material}}</td>
-          <td>{{a.element}}</td>
-          <td>{{a.uom?.result}}</td>
+          <td>{{a.unit}}</td>
+          <td>{{a.uom?.baseFabric}}</td>
           <td>{{a.quantity}}</td>
           <td>{{a.unitPrice}}</td>
           <td>{{a.totalCost}}</td>

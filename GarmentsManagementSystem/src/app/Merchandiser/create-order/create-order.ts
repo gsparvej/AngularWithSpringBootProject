@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Bom } from '../../../model/Merchandiser/bom.model';
+import { BomStyle } from '../../../model/Merchandiser/bom.model';
 import { OrderStatus } from '../../../model/Merchandiser/orderStatus.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
@@ -46,7 +46,7 @@ export class CreateOrder implements OnInit {
     orderStatus!: string;
 
 
-  bom: Bom[] = [];
+  bom: BomStyle[] = [];
   buyer: Buyer[] = [];
 
 

@@ -1,4 +1,4 @@
-import { Bom } from "./bom.model";
+import { BomStyle } from "./bom.model";
 import { Uom } from "./uom.model";
 
 export interface Bomview{
@@ -11,6 +11,6 @@ export interface Bomview{
     unitPrice: number;
     totalCost: number;
     uom: Uom;
-    bom: Bom;
+    bom: BomStyle;
 
 }

@@ -1,5 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.UomResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.VendorResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.Buyer;
 import com.gsparvej.angularWithSpringBoot.entity.UOM;
 import com.gsparvej.angularWithSpringBoot.service.UOMService;
@@ -18,11 +20,16 @@ public class UOMRestController {
     @Autowired
     private UOMService uomService;
 
-    @GetMapping("")
+    @GetMapping("all")
     public List<UOM> getAllUom() {
         return uomService.getAllUOM();
     }
 
+
+    @GetMapping("")
+    public List<UomResponseDTO> getAllUomDtos() {
+        return uomService.getAllUomResponseDTOS();
+    }
 
     @PostMapping("")
     public ResponseEntity<UOM> createUom(@RequestBody UOM uom) {

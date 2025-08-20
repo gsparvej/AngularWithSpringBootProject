@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Order } from '../../../model/Merchandiser/order.model';
-import { Bom } from '../../../model/Merchandiser/bom.model';
-import { OrderStatus } from '../../../model/Merchandiser/orderStatus.model';
+import { BomStyle } from '../../../model/Merchandiser/bom.model';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
 import { Router } from '@angular/router';
 import { forkJoin } from 'rxjs';

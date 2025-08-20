@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Order } from '../../../model/Merchandiser/order.model';
-import { Bom } from '../../../model/Merchandiser/bom.model';
+import { BomStyle } from '../../../model/Merchandiser/bom.model';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
@@ -17,7 +17,7 @@ export class FullOrderView implements OnInit{
   order! : Order;
 
   orders: Order[ ] = [];
-  boms: Bom[] = [];
+  boms: BomStyle[] = [];
 
   constructor(
     private merchandiserService: MerchandiserService,

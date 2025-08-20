@@ -1,6 +1,6 @@
 import { Uom } from "./uom.model";
 
-export interface Bom {
+export interface BomStyle {
 
     id: number;
     styleCode: string;

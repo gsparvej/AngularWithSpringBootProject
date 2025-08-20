@@ -47,15 +47,24 @@ public class OrderRestController {
 
 
     @PostMapping("")
-    public ResponseEntity<Order> createOrder(
-            @RequestBody Order order
+    public ResponseEntity<Order> createOrder(@RequestBody Order order) {
 
-    ){
+        if (order.getBomStyle() == null || order.getBomStyle().getId() == 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "BomStyle ID is required");
+        }
+        if (order.getBuyer() == null || order.getBuyer().getId() == 0) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Buyer ID is required");
+        }
+
         BomStyle bomStyle = bomStyleRepo.findById(order.getBomStyle().getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "BomStyle not found"));
+
         Buyer buyer = buyerRepo.findById(order.getBuyer().getId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Buyer not found"));
-        Order saved = orderService.saveOrUpdate(order,bomStyle,buyer);
+
+        Order saved = orderService.saveOrUpdate(order, bomStyle, buyer);
+
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
 }

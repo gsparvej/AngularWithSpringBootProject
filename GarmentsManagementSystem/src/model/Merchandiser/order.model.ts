@@ -4,7 +4,7 @@ import { Buyer } from "./buyer.model";
 
 export interface Order{
 
-    id?: number;
+    id: number;
     orderDate: Date;
     deliveryDate: Date;
 
@@ -38,7 +38,7 @@ export interface Order{
     remarks: string;
     orderStatus: 'Pending' | 'Confirmed';
     bom: BomStyle;
-    buyer: Buyer
+    buyer: Buyer;
 
    
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BomStyle } from '../../../model/Merchandiser/bom.model';
 import { OrderStatus } from '../../../model/Merchandiser/orderStatus.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -55,7 +55,8 @@ export class CreateOrder implements OnInit {
   constructor(
     private merchandiserService: MerchandiserService,
     private router: Router,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cdr: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
@@ -124,36 +125,68 @@ export class CreateOrder implements OnInit {
   }
 
   //  Add Order Method
-  addOrder(): void {
-    if (this.orderForm.invalid) {
-      console.log('Form Invalid');
-      return;
+  // addOrder(): void {
+  //   if (this.orderForm.invalid) {
+  //     console.log('Form Invalid');
+  //     return;
+  //   }
+
+  //   const order: Order = {
+  //     ...this.orderForm.value,
+
+  //     subTotal: this.subTotal,
+  //     total: this.total,
+  //     dueAmount: this.dueAmount
+  //   };
+  //   this.merchandiserService.saveOder(order).subscribe({
+  //     next: (savedOrder) => {
+  //       console.log(savedOrder, 'Order Successfully Saved!');
+  //       this.loadStyle();
+  //       this.orderForm.reset();
+  //       this.router.navigate(['']);  // Redirect after save
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     }
+  //   });
+  // }
+
+
+
+
+   addOrder(): void {
+      // ✅ Directly use form value
+      const order: Order = this.orderForm.value;
+  
+      this.merchandiserService.saveOder(order).subscribe({
+        next: (or) => {
+          console.log(or, 'ordered Successfully !');
+          this.loadBuyer();
+          this.loadStyle();
+          this.orderForm.reset();
+          this.router.navigate(['']);
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
     }
 
-    const order: Order = {
-      ...this.orderForm.value,
 
-      subTotal: this.subTotal,
-      total: this.total,
-      dueAmount: this.dueAmount
-    };
-    this.merchandiserService.saveOder(order).subscribe({
-      next: (savedOrder) => {
-        console.log(savedOrder, 'Order Successfully Saved!');
-        this.loadStyle();
-        this.orderForm.reset();
-        this.router.navigate(['']);  // Redirect after save
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  }
+
+
+
+
+
+
+
+
   //  Load BOM Styles List
   loadStyle(): void {
     this.merchandiserService.getAllBom().subscribe({
       next: (styleList) => {
         this.bom = styleList;
+        
       },
       error: (err) => {
         console.log(err);

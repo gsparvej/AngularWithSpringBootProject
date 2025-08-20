@@ -42,7 +42,7 @@ public class OrderService {
         order.setBomStyle(bomStyle);
         order.setBuyer(buyer);
 
-        // Calculate subtotal
+        // SubTotal Calculation (all sizes * unit price)
         double subTotal =
                 (order.getShortSmallSize() * order.getShortSPrice()) +
                         (order.getShortMediumSize() * order.getShortMPrice()) +
@@ -55,18 +55,19 @@ public class OrderService {
 
         order.setSubTotal(subTotal);
 
-        // VAT (assuming vat in percentage from UI)
-        double vatAmount = (order.getVat() != 0 ? order.getVat() : 0);
+        // VAT (যদি UI থেকে সরাসরি টাকা পাঠান, % না, তাহলে ঠিক আছে)
+        double vatAmount = order.getVat() != 0 ? order.getVat() : 0;
         double total = subTotal + vatAmount;
         order.setTotal(total);
 
         // Due Amount
-        double paidAmount = (order.getPaidAmount() != 0 ? order.getPaidAmount() : 0);
+        double paidAmount = order.getPaidAmount() != 0 ? order.getPaidAmount() : 0;
         double dueAmount = total - paidAmount;
         order.setDueAmount(dueAmount);
 
         return orderRepo.save(order);
     }
+
 
     public void deleteById(Integer id) {
         orderRepo.deleteById(id);

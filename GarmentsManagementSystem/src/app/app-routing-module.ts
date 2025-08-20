@@ -104,7 +104,7 @@ const routes: Routes = [
   { path: 'addBom', component: AddBom },
   { path: 'viewBom', component: ViewAllBom },
   { path: 'addBomBomView', component: AddBomView },
-  { path: 'viewBomBomView/:id', component: ViewFullBomView },
+  { path: 'viewBomBomView/:styleCode', component: ViewFullBomView },
   { path: 'viewBomBomView', component: ViewFullBomView },
   { path: 'createOrder', component: CreateOrder },
   { path: 'viewHalfOrder', component: HalfViewOrder },

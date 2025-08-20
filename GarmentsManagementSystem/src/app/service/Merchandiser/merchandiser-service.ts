@@ -8,6 +8,7 @@ import { Bomview } from '../../../model/Merchandiser/bomview.model';
 import { Order } from '../../../model/Merchandiser/order.model';
 import { RawMaterialsModel } from '../../../model/Merchandiser/raw.model';
 import { environment } from '../../environments/environment';
+import { BomResponseDTO } from '../../../model/bomResponseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -172,5 +173,13 @@ export class MerchandiserService {
   saveRawMaterials(raw: RawMaterialsModel): Observable<any> {
     return this.http.post(this.baseUrlRawMaterials, raw);
   }
+
+
+
+
+
+getBomsByStyleCode(styleCode: string): Observable<BomResponseDTO[]> {
+  return this.http.get<BomResponseDTO[]>(`http://localhost:8080/api/bom/style/${styleCode}`);
+}
 
 }

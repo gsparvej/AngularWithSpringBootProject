@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.BomResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IBomStyleRepo;
 import com.gsparvej.angularWithSpringBoot.repository.IUOMRepo;
@@ -55,7 +56,7 @@ public class BOMRestController {
 
 
     @GetMapping("/style/{styleCode}")
-    public List<BOM> getBOMsByStyleCode(@PathVariable String styleCode) {
+    public List<BomResponseDTO> getBOMsByStyleCode(@PathVariable String styleCode) {
         return bomService.getBOMsByStyleCode(styleCode);
     }
 

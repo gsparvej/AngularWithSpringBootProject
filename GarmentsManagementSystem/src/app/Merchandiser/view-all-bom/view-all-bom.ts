@@ -23,8 +23,14 @@ export class ViewAllBom implements OnInit {
     this.bom = this.merchandiserService.getAllBom();
   }
 
-  bomDetails(id: string):void{
-    this.router.navigate(['viewBomBomView', id]);
+  // bomDetails(id: string):void{
+  //   this.router.navigate(['viewBomBomView', id]);
+  // }
+
+
+   bomDetails(styleCode: string) {
+    // Navigate to BOM details page with styleCode as route param
+    this.router.navigate(['viewBomBomView', styleCode]);
   }
 
 }

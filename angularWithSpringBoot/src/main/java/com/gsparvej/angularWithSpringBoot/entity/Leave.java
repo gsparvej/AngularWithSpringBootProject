@@ -2,7 +2,7 @@ package com.gsparvej.angularWithSpringBoot.entity;
 
 import jakarta.persistence.*;
 
-@Entity
+
 @Table(name = "leave")
 public class Leave {
     @Id

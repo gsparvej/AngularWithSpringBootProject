@@ -1,6 +1,7 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { MerchandiserService } from '../../service/Merchandiser/merchandiser-service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { BomResponseDTO } from '../../../model/bomResponseDTO';
 
 @Component({
   selector: 'app-view-full-bom-view',
@@ -10,9 +11,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ViewFullBomView implements OnInit {
 
-  styleCode!: string;
-  total!: number;
-  bomview: any;
+  // styleCode!: string;
+  // total!: number;
+  // bomview: any;
+
+
+   styleCode: string = '';
+  boms: BomResponseDTO[] = [];
+
 
   constructor(
     private merchandiserService: MerchandiserService,
@@ -22,27 +28,39 @@ export class ViewFullBomView implements OnInit {
   ) { }
 
 
-  ngOnInit(): void {
-    this.styleCode = this.ar.snapshot.params['id'];
-    this.viewBomDetails(this.styleCode);
-    this.totalHisab(this.styleCode);
+ngOnInit(): void {
+  console.log("**********************************")
+  // Get styleCode from route param
+  this.styleCode = this.ar.snapshot.paramMap.get('styleCode') || '';
+  console.log(this.styleCode+"+++++++++++++++++++++++++");
 
+  if (this.styleCode) {
+    this.merchandiserService.getBomsByStyleCode(this.styleCode).subscribe({
+      next: (data) => {
+        this.boms = data;
+        console.log(data);
+        this.cdr.markForCheck(); // optional if using OnPush
+      },
+      error: (err) => console.error(err)
+    });
   }
+}
+
 
   // loadAllBomView(){
   //   this.bomview = this.merchandiserService.getAllBomView();
   // }
 
-  viewBomDetails(styleCode: string) {
-    this.bomview = this.merchandiserService.getBomByStyle(styleCode);
-  }
+  // viewBomDetails(styleCode: string) {
+  //   this.bomview = this.merchandiserService.getBomByStyle(styleCode);
+  // }
 
-  totalHisab(id: string): void {
-    this.merchandiserService.getBomByStyle(id).subscribe({
-      next: (data) => {
-        this.total = data.reduce((sum: number, item: any) => sum + (item.totalCost || 0), 0);
-      }
-    });
-  }
+  // totalHisab(id: string): void {
+  //   this.merchandiserService.getBomByStyle(id).subscribe({
+  //     next: (data) => {
+  //       this.total = data.reduce((sum: number, item: any) => sum + (item.totalCost || 0), 0);
+  //     }
+  //   });
+  // }
 
 }

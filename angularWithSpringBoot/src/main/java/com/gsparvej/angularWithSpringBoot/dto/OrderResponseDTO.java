@@ -52,4 +52,5 @@ public class OrderResponseDTO {
     public void setBuyer(BuyerResponseDTO buyer) {
         this.buyer = buyer;
     }
+
 }

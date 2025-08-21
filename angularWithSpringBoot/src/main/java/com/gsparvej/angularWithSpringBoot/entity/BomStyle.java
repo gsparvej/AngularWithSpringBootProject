@@ -1,6 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.gsparvej.angularWithSpringBoot.dto.BomStyleResponseDTO;
 import jakarta.persistence.*;
 
 import java.util.List;

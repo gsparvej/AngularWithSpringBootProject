@@ -49,6 +49,7 @@ export class CreateOrder implements OnInit {
   bomStyle: BomStyle[] = [];
   buyer: Buyer[] = [];
 
+  selectedBuyerAddress: string = '';
 
   orderForm!: FormGroup;
 
@@ -96,7 +97,8 @@ export class CreateOrder implements OnInit {
         id: ['', Validators.required]
       }),
       buyer: this.formBuilder.group({
-        id: ['', Validators.required]
+        id: ['', Validators.required],
+        address: ['', Validators.required]
       })
     });
 
@@ -109,12 +111,16 @@ export class CreateOrder implements OnInit {
     });
 
     this.orderForm.get('buyer')?.get('id')?.valueChanges.subscribe(id => {
-      const selectedName = this.buyer.find(b => b.id === id);
-      if (selectedName) {
-
-        console.log('Selected buyer:', selectedName);
+      const selectedBuyer = this.buyer.find(b => b.id === +id); // convert id to number
+      if (selectedBuyer) {
+        this.selectedBuyerAddress = selectedBuyer.address;
+        console.log('Selected buyer:', selectedBuyer);
+      } else {
+        this.selectedBuyerAddress = '';
       }
-    })
+    });
+
+
 
 
 

@@ -19,20 +19,20 @@
             </select>
           </div>
 
-          <!-- <div class="col-md-4">
-          <label for="orderStatus">Order Status:</label>
-          <select id="orderStatus" name="orderStatus">
-            <option value="Pending">Pending</option>
-            <option value="Confirmed">Confirmed</option>
-          </select>
-
-        </div> -->
-
-
           <div class="col-md-4">
+            <label for="orderStatus">Order Status:</label>
+            <select id="orderStatus" formControlName="orderStatus">
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+            </select>
+
+          </div>
+
+
+          <!-- <div class="col-md-4">
             <label class="form-label">Order Status</label>
             <input type="text" class="form-control rounded-pill" formControlName="orderStatus" placeholder="Pending">
-          </div>
+          </div> -->
 
 
 
@@ -43,15 +43,16 @@
           <div class="col-md-4" formGroupName="buyer">
             <label class="form-label">Buyer Name:</label>
             <select class="form-select" formControlName="id">
-              <option *ngFor="let b of buyer" [ngValue]="b.id">{{ b.name }}</option>
+              <option *ngFor="let b of buyer" [value]="b.id">{{ b.name }}</option>
             </select>
           </div>
 
           <!-- Shipping Address -->
           <div class="col-md-4">
             <label class="form-label fw-semibold">Shipping Address</label>
-            <input type="text" class="form-control" formControlName="address" />
+            <input type="text" class="form-control" [value]="selectedBuyerAddress" readonly />
           </div>
+
         </div>
 
         <!-- Order Date -->

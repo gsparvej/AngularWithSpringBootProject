@@ -182,6 +182,17 @@
         "id": "b527",
         "name": "Md. Rakib Islam"
       }
+    },
+    {
+      "id": "7228",
+      "attDate": "2025-08-21T09:09",
+      "atten_status": {
+        "status": "Present"
+      },
+      "employees": {
+        "id": "1",
+        "name": ""
+      }
     }
   ],
   "atten_status": [
@@ -289,6 +300,19 @@
       "employees": {
         "id": "455a",
         "name": "Md. Eiasin Prodhan"
+      }
+    },
+    {
+      "id": "0147",
+      "leaveType": "Casual",
+      "fromDate": "2025-08-17",
+      "toDate": "2025-08-22",
+      "leave_status": {
+        "status": "Approve"
+      },
+      "employees": {
+        "id": "2",
+        "name": ""
       }
     }
   ],

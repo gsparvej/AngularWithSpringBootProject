@@ -46,7 +46,7 @@ export class CreateOrder implements OnInit {
   orderStatus!: string;
 
 
-  bom: BomStyle[] = [];
+  bomStyle: BomStyle[] = [];
   buyer: Buyer[] = [];
 
 
@@ -92,7 +92,7 @@ export class CreateOrder implements OnInit {
       remarks: [''],
       orderStatus: [''],
 
-      bom: this.formBuilder.group({
+      bomStyle: this.formBuilder.group({
         id: ['', Validators.required]
       }),
       buyer: this.formBuilder.group({
@@ -102,17 +102,17 @@ export class CreateOrder implements OnInit {
 
     //  Subscribe for Style Code Changes
     this.orderForm.get('bom')?.get('id')?.valueChanges.subscribe(id => {
-      const selectedDescription = this.bom.find(b => b.id === id);
+      const selectedDescription = this.bomStyle.find(b => b.id === id);
       if (selectedDescription) {
-        this.orderForm.patchValue({ bom: selectedDescription });
+        console.log('Selected BOM:', selectedDescription);
       }
     });
 
     this.orderForm.get('buyer')?.get('id')?.valueChanges.subscribe(id => {
       const selectedName = this.buyer.find(b => b.id === id);
       if (selectedName) {
-        this.orderForm.patchValue({ buyer: selectedName });
 
+        console.log('Selected buyer:', selectedName);
       }
     })
 
@@ -154,23 +154,23 @@ export class CreateOrder implements OnInit {
 
 
 
-   addOrder(): void {
-      // ✅ Directly use form value
-      const order: Order = this.orderForm.value;
-  
-      this.merchandiserService.saveOder(order).subscribe({
-        next: (or) => {
-          console.log(or, 'ordered Successfully !');
-          this.loadBuyer();
-          this.loadStyle();
-          this.orderForm.reset();
-          this.router.navigate(['']);
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
-    }
+  addOrder(): void {
+    // ✅ Directly use form value
+    const order: Order = this.orderForm.value;
+
+    this.merchandiserService.saveOder(order).subscribe({
+      next: (or) => {
+        console.log(or, 'ordered Successfully !');
+        this.loadBuyer();
+        this.loadStyle();
+        this.orderForm.reset();
+        this.router.navigate(['']);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
 
 
 
@@ -185,8 +185,9 @@ export class CreateOrder implements OnInit {
   loadStyle(): void {
     this.merchandiserService.getAllBom().subscribe({
       next: (styleList) => {
-        this.bom = styleList;
-        
+        this.bomStyle = styleList;
+        this.cdr.detectChanges();
+
       },
       error: (err) => {
         console.log(err);
@@ -198,6 +199,7 @@ export class CreateOrder implements OnInit {
     this.merchandiserService.getAllBuyer().subscribe({
       next: (bu) => {
         this.buyer = bu;
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.log(err);

@@ -36,7 +36,7 @@ export interface Order{
     dueAmount: number;
     total: number;
     remarks: string;
-    orderStatus: 'Pending' | 'Confirmed';
+    orderStatus: string;
     bom: BomStyle;
     buyer: Buyer;
 

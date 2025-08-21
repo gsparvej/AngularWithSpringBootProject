@@ -55,7 +55,7 @@ public class OrderService {
 
         order.setSubTotal(subTotal);
 
-        // VAT (যদি UI থেকে সরাসরি টাকা পাঠান, % না, তাহলে ঠিক আছে)
+
         double vatAmount = order.getVat() != 0 ? order.getVat() : 0;
         double total = subTotal + vatAmount;
         order.setTotal(total);

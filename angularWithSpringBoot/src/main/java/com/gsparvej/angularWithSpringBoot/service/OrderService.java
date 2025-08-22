@@ -95,6 +95,77 @@ public class OrderService {
 
 
             }
+
+            BomStyle bomStyle = order.getBomStyle();
+            if (bomStyle != null) {
+                BomStyleResponseDTO bomStyleResponseDTO = new BomStyleResponseDTO();
+                bomStyleResponseDTO.setId(bomStyle.getId());
+                bomStyleResponseDTO.setStyleCode(bomStyle.getStyleCode());
+                dto.setBomStyle(bomStyleResponseDTO);
+            }
+
+
+            return dto;
+        }).toList();
+    }
+
+
+    public List<FullOrderViewResponseDTO> getViewOrderViewResponseDTOS(int id) {
+        return orderRepo.findById(id).stream().map(order -> {
+            FullOrderViewResponseDTO dto = new FullOrderViewResponseDTO();
+            dto.setId(order.getId());
+
+            dto.setOrderDate(order.getOrderDate());
+            dto.setDeliveryDate(order.getDeliveryDate());
+
+            // Short Sleeve Sizes & Prices
+            dto.setShortSmallSize(order.getShortSmallSize());
+            dto.setShortSPrice(order.getShortSPrice());
+            dto.setShortMediumSize(order.getShortMediumSize());
+            dto.setShortMPrice(order.getShortMPrice());
+            dto.setShortLargeSize(order.getShortLargeSize());
+            dto.setShortLPrice(order.getShortLPrice());
+            dto.setShortXLSize(order.getShortXLSize());
+            dto.setShortXLPrice(order.getShortXLPrice());
+
+            // Full Sleeve Sizes & Prices
+            dto.setFullSmallSize(order.getFullSmallSize());
+            dto.setFullSPrice(order.getFullSPrice());
+            dto.setFullMediumSize(order.getFullMediumSize());
+            dto.setFullMPrice(order.getFullMPrice());
+            dto.setFullLargeSize(order.getFullLargeSize());
+            dto.setFullLPrice(order.getFullLPrice());
+            dto.setFullXLSize(order.getFullXLSize());
+            dto.setFullXLPrice(order.getFullXLPrice());
+
+            // Financial
+            dto.setSubTotal(order.getSubTotal());
+            dto.setVat(order.getVat());
+            dto.setPaidAmount(order.getPaidAmount());
+            dto.setDueAmount(order.getDueAmount());
+            dto.setTotal(order.getTotal());
+            dto.setRemarks(order.getRemarks());
+            dto.setOrderStatus(order.getOrderStatus());
+
+
+            Buyer buyer = order.getBuyer();
+            if (buyer != null) {
+                BuyerResponseDTO buyerResponseDTO = new BuyerResponseDTO();
+                buyerResponseDTO.setName(buyer.getName());
+                buyerResponseDTO.setAddress(buyer.getAddress());
+
+                dto.setBuyer(buyerResponseDTO);
+
+
+            }
+
+            BomStyle bomStyle = order.getBomStyle();
+            if (bomStyle != null) {
+                BomStyleResponseDTO bomStyleResponseDTO = new BomStyleResponseDTO();
+                bomStyleResponseDTO.setStyleCode(bomStyle.getStyleCode());
+                dto.setBomStyle(bomStyleResponseDTO);
+            }
+
             return dto;
         }).toList();
     }

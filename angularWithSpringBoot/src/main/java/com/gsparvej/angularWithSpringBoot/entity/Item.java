@@ -5,8 +5,9 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "rawItems")
-public class RawItems {
+@Table(name = "items")
+public class Item {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -14,14 +15,13 @@ public class RawItems {
     private String categoryName;
     private String unit;
 
-    @OneToMany(mappedBy = "rawItem" , cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "item" , cascade = CascadeType.ALL)
     private List<PO> poList;
 
-
-    public RawItems() {
+    public Item() {
     }
 
-    public RawItems(int id, String categoryName, String unit, List<PO> poList) {
+    public Item(int id, String categoryName, String unit, List<PO> poList) {
         this.id = id;
         this.categoryName = categoryName;
         this.unit = unit;

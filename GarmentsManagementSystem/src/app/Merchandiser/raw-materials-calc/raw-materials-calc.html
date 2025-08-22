@@ -5,7 +5,7 @@
       <label>Buyer's StyleCode</label>
       <select class="form-select" formControlName="id">
         <option value="">-- Select --</option>
-        <option *ngFor="let o of order" [value]="o.id">{{ o.bom.styleCode }}</option>
+        <option *ngFor="let o of order" [value]="o.id">{{ o.bomStyle.styleCode }}</option>
       </select>
     </div>
     <div class="row mt-3 mb-3">

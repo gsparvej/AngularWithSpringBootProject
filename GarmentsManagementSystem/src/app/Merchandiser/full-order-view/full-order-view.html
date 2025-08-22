@@ -21,15 +21,15 @@
         </div>
         <div class="col-md-4">
           <label class="text-muted">Style Code</label>
-          <div class="fw-semibold text-dark">{{ order.bom.styleCode }}</div>
+          <div class="fw-semibold text-dark">{{ order.bomStyle.styleCode }}</div>
         </div>
         <div class="col-md-4">
           <label class="text-muted">Buyer Organization</label>
-          <!-- <div class="fw-semibold text-dark">{{ order.buyerOrganization }}</div> -->
+          <div class="fw-semibold text-dark">{{ order.buyer.name }}</div>
         </div>
         <div class="col-md-6 mt-3">
           <label class="text-muted">Shipping Address</label>
-          <!-- <div class="fw-semibold text-dark">{{ order.shippingAddress }}</div> -->
+          <div class="fw-semibold text-dark">{{ order.buyer.address }}</div>
         </div>
         <div class="col-md-3 mt-3">
           <label class="text-muted">Start Date</label>

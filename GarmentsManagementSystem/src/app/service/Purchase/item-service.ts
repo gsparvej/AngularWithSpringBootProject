@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class ItemService {
-private baseUrlItem = environment.apiBaseUrl + '/rawitems';
+private baseUrlItem = environment.apiBaseUrl + '/item';
   constructor(private http: HttpClient) { }
 
   getAllItem(): Observable<any>{

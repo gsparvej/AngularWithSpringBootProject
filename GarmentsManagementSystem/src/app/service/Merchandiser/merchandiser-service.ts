@@ -9,6 +9,7 @@ import { Order } from '../../../model/Merchandiser/order.model';
 import { RawMaterialsModel } from '../../../model/Merchandiser/raw.model';
 import { environment } from '../../environments/environment';
 import { BomResponseDTO } from '../../../model/bomResponseDTO';
+import { FullOrderViewResponseDTO } from '../../../model/orderResponseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -181,5 +182,11 @@ export class MerchandiserService {
 getBomsByStyleCode(styleCode: string): Observable<BomResponseDTO[]> {
   return this.http.get<BomResponseDTO[]>(`http://localhost:8080/api/bom/style/${styleCode}`);
 }
+
+
+getFullOrderById(id: number): Observable<FullOrderViewResponseDTO> {
+  return this.http.get<FullOrderViewResponseDTO>(`http://localhost:8080/api/order/${id}`);
+}
+
 
 }

@@ -1,6 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
 import com.gsparvej.angularWithSpringBoot.dto.DesignationResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.FullOrderViewResponseDTO;
 import com.gsparvej.angularWithSpringBoot.dto.OrderResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IBomStyleRepo;
@@ -43,7 +44,15 @@ public class OrderRestController {
     public List<OrderResponseDTO> getAllOrders() {
         return orderService.getAllOrderResponseDTOS();
     }
+    @GetMapping("/{id}")
+    public List<FullOrderViewResponseDTO> getOrderByIdFromDTOs(@PathVariable int id) {
+        return orderService.getViewOrderViewResponseDTOS(id);
+    }
 
+    @GetMapping("/all")
+    public List<Order> getAllOrder() {
+        return orderService.getAllOrders();
+    }
 
 
     @PostMapping("")
@@ -66,5 +75,14 @@ public class OrderRestController {
 
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+//@GetMapping("/{id}")
+//public ResponseEntity<Order> getOrderById(@PathVariable int id) {
+//        Optional<Order> order = orderService.getAllOrders()
+//                .stream()
+//                .filter(or -> or.getId() == id)
+//                .findFirst();
+//        return order.map(ResponseEntity::ok)
+//                .orElseGet(()-> ResponseEntity.notFound().build());
+//}
 
 }

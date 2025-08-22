@@ -1,10 +1,9 @@
 package com.gsparvej.angularWithSpringBoot.repository;
 
-
-import com.gsparvej.angularWithSpringBoot.entity.RawItems;
+import com.gsparvej.angularWithSpringBoot.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IRawItemsRepo extends JpaRepository<RawItems, Integer> {
+public interface IItemRepo extends JpaRepository<Item, Integer> {
 }

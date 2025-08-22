@@ -37,12 +37,12 @@ public class PO {
     // Items Relation--------
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false)
-    private RawItems rawItem;
+    private Item item;
 
     public PO() {
     }
 
-    public PO(int id, String poNumber, Date poDate, float quantity, float rate, float subTotal, float totalAmount, float tax, Date deliveryDate, String termsAndCondition, Vendor vendor, RawItems rawItem) {
+    public PO(int id, String poNumber, Date poDate, float quantity, float rate, float subTotal, float totalAmount, float tax, Date deliveryDate, String termsAndCondition, Vendor vendor, Item item) {
         this.id = id;
         this.poNumber = poNumber;
         this.poDate = poDate;
@@ -54,7 +54,7 @@ public class PO {
         this.deliveryDate = deliveryDate;
         this.termsAndCondition = termsAndCondition;
         this.vendor = vendor;
-        this.rawItem = rawItem;
+        this.item = item;
     }
 
     public int getId() {
@@ -145,11 +145,12 @@ public class PO {
         this.vendor = vendor;
     }
 
-    public RawItems getRawItem() {
-        return rawItem;
+
+    public Item getItem() {
+        return item;
     }
 
-    public void setRawItem(RawItems rawItem) {
-        this.rawItem = rawItem;
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

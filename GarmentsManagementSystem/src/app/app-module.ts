@@ -64,6 +64,7 @@ import { MerchandiserManager } from './Auth/merchandiser-manager/merchandiser-ma
 import { PurchaseExecutive } from './Auth/purchase-executive/purchase-executive';
 import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
+import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
 
 @NgModule({
   declarations: [
@@ -127,6 +128,7 @@ import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-material
     PurchaseExecutive,
     PurchaseManager,
     RawMaterialsCalc,
+    ProductionOrderComponenet,
   ],
   imports: [
     BrowserModule,

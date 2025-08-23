@@ -67,10 +67,13 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<PurchaseRequisition> purchaseRequisitions;
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<ProductionOrder> productionOrders;
+
     public Order() {
     }
 
-    public Order(int id, Date orderDate, Date deliveryDate, int shortSmallSize, double shortSPrice, int shortMediumSize, double shortMPrice, int shortLargeSize, double shortLPrice, int shortXLSize, double shortXLPrice, int fullSmallSize, double fullSPrice, int fullMediumSize, double fullMPrice, int fullLargeSize, double fullLPrice, int fullXLSize, double fullXLPrice, double subTotal, double vat, double paidAmount, double dueAmount, double total, String remarks, String orderStatus, BomStyle bomStyle, Buyer buyer) {
+    public Order(int id, Date orderDate, Date deliveryDate, int shortSmallSize, double shortSPrice, int shortMediumSize, double shortMPrice, int shortLargeSize, double shortLPrice, int shortXLSize, double shortXLPrice, int fullSmallSize, double fullSPrice, int fullMediumSize, double fullMPrice, int fullLargeSize, double fullLPrice, int fullXLSize, double fullXLPrice, double subTotal, double vat, double paidAmount, double dueAmount, double total, String remarks, String orderStatus, BomStyle bomStyle, Buyer buyer, List<PurchaseRequisition> purchaseRequisitions, List<ProductionOrder> productionOrders) {
         this.id = id;
         this.orderDate = orderDate;
         this.deliveryDate = deliveryDate;
@@ -99,6 +102,8 @@ public class Order {
         this.orderStatus = orderStatus;
         this.bomStyle = bomStyle;
         this.buyer = buyer;
+        this.purchaseRequisitions = purchaseRequisitions;
+        this.productionOrders = productionOrders;
     }
 
     public int getId() {
@@ -323,5 +328,21 @@ public class Order {
 
     public void setBuyer(Buyer buyer) {
         this.buyer = buyer;
+    }
+
+    public List<PurchaseRequisition> getPurchaseRequisitions() {
+        return purchaseRequisitions;
+    }
+
+    public void setPurchaseRequisitions(List<PurchaseRequisition> purchaseRequisitions) {
+        this.purchaseRequisitions = purchaseRequisitions;
+    }
+
+    public List<ProductionOrder> getProductionOrders() {
+        return productionOrders;
+    }
+
+    public void setProductionOrders(List<ProductionOrder> productionOrders) {
+        this.productionOrders = productionOrders;
     }
 }

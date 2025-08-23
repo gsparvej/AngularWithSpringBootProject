@@ -81,13 +81,42 @@
 
       <!-- Production -->
 
+
+
+      <!-- production planning -->
+
       <li class="nav-item">
-        <a class="nav-link text-white" data-bs-toggle="collapse" href="#purchaseMenu" role="button">
-          <i class="fas fa-shopping-cart me-1 text-danger"></i> Production
+        <a class="nav-link text-white" data-bs-toggle="collapse" href="#productionPlanMenu" role="button">
+          <i class="fas fa-shopping-cart me-1 text-danger"></i> Production Planning & Control
         </a>
-        <div class="collapse ps-3" id="purchaseMenu">
-          <a class="nav-link text-white" routerLink="/"><i class="fas fa-cut me-1"></i> Cutting</a>
-          <a class="nav-link text-white" routerLink="/"><i class="fas fa-truck me-1"></i> Sewing</a>
+        <div class="collapse ps-3" id="productionPlanMenu">
+          <a class="nav-link text-white" routerLink="/productionOrder"><i class="fas fa-cut me-1"></i> Production Order</a>
+          <a class="nav-link text-white" routerLink="/"><i class="fas fa-truck me-1"></i> Line</a>
+          <a class="nav-link text-white" routerLink="/"><i class="fas fa-truck me-1"></i> Machine</a>
+
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link text-white" data-bs-toggle="collapse" href="#CuttingMenu" role="button">
+          <i class="fas fa-shopping-cart me-1 text-danger"></i> Cutting
+        </a>
+        <div class="collapse ps-3" id="CuttingMenu">
+          <a class="nav-link text-white" routerLink="/"><i class="fas fa-cut me-1"></i> Cutting Plan</a>
+          <a class="nav-link text-white" routerLink="/"><i class="fas fa-truck me-1"></i> Cut Bundle</a>
+
+        </div>
+      </li>
+
+
+
+       <li class="nav-item">
+        <a class="nav-link text-white" data-bs-toggle="collapse" href="#SewingMenu" role="button">
+          <i class="fas fa-shopping-cart me-1 text-danger"></i> Sewing
+        </a>
+        <div class="collapse ps-3" id="SewingMenu">
+          <a class="nav-link text-white" routerLink="/"><i class="fas fa-cut me-1"></i> Hourly Output </a>
+          <a class="nav-link text-white" routerLink="/"><i class="fas fa-truck me-1"></i> QC Check </a>
 
         </div>
       </li>

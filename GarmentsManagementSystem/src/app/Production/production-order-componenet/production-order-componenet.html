@@ -1,0 +1,77 @@
+<div class="container mt-4">
+  <h2 class="mb-3">Production Orders</h2>
+
+  <!-- Form -->
+  <form [formGroup]="productionOrderForm" (ngSubmit)="onSubmit()" class="card p-3 mb-4">
+    <div class="row g-3">
+      <div class="col-md-3">
+        <label class="form-label">Plan Quantity</label>
+        <input type="number" class="form-control" formControlName="planQty" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Start Date</label>
+        <input type="date" class="form-control" formControlName="startDate" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" />
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Priority</label>
+        <select class="form-select" formControlName="priority">
+          <option value="Urgent">Urgent</option>
+          <option value="Normal">Normal</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label class="form-label">Status</label>
+        <select class="form-select" formControlName="status">
+          <option value="Planned">Planned</option>
+          <option value="Running">Running</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">
+      {{ editingOrder ? 'Update' : 'Create' }}
+    </button>
+    <button type="button" class="btn btn-secondary mt-3 ms-2" (click)="productionOrderForm.reset({priority:'Normal', status:'Planned'}); editingOrder=null">
+      Reset
+    </button>
+  </form>
+
+  <!-- Table -->
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Plan Qty</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Priority</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of productionOrders">
+        <td>{{ order.id }}</td>
+        <td>{{ order.planQty }}</td>
+        <td>{{ order.startDate | date }}</td>
+        <td>{{ order.endDate | date }}</td>
+        <td>{{ order.priority }}</td>
+        <td>{{ order.status }}</td>
+        <td>
+          <button class="btn btn-sm btn-info me-2" (click)="edit(order)">Edit</button>
+          <button class="btn btn-sm btn-danger" (click)="delete(order.id!)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

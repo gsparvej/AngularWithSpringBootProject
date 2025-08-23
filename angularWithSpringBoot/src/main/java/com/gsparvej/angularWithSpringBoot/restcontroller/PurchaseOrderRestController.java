@@ -1,0 +1,36 @@
+package com.gsparvej.angularWithSpringBoot.restcontroller;
+
+import com.gsparvej.angularWithSpringBoot.entity.PurchaseOrder;
+import com.gsparvej.angularWithSpringBoot.entity.PurchaseRequisition;
+import com.gsparvej.angularWithSpringBoot.service.PurchaseOrderService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/po")
+@CrossOrigin("*")
+public class PurchaseOrderRestController {
+
+    @Autowired
+    private PurchaseOrderService purchaseOrderService;
+
+    @GetMapping("")
+    public List<PurchaseOrder> getAllPOs() {
+        return purchaseOrderService.getAllPurchaseOrders();
+    }
+
+    // create new Requisition
+    @PostMapping("")
+    public ResponseEntity<PurchaseOrder> createRequisition(
+            @RequestBody PurchaseOrder purchaseOrder
+
+    ) {
+
+        PurchaseOrder saved = purchaseOrderService.saveOrUpdate(purchaseOrder);
+        return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    }
+}

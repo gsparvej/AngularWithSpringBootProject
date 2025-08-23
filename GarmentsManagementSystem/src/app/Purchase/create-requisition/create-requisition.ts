@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Department } from '../../../model/HR/department.model';
 import { Item } from '../../../model/Purchase/item.model';
@@ -25,10 +25,10 @@ export class CreateRequisition implements OnInit{
   requestedBy!: string;         
   quantity!: number;            
   approxUnitPrice!: number;     
-  totalEstPrice!: number;      
+  totalEstPrice!: number; 
+  prStatus!: string;     
 
   department: Department[] = [];
-  prStatus:PurchaseStatus[]= [];
   item: Item[] = [];
   order: Order[] = [];
   constructor(
@@ -38,6 +38,7 @@ export class CreateRequisition implements OnInit{
     private departService: HrService,
     private orderService: MerchandiserService,
     private itemService: ItemService,
+    private cdr: ChangeDetectorRef
   
 
 
@@ -50,26 +51,24 @@ export class CreateRequisition implements OnInit{
       quantity: [ , [Validators.required, Validators.min(1)]],
       approxUnitPrice: [ , [Validators.required, Validators.min(0.01)]],
       totalEstPrice: [{  disabled: true }],
+      prStatus: [''],
+
       department: this.formBuilder.group({
-        name: ['', Validators.required]
+        id: ['', Validators.required]
       }),
       item: this.formBuilder.group({
-        categoryName: ['', Validators.required]
+        id: ['', Validators.required]
       }),
       order: this.formBuilder.group({
         id: ['', Validators.required]
-      }),
-      prStatus: this.formBuilder.group({
-        status: ['', Validators.required]
       })
     });
 
 
     this.loadDepartment();
     this.loadCategoryName();
-    this.loadOrderId();
-    this.loadPurchaseStatus();
-
+    this.loadOrder();
+    
     this.formPR.get('department.name')?.valueChanges.subscribe(name => {
       const selected = this.department.find(d => d.name === name);
       if (selected) {
@@ -90,13 +89,6 @@ export class CreateRequisition implements OnInit{
         this.formPR.patchValue({ order: selected });
       }
     });
-
-    this.formPR.get('prStatus.status')?.valueChanges.subscribe(status => {
-      const selected = this.prStatus.find(s => s.status === status);
-      if (selected) {
-        this.formPR.patchValue({ prStatus: selected });
-      }
-    });
   }
 
   calculateTotalPrice(): void {
@@ -106,50 +98,52 @@ export class CreateRequisition implements OnInit{
     this.formPR.get('totalEstPrice')?.setValue(total);
   }
 
-  addRequision(): void {
-    if (this.formPR.invalid) {
-      console.log('Form Invalid');
-      return;
-    }
-    const pr: PurchaseRequisition = this.formPR.getRawValue();
-    console.log('Submitting PR:', pr);
+  addRequisiton(): void {
+    // ✅ Directly use form value
+    const requisition: PurchaseRequisition = this.formPR.value;
 
-    this.requisitionService.createPR(pr).subscribe({
-      next: savedPR => {
-        console.log('PR saved:', savedPR);
+    this.requisitionService.createPR(requisition).subscribe({
+      next: (requi) => {
+        console.log(requi, 'Reqiosition Successfully !');
+        this.loadCategoryName();
+        this.loadDepartment();
+        this.loadOrder();
         this.formPR.reset();
         this.router.navigate(['']);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  }
+
+   loadDepartment(): void {
+    this.departService.getAllDepartment().subscribe({
+      next: data => {
+        (this.department = data);
+        this.cdr.detectChanges();
       },
       error: err => console.error(err)
     });
   }
 
-  private loadDepartment(): void {
-    this.departService.getAllDepartment().subscribe({
-      next: data => (this.department = data),
-      error: err => console.error(err)
-    });
-  }
-
-  private loadCategoryName(): void {
+   loadCategoryName(): void {
     this.itemService.getAllItem().subscribe({
-      next: data => (this.item = data),
+      next: data => {
+        (this.item = data);
+        this.cdr.detectChanges();
+      },
       error: err => console.error(err)
     });
   }
 
-  private loadOrderId(): void {
+   loadOrder(): void {
     this.orderService.getAllOrder().subscribe({
-      next: data => (this.order = data),
+      next: data =>{
+         (this.order = data);
+         this.cdr.detectChanges();
+      },
       error: err => console.error(err)
     });
   }
-
-  private loadPurchaseStatus(): void {
-    this.requisitionService.getAllPRstatus().subscribe({
-      next: data => (this.prStatus = data),
-      error: err => console.error(err)
-    });
-  }
-
 }

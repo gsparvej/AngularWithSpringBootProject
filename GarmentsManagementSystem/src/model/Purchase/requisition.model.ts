@@ -5,13 +5,13 @@ import { PurchaseStatus } from "./PRstatus.model";
 
 
 export class PurchaseRequisition {
-  id?: string;                   
+  id?: number;                   
   prDate!: Date;                
   requestedBy!: string;         
   quantity!: number;            
   approxUnitPrice!: number;     
   totalEstPrice!: number;       
-  prStatus!: PurchaseStatus; 
+  prStatus!:  'Pending' | 'Confirmed' ;
   department!: Department; 
   item!: Item;   
   order!: Order;           

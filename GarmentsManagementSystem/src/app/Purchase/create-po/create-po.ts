@@ -31,6 +31,11 @@ export class CreatePO implements OnInit{
     vendor: VendorModel[] = [];
     item: Item[] = [];
 
+    selectedItemUnit: string = '';
+    selectedPerson: string = '';
+    selectedPhone: string = '';
+    selecedAddress: string = '';
+
 
     constructor(
       private poService: PoService,
@@ -61,34 +66,45 @@ export class CreatePO implements OnInit{
 
       vendor: this.formBuilder.group({
         id: ['', Validators.required],
-        companyName: ['', Validators.required],
         contactPerson: ['', Validators.required],
         phone: ['', Validators.required],
         address: ['', Validators.required],
       }),
       item: this.formBuilder.group({
         id: ['', Validators.required],
-        categoryName: ['', Validators.required],
-        unit: ['', Validators.required]
+        // unit: ['', Validators.required]
       })
     });
 
     this.loadCategoryName();
     this.loadVendor();
 
-    this.formPO.get('vendor.id')?.valueChanges.subscribe(id => {
-      const selected = this.vendor.find(ven => ven.id === id);
-      if (selected) {
-        this.formPO.patchValue({ vendor: selected });
-      }
-    });
+   // Vendor change
+  this.formPO.get('vendor.id')?.valueChanges.subscribe((id: number) => {
+    const selected = this.vendor.find(ven => ven.id === +id);
+    if (selected) {
+      this.selecedAddress = selected.address;
+      this.selectedPerson = selected.contactPerson;
+      this.selectedPhone = selected.phone;
+      console.log(this.selecedAddress, this.selectedPerson, this.selectedPhone);
+    } else {
+      this.selecedAddress = '';
+      this.selectedPerson = '';
+      this.selectedPhone = '';
+    }
+  });
 
-    this.formPO.get('item.id')?.valueChanges.subscribe(id => {
-      const selected = this.item.find(i => i.id === id);
-      if (selected) {
-        this.formPO.patchValue({ item: selected });
-      }
-    });
+  // Item change
+  this.formPO.get('item.id')?.valueChanges.subscribe((id: number) => {
+    const selected = this.item.find(i => i.id === +id);
+    if (selected) {
+      this.selectedItemUnit = selected.unit;
+      console.log('Selected unit:', selected.unit);
+    } else {
+      this.selectedItemUnit = '';
+    }
+  });
+
   }
 
 
@@ -131,7 +147,7 @@ export class CreatePO implements OnInit{
 
 
 
-  private loadVendor(): void {
+   loadVendor(): void {
     this.vendorService.getAllVendor().subscribe({
       next: vendor => {
         this.vendor = vendor;
@@ -143,7 +159,7 @@ export class CreatePO implements OnInit{
   }
 
 
-   private loadCategoryName(): void {
+    loadCategoryName(): void {
     this.itemService.getAllItem().subscribe({
       next: data => {
         this.item = data;

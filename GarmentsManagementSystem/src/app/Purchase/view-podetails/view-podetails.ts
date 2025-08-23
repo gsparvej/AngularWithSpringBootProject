@@ -13,7 +13,7 @@ import { PurchaseOrder } from '../../../model/Purchase/po.model';
 })
 export class ViewPODetails implements OnInit{
 
-  id!: string;
+  id!: number;
   po!: PurchaseOrder;
 
   constructor(

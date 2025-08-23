@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewRequDetails implements OnInit{
 
-   id!: string;
+   id!: number;
   requisition!: PurchaseRequisition;
 
   constructor(

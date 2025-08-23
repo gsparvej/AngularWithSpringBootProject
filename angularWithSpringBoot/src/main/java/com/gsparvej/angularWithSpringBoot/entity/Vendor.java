@@ -25,12 +25,12 @@ public class Vendor {
 
 
     @OneToMany(mappedBy = "vendor" , cascade = CascadeType.ALL)
-    private List<PO> poList;
+    private List<PurchaseOrder> purchaseOrders;
 
     public Vendor() {
     }
 
-    public Vendor(int id, String vendorName, String companyName, String contactPerson, String email, String phone, String address, String tin, String bin, String vat, List<PO> poList) {
+    public Vendor(int id, String vendorName, String companyName, String contactPerson, String email, String phone, String address, String tin, String bin, String vat, List<PurchaseOrder> purchaseOrders) {
         this.id = id;
         this.vendorName = vendorName;
         this.companyName = companyName;
@@ -41,7 +41,7 @@ public class Vendor {
         this.tin = tin;
         this.bin = bin;
         this.vat = vat;
-        this.poList = poList;
+        this.purchaseOrders = purchaseOrders;
     }
 
     public int getId() {
@@ -124,11 +124,11 @@ public class Vendor {
         this.vat = vat;
     }
 
-    public List<PO> getPoList() {
-        return poList;
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
     }
 
-    public void setPoList(List<PO> poList) {
-        this.poList = poList;
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
     }
 }

@@ -2,12 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PurchaseOrder } from '../../../model/Purchase/po.model';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PoService {
-baseUrlPO: string = "http://localhost:3000/po";
+private baseUrlPO = environment.apiBaseUrl + '/po';
+
   constructor(private http: HttpClient) { }
 
 
@@ -21,7 +23,7 @@ baseUrlPO: string = "http://localhost:3000/po";
   return this.http.post(this.baseUrlPO,po);
   }
 
-   viewPODetails(id: string): Observable<any> {
+   viewPODetails(id: number): Observable<any> {
     return this.http.get(this.baseUrlPO+'/'+id);
   }
 }

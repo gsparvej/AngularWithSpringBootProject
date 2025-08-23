@@ -16,16 +16,20 @@ public class Item {
     private String unit;
 
     @OneToMany(mappedBy = "item" , cascade = CascadeType.ALL)
-    private List<PO> poList;
+    private List<PurchaseOrder> purchaseOrders;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<PurchaseRequisition> purchaseRequisitions;
 
     public Item() {
     }
 
-    public Item(int id, String categoryName, String unit, List<PO> poList) {
+    public Item(int id, String categoryName, String unit, List<PurchaseOrder> purchaseOrders, List<PurchaseRequisition> purchaseRequisitions) {
         this.id = id;
         this.categoryName = categoryName;
         this.unit = unit;
-        this.poList = poList;
+        this.purchaseOrders = purchaseOrders;
+        this.purchaseRequisitions = purchaseRequisitions;
     }
 
     public int getId() {
@@ -52,11 +56,19 @@ public class Item {
         this.unit = unit;
     }
 
-    public List<PO> getPoList() {
-        return poList;
+    public List<PurchaseOrder> getPurchaseOrders() {
+        return purchaseOrders;
     }
 
-    public void setPoList(List<PO> poList) {
-        this.poList = poList;
+    public void setPurchaseOrders(List<PurchaseOrder> purchaseOrders) {
+        this.purchaseOrders = purchaseOrders;
+    }
+
+    public List<PurchaseRequisition> getPurchaseRequisitions() {
+        return purchaseRequisitions;
+    }
+
+    public void setPurchaseRequisitions(List<PurchaseRequisition> purchaseRequisitions) {
+        this.purchaseRequisitions = purchaseRequisitions;
     }
 }

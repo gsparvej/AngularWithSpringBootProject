@@ -43,7 +43,7 @@ export class ViewAllPO implements OnInit{
     });
   }
 
-  getPOById(id: string): void {
+  getPOById(id: number): void {
     this.router.navigate(['/viewPODetails', id]);
   }
 

@@ -43,7 +43,7 @@ export class ViewAllRequ implements OnInit{
     });
   }
 
-    getRequisitionById(id: string): void {
+    getRequisitionById(id: number): void {
     this.router.navigate(['/viewRequDetails', id]);
   }
 

@@ -21,6 +21,9 @@ public class Department {
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Employee> employees;
 
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
+    private List<PurchaseRequisition> purchaseRequisitions;
+
 
     public Department() {
     }

@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "po")
-public class PO {
+public class PurchaseOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +39,11 @@ public class PO {
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
-    public PO() {
+
+    public PurchaseOrder() {
     }
 
-    public PO(int id, String poNumber, Date poDate, float quantity, float rate, float subTotal, float totalAmount, float tax, Date deliveryDate, String termsAndCondition, Vendor vendor, Item item) {
+    public PurchaseOrder(int id, String poNumber, Date poDate, float quantity, float rate, float subTotal, float totalAmount, float tax, Date deliveryDate, String termsAndCondition, Vendor vendor, Item item) {
         this.id = id;
         this.poNumber = poNumber;
         this.poDate = poDate;
@@ -144,7 +145,6 @@ public class PO {
     public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
-
 
     public Item getItem() {
         return item;

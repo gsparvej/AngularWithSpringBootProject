@@ -2,13 +2,19 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PurchaseRequisition } from '../../../model/Purchase/requisition.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequisitionService {
 
-baseUrlRequision: string = "http://localhost:3000/requsition";
+
+baseUrlRequision = environment.apiBaseUrl + '/requisition';
+
+
+
+
 baseUrlPRstatus: string = "http://localhost:3000/prStatus";
 
   constructor(private http: HttpClient) {}
@@ -23,7 +29,7 @@ baseUrlPRstatus: string = "http://localhost:3000/prStatus";
   return this.http.get(this.baseUrlRequision);
 }
 
-viewPRDetails(id: string): Observable<any> {
+viewPRDetails(id: number): Observable<any> {
     return this.http.get(this.baseUrlRequision+'/'+id);
   }
 

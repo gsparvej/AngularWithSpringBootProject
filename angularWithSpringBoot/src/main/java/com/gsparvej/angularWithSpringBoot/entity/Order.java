@@ -4,6 +4,7 @@ package com.gsparvej.angularWithSpringBoot.entity;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "orders")
@@ -62,6 +63,9 @@ public class Order {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name= "buyer_id")
     private Buyer buyer;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<PurchaseRequisition> purchaseRequisitions;
 
     public Order() {
     }

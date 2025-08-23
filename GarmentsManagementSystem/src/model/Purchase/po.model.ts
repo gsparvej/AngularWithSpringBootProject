@@ -3,7 +3,7 @@ import { VendorModel } from "./vendor.model";
 
 export class PurchaseOrder{
 
-    id!: string;
+    id!: number;
     poNumber!: string;
     poDate!: Date;
     quantity!: number;

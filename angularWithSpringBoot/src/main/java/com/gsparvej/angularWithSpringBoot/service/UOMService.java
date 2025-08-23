@@ -25,6 +25,7 @@ public class UOMService {
         return uomRepo.findAll().stream().map(uom -> {
             UomResponseDTO dto = new UomResponseDTO();
             dto.setId(uom.getId());
+            dto.setProductName(uom.getProductName());
             dto.setBody(uom.getBody());
             dto.setPocket(uom.getPocket());
             dto.setSize(uom.getSize());

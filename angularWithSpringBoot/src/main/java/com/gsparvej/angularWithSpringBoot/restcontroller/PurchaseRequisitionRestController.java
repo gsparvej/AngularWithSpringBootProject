@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.PurchaseRequisitionDTO;
 import com.gsparvej.angularWithSpringBoot.entity.BOM;
 import com.gsparvej.angularWithSpringBoot.entity.PurchaseRequisition;
 import com.gsparvej.angularWithSpringBoot.service.PurchaseRequisitionService;
@@ -18,9 +19,15 @@ public class PurchaseRequisitionRestController {
     @Autowired
     private PurchaseRequisitionService requisitionService;
 
-    @GetMapping("")
+    @GetMapping("all")
     public List<PurchaseRequisition> getAllRequisitions() {
         return requisitionService.getAllPurchaseRequisitions();
+    }
+
+
+    @GetMapping("")
+    public List<PurchaseRequisitionDTO> getAllRequisitionsDTO() {
+        return requisitionService.getAllRequisitionsDTOs();
     }
 
     // create new Requisition

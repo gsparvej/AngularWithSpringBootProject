@@ -1,5 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
+import com.gsparvej.angularWithSpringBoot.dto.PurchaseRequisitionDTO;
+import com.gsparvej.angularWithSpringBoot.dto.VendorResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IDepartmentRepo;
 import com.gsparvej.angularWithSpringBoot.repository.IItemRepo;
@@ -50,5 +52,17 @@ public class PurchaseRequisitionService {
     public PurchaseRequisition getById(Integer id) {
         return requisitionRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Requisition not found"));
+    }
+
+
+    public List<PurchaseRequisitionDTO> getAllRequisitionsDTOs() {
+        return requisitionRepo.findAll().stream().map(req -> {
+            PurchaseRequisitionDTO dto = new PurchaseRequisitionDTO();
+            dto.setId(req.getId());
+            dto.setPrDate(req.getPrDate());
+            dto.setRequestedBy(req.getRequestedBy());
+            dto.setPrStatus(req.getPrStatus());
+            return dto;
+        }).toList();
     }
 }

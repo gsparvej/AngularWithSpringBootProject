@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.Date;

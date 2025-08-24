@@ -8,6 +8,8 @@ export interface ProductionOrder {
   endDate: Date;
   priority: 'Urgent' | 'Normal' | 'Low';
   status: 'Planned' | 'Running' | 'Completed';
+  description: 'Short Sleeve Shirt' | 'Full Sleeve Shirt';
+  size: 'S' | 'M' | 'L' | 'XL' ;
 
   bomStyle?: BomStyle;   
   order?: Order;         

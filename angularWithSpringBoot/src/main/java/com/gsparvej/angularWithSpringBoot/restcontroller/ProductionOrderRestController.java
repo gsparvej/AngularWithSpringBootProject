@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.ProductionOrderResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.ProductionOrder;
 import com.gsparvej.angularWithSpringBoot.service.ProductionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +17,14 @@ public class ProductionOrderRestController {
     @Autowired
     private ProductionOrderService productionOrderService;
 
-    @GetMapping("")
+    @GetMapping("all")
     public List<ProductionOrder> getAllProductionOrders() {
         return productionOrderService.getAllProductionOrders();
+    }
+
+    @GetMapping("")
+    public List<ProductionOrderResponseDTO> productionOrderResponseDTOS() {
+        return productionOrderService.getAProductionOrderResponseDTOS();
     }
 
     // create new Requisition

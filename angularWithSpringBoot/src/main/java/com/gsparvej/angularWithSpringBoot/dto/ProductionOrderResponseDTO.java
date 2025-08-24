@@ -1,16 +1,9 @@
-package com.gsparvej.angularWithSpringBoot.entity;
-
-import jakarta.persistence.*;
+package com.gsparvej.angularWithSpringBoot.dto;
 
 import java.util.Date;
-import java.util.List;
 
-@Entity
-@Table(name = "productionOrders")
-public class ProductionOrder {
+public class ProductionOrderResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int planQty;
@@ -21,22 +14,13 @@ public class ProductionOrder {
     private String description;
     private String size;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bomstyle_id")
-    private BomStyle bomStyle;
+    private BomStyleResponseDTO bomStyle;
+    private OrderResponseDTO order;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    @OneToMany(mappedBy = "productionOrder", cascade = CascadeType.ALL)
-    private List<CuttingPlan> cuttingPlans;
-
-
-    public ProductionOrder() {
+    public ProductionOrderResponseDTO() {
     }
 
-    public ProductionOrder(int id, int planQty, Date startDate, Date endDate, String priority, String status, String description, String size, BomStyle bomStyle, Order order, List<CuttingPlan> cuttingPlans) {
+    public ProductionOrderResponseDTO(int id, int planQty, Date startDate, Date endDate, String priority, String status, String description, String size, BomStyleResponseDTO bomStyle, OrderResponseDTO order) {
         this.id = id;
         this.planQty = planQty;
         this.startDate = startDate;
@@ -47,7 +31,6 @@ public class ProductionOrder {
         this.size = size;
         this.bomStyle = bomStyle;
         this.order = order;
-        this.cuttingPlans = cuttingPlans;
     }
 
     public int getId() {
@@ -98,30 +81,6 @@ public class ProductionOrder {
         this.status = status;
     }
 
-    public BomStyle getBomStyle() {
-        return bomStyle;
-    }
-
-    public void setBomStyle(BomStyle bomStyle) {
-        this.bomStyle = bomStyle;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public List<CuttingPlan> getCuttingPlans() {
-        return cuttingPlans;
-    }
-
-    public void setCuttingPlans(List<CuttingPlan> cuttingPlans) {
-        this.cuttingPlans = cuttingPlans;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -136,5 +95,21 @@ public class ProductionOrder {
 
     public void setSize(String size) {
         this.size = size;
+    }
+
+    public BomStyleResponseDTO getBomStyle() {
+        return bomStyle;
+    }
+
+    public void setBomStyle(BomStyleResponseDTO bomStyle) {
+        this.bomStyle = bomStyle;
+    }
+
+    public OrderResponseDTO getOrder() {
+        return order;
+    }
+
+    public void setOrder(OrderResponseDTO order) {
+        this.order = order;
     }
 }

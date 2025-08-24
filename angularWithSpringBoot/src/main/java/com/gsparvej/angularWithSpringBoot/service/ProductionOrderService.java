@@ -1,5 +1,9 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
+import com.gsparvej.angularWithSpringBoot.dto.BomStyleResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.BuyerResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.OrderResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.ProductionOrderResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IBomStyleRepo;
 import com.gsparvej.angularWithSpringBoot.repository.IOrderRepo;
@@ -45,5 +49,42 @@ public class ProductionOrderService {
     public ProductionOrder getById(Integer id) {
         return productionOrderRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Production Order not found"));
+    }
+
+
+    public List<ProductionOrderResponseDTO> getAProductionOrderResponseDTOS() {
+        return productionOrderRepo.findAll().stream().map(order -> {
+            ProductionOrderResponseDTO dto = new ProductionOrderResponseDTO();
+            dto.setId(order.getId());
+            dto.setDescription(order.getDescription());
+            dto.setEndDate(order.getEndDate());
+            dto.setStartDate(order.getStartDate());
+            dto.setPriority(order.getPriority());
+            dto.setPlanQty(order.getPlanQty());
+            dto.setSize(order.getSize());
+            dto.setStatus(order.getStatus());
+
+            Order or = order.getOrder();
+            if (or != null) {
+                OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
+                orderResponseDTO.setId(or.getId());
+
+
+                dto.setOrder(orderResponseDTO);
+
+
+            }
+
+            BomStyle bomStyle = order.getBomStyle();
+            if (bomStyle != null) {
+                BomStyleResponseDTO bomStyleResponseDTO = new BomStyleResponseDTO();
+                bomStyleResponseDTO.setId(bomStyle.getId());
+                bomStyleResponseDTO.setStyleCode(bomStyle.getStyleCode());
+                dto.setBomStyle(bomStyleResponseDTO);
+            }
+
+
+            return dto;
+        }).toList();
     }
 }

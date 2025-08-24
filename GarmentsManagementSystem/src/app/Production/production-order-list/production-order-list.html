@@ -1,0 +1,55 @@
+<div class="container my-5">
+  <h2 class="mb-4 text-center fw-bold">Production Order List</h2>
+
+  <div class="row g-4">
+    <div class="col-md-4" *ngFor="let order of productionOrders">
+      <div class="card shadow-sm rounded-4 h-100 border border-primary-subtle">
+        <div class="card-body">
+
+          <!-- Card Header -->
+          <h5 class="card-title fw-bold text-primary">
+           Production Order #{{ order.id }}
+          </h5>
+          <p class="card-subtitle text-muted mb-3">
+            Style Code: {{ order.bomStyle?.styleCode }}
+          </p>
+          <p class="card-subtitle text-muted mb-3">
+            Order ID: {{ order.order?.id }}
+          </p>
+
+          <!-- Card Details -->
+          <ul class="list-unstyled mb-3">
+            <li><strong>Plan Qty:</strong> {{ order.planQty }}</li>
+            <li><strong>Start Date:</strong> {{ order.startDate | date }}</li>
+            <li><strong>End Date:</strong> {{ order.endDate | date }}</li>
+            <li><strong>Priority:</strong>
+              <span class="badge bg-warning text-dark" *ngIf="order.priority==='Urgent'">Urgent</span>
+              <span class="badge bg-primary" *ngIf="order.priority==='Normal'">Normal</span>
+              <span class="badge bg-secondary" *ngIf="order.priority==='Low'">Low</span>
+            </li>
+            <li><strong>Status:</strong>
+              <span class="badge bg-info text-dark" *ngIf="order.status==='Planned'">Planned</span>
+              <span class="badge bg-success" *ngIf="order.status==='Running'">Running</span>
+              <span class="badge bg-dark" *ngIf="order.status==='Completed'">Completed</span>
+            </li>
+          </ul>
+
+          <!-- Description -->
+          <p class="card-text small text-muted">
+            {{ order.description }}
+          </p>
+        </div>
+
+        <!-- Card Footer -->
+        <div class="card-footer bg-transparent border-0 d-flex justify-content-between">
+          <button class="btn btn-sm btn-outline-info rounded-pill">
+            <i class="bi bi-pencil-square"></i> Edit
+          </button>
+          <button class="btn btn-sm btn-outline-danger rounded-pill" (click)="delete(order.id!)">
+            <i class="bi bi-trash"></i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

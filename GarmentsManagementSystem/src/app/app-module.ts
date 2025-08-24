@@ -65,6 +65,7 @@ import { PurchaseExecutive } from './Auth/purchase-executive/purchase-executive'
 import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
+import { ProductionOrderList } from './Production/production-order-list/production-order-list';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { ProductionOrderComponenet } from './Production/production-order-compone
     PurchaseManager,
     RawMaterialsCalc,
     ProductionOrderComponenet,
+    ProductionOrderList,
   ],
   imports: [
     BrowserModule,

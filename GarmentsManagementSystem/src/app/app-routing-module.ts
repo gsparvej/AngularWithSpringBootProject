@@ -59,6 +59,7 @@ import { PurchaseExecutive } from './Auth/purchase-executive/purchase-executive'
 import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
+import { ProductionOrderList } from './Production/production-order-list/production-order-list';
 
 const routes: Routes = [
   { path: '', component: Home },
@@ -132,7 +133,8 @@ const routes: Routes = [
   {path: 'rawMateSave', component: RawMaterialsCalc},
 
   // production part
-  {path: 'productionOrder', component: ProductionOrderComponenet}
+  {path: 'productionOrder', component: ProductionOrderComponenet},
+  {path: 'productionorderList', component: ProductionOrderList}
 ];
 
 @NgModule({

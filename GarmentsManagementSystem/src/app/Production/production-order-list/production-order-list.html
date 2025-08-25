@@ -1,4 +1,12 @@
 <div class="container my-5">
+
+
+  <input class="form-control me-2 " type="search" placeholder="Search" aria-label="Search" />
+  <button class="btn btn-outline-success mt-2" type="submit">Search By Order Id</button>
+
+
+
+
   <h2 class="mb-4 text-center fw-bold">Production Order List</h2>
 
   <div class="row g-4">
@@ -8,7 +16,7 @@
 
           <!-- Card Header -->
           <h5 class="card-title fw-bold text-primary">
-           Production Order #{{ order.id }}
+            Production Order #{{ order.id }}
           </h5>
           <p class="card-subtitle text-muted mb-3">
             Style Code: {{ order.bomStyle?.styleCode }}

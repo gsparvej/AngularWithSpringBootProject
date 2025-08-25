@@ -67,6 +67,7 @@ import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-material
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
 
+
 @NgModule({
   declarations: [
     App,
@@ -131,6 +132,7 @@ import { ProductionOrderList } from './Production/production-order-list/producti
     RawMaterialsCalc,
     ProductionOrderComponenet,
     ProductionOrderList,
+
   ],
   imports: [
     BrowserModule,

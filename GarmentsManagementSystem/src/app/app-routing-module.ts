@@ -61,6 +61,7 @@ import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-material
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
 
+
 const routes: Routes = [
   { path: '', component: Home },
   { path: 'reg', component: Registration },
@@ -134,7 +135,8 @@ const routes: Routes = [
 
   // production part
   {path: 'productionOrder', component: ProductionOrderComponenet},
-  {path: 'productionorderList', component: ProductionOrderList}
+  {path: 'productionorderList', component: ProductionOrderList},
+
 ];
 
 @NgModule({

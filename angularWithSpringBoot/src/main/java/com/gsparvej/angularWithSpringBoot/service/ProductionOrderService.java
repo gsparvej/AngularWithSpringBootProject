@@ -1,9 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
-import com.gsparvej.angularWithSpringBoot.dto.BomStyleResponseDTO;
-import com.gsparvej.angularWithSpringBoot.dto.BuyerResponseDTO;
-import com.gsparvej.angularWithSpringBoot.dto.OrderResponseDTO;
-import com.gsparvej.angularWithSpringBoot.dto.ProductionOrderResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.*;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IBomStyleRepo;
 import com.gsparvej.angularWithSpringBoot.repository.IOrderRepo;
@@ -12,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductionOrderService {
@@ -68,8 +66,6 @@ public class ProductionOrderService {
             if (or != null) {
                 OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
                 orderResponseDTO.setId(or.getId());
-
-
                 dto.setOrder(orderResponseDTO);
 
 
@@ -86,5 +82,51 @@ public class ProductionOrderService {
 
             return dto;
         }).toList();
+    }
+
+
+
+    // ✅ Get Production Order By Order Id  Code and return as DTOs
+
+    public List<ProductionOrderResponseDTO> getProductionByOrderId(int id) {
+        List<ProductionOrder> productionOrders = productionOrderRepo.findAllProductionOrderByOrderId(id);
+
+        return productionOrders.stream().map(orders -> {
+            // Map Order
+            Order or = orders.getOrder();
+            OrderResponseDTO orderDTO = null;
+            if (or != null) {
+                orderDTO = new OrderResponseDTO();
+                orderDTO.setId(or.getId());
+
+            }
+
+            // Map BomStyle
+
+            BomStyle bStyle = orders.getBomStyle();
+            BomStyleResponseDTO styleDto = null;
+            if (bStyle != null) {
+                styleDto = new BomStyleResponseDTO();
+                styleDto.setId(bStyle.getId());
+                styleDto.setStyleCode(bStyle.getStyleCode());
+                styleDto.setStyleType(bStyle.getStyleType());
+                styleDto.setDescription(bStyle.getDescription());
+            }
+
+            // Map Production Order
+            ProductionOrderResponseDTO pDto = new ProductionOrderResponseDTO();
+            pDto.setId(orders.getId());
+            pDto.setOrder(orderDTO);
+            pDto.setBomStyle(styleDto);
+            pDto.setPlanQty(orders.getPlanQty());
+            pDto.setSize(orders.getSize());
+            pDto.setStatus(orders.getStatus());
+            pDto.setStartDate(orders.getStartDate());
+            pDto.setEndDate(orders.getEndDate());
+            pDto.setPriority(orders.getPriority());
+
+
+            return pDto;
+        }).collect(Collectors.toList());
     }
 }

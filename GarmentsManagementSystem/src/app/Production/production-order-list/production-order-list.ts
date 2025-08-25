@@ -11,6 +11,9 @@ import { ProductionOrderService } from '../../service/Production/production-orde
 export class ProductionOrderList implements OnInit{
 
   productionOrders: ProductionOrder[] = [];
+  filteredOrders: ProductionOrder[] = [];
+
+  searchOrderId!: number;
 
   constructor(
     private productionOrderService: ProductionOrderService,
@@ -18,31 +21,34 @@ export class ProductionOrderList implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.loadOrders();
+    this.getAllProductionOrders(); // This loads all orders initially
+
   }
 
-  loadOrders(): void {
-    this.productionOrderService.getAllProductionOrder().subscribe({
-      next: (orders) => {
-        this.productionOrders = orders;
-        this.cdr.detectChanges();
-      },
-      error: (err) => {
-        console.error('Error loading orders:', err);
-      }
+  getAllProductionOrders(): void {
+    // Fetch all production orders once to allow local filtering
+    this.productionOrderService.getAllProductionOrder().subscribe((data) => {
+      
+      this.productionOrders = data;
+      this.filteredOrders = data;
+      this.cdr.detectChanges();
     });
   }
 
-  delete(id: number): void {
-    if (confirm('Are you sure you want to delete this order?')) {
-      this.productionOrderService.deleteProductionOrder(id).subscribe({
-        next: () => {
-          this.loadOrders();
-        },
-        error: (err) => {
-          console.error(err);
-        }
-      });
+  searchByOrderId(): void {
+    if (this.searchOrderId != null) {
+      this.filteredOrders = this.productionOrders.filter(
+        (order) => order.order?.id === this.searchOrderId
+      );
+    } else {
+      this.filteredOrders = this.productionOrders;
     }
+  }
+
+   reset(): void {
+    this.searchOrderId = null as any; // or undefined
+    this.filteredOrders = [...this.productionOrders];
+     this.getAllProductionOrders();
+    this.cdr.detectChanges();
   }
 }

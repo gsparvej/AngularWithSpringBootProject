@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.BomResponseDTO;
 import com.gsparvej.angularWithSpringBoot.dto.ProductionOrderResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.ProductionOrder;
 import com.gsparvej.angularWithSpringBoot.service.ProductionOrderService;
@@ -36,5 +37,10 @@ public class ProductionOrderRestController {
 
         ProductionOrder saved = productionOrderService.saveOrUpdate(productionOrder);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/production_OrderId/{id}")
+    public List<ProductionOrderResponseDTO> getProductionOrderById(@PathVariable int id) {
+        return productionOrderService.getProductionByOrderId(id);
     }
 }

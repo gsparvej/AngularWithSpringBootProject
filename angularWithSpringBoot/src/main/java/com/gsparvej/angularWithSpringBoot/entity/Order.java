@@ -1,6 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -65,6 +66,7 @@ public class Order {
     private Buyer buyer;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+
     private List<PurchaseRequisition> purchaseRequisitions;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)

@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class Item {
     private List<PurchaseOrder> purchaseOrders;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+
     private List<PurchaseRequisition> purchaseRequisitions;
 
     public Item() {

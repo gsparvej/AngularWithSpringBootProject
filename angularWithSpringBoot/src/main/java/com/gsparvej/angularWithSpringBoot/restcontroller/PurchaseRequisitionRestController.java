@@ -3,6 +3,7 @@ package com.gsparvej.angularWithSpringBoot.restcontroller;
 import com.gsparvej.angularWithSpringBoot.dto.PurchaseRequisitionDTO;
 import com.gsparvej.angularWithSpringBoot.entity.BOM;
 import com.gsparvej.angularWithSpringBoot.entity.PurchaseRequisition;
+import com.gsparvej.angularWithSpringBoot.repository.IPurchaseRequisitionRepo;
 import com.gsparvej.angularWithSpringBoot.service.PurchaseRequisitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +19,9 @@ public class PurchaseRequisitionRestController {
 
     @Autowired
     private PurchaseRequisitionService requisitionService;
+
+    @Autowired
+    private IPurchaseRequisitionRepo requisitionRepo;
 
     @GetMapping("all")
     public List<PurchaseRequisition> getAllRequisitions() {
@@ -40,4 +44,34 @@ public class PurchaseRequisitionRestController {
         PurchaseRequisition saved = requisitionService.saveOrUpdate(purchaseRequisition);
         return new ResponseEntity<>(saved, HttpStatus.CREATED);
     }
+
+
+    // GET requisition by ID
+    @GetMapping("/{id}")
+    public ResponseEntity<PurchaseRequisition> getRequisitionById(@PathVariable int id) {
+        return requisitionRepo.findById(id)
+                .map(requisition -> ResponseEntity.ok(requisition))
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+//    // GET requisition by ID
+//    @GetMapping("/{id}")
+//    public ResponseEntity<PurchaseRequisitionDTO> getRequisitionById(@PathVariable int id) {
+//        return requisitionRepo.findById(id)
+//                .map(requisition -> {
+//                    // Map entity to DTO
+//                    PurchaseRequisitionDTO dto = new PurchaseRequisitionDTO(
+//                            requisition.getId(),
+//                            requisition.getPrDate(),
+//                            requisition.getRequestedBy(),
+//                            requisition.getPrStatus()
+//                    );
+//                    return ResponseEntity.ok(dto);
+//                })
+//                .orElse(ResponseEntity.notFound().build());
+//    }
+
+
+
+
 }

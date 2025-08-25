@@ -33,4 +33,8 @@ export class ProductionOrderService {
   deleteProductionOrder(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+  getProductionOrderByOrderId(id: number): Observable<ProductionOrder[]> {
+    return this.http.get<ProductionOrder[]>(`${this.baseUrl}/production_OrderId/${id}`);
+  }
 }

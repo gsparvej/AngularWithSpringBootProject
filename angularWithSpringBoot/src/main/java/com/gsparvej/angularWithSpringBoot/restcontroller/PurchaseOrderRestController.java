@@ -23,9 +23,11 @@ public class PurchaseOrderRestController {
         return purchaseOrderService.getAllPurchaseOrders();
     }
 
-    // create new Requisition
+
+
+    // create new Purchase
     @PostMapping("")
-    public ResponseEntity<PurchaseOrder> createRequisition(
+    public ResponseEntity<PurchaseOrder> createPurchase(
             @RequestBody PurchaseOrder purchaseOrder
 
     ) {

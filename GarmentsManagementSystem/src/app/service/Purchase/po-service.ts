@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PurchaseOrder } from '../../../model/Purchase/po.model';
 import { environment } from '../../environments/environment';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -26,4 +27,6 @@ private baseUrlPO = environment.apiBaseUrl + '/po';
    viewPODetails(id: number): Observable<any> {
     return this.http.get(this.baseUrlPO+'/'+id);
   }
+
+  
 }

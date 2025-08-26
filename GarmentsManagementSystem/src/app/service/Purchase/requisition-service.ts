@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { PurchaseRequisition } from '../../../model/Purchase/requisition.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { RequisitionResponseDTO } from '../../../model/requisitionResponseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -10,40 +11,42 @@ import { environment } from '../../environments/environment';
 export class RequisitionService {
 
 
-baseUrlRequision = environment.apiBaseUrl + '/requisition';
+  baseUrlRequision = environment.apiBaseUrl + '/requisition';
 
 
 
 
-baseUrlPRstatus: string = "http://localhost:3000/prStatus";
+  baseUrlPRstatus: string = "http://localhost:3000/prStatus";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   // Create PR
   createPR(pr: PurchaseRequisition): Observable<any> {
     return this.http.post(this.baseUrlRequision, pr);
   }
 
-    getAllRequisition(): Observable<any>{
-      
-  return this.http.get(this.baseUrlRequision);
-}
+  getAllRequisition(): Observable<any> {
 
-viewPRDetails(id: number): Observable<any> {
-    return this.http.get(this.baseUrlRequision+'/'+id);
+    return this.http.get(this.baseUrlRequision);
   }
 
-  
-
-   getAllPRstatus(): Observable<any>{
-    
-        return this.http.get(this.baseUrlPRstatus);
-      }
+  viewPRDetails(id: number): Observable<any> {
+    return this.http.get(this.baseUrlRequision + '/' + id);
+  }
 
 
 
+  getAllPRstatus(): Observable<any> {
 
-      // // Get All PRs
+    return this.http.get(this.baseUrlPRstatus);
+  }
+  getRequisitionById(id: number): Observable<RequisitionResponseDTO> {
+    return this.http.get<RequisitionResponseDTO>(`http://localhost:8080/api/requisition/id/${id}`);
+  }
+
+
+
+  // // Get All PRs
   // getAllPRs(): Observable<PurchaseRequisition[]> {
   //   return this.http.get<PurchaseRequisition[]>(this.baseUrlRequision);
   // }

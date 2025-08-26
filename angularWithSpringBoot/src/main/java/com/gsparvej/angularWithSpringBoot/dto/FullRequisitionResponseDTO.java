@@ -1,18 +1,9 @@
-package com.gsparvej.angularWithSpringBoot.entity;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
+package com.gsparvej.angularWithSpringBoot.dto;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "requisitions")
-public class PurchaseRequisition {
+public class FullRequisitionResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Date prDate;
     private String requestedBy;
@@ -21,24 +12,14 @@ public class PurchaseRequisition {
     private float totalEstPrice;
     private String prStatus;
 
+    private OrderResponseDTO order;
+    private ItemResponseDTO item;
+    private DepartmentResponseDTO department;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "department_id")
-    private Department department;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id")
-    private Item item;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-
-    public PurchaseRequisition() {
+    public FullRequisitionResponseDTO() {
     }
 
-    public PurchaseRequisition(int id, Date prDate, String requestedBy, float quantity, float approxUnitPrice, float totalEstPrice, String prStatus, Department department, Item item, Order order) {
+    public FullRequisitionResponseDTO(int id, Date prDate, String requestedBy, float quantity, float approxUnitPrice, float totalEstPrice, String prStatus, OrderResponseDTO order, ItemResponseDTO item, DepartmentResponseDTO department) {
         this.id = id;
         this.prDate = prDate;
         this.requestedBy = requestedBy;
@@ -46,9 +27,9 @@ public class PurchaseRequisition {
         this.approxUnitPrice = approxUnitPrice;
         this.totalEstPrice = totalEstPrice;
         this.prStatus = prStatus;
-        this.department = department;
-        this.item = item;
         this.order = order;
+        this.item = item;
+        this.department = department;
     }
 
     public int getId() {
@@ -107,27 +88,27 @@ public class PurchaseRequisition {
         this.prStatus = prStatus;
     }
 
-    public Department getDepartment() {
-        return department;
-    }
-
-    public void setDepartment(Department department) {
-        this.department = department;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public Order getOrder() {
+    public OrderResponseDTO getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderResponseDTO order) {
         this.order = order;
+    }
+
+    public ItemResponseDTO getItem() {
+        return item;
+    }
+
+    public void setItem(ItemResponseDTO item) {
+        this.item = item;
+    }
+
+    public DepartmentResponseDTO getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentResponseDTO department) {
+        this.department = department;
     }
 }

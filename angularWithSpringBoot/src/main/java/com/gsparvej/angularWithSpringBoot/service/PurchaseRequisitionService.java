@@ -1,7 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
-import com.gsparvej.angularWithSpringBoot.dto.PurchaseRequisitionDTO;
-import com.gsparvej.angularWithSpringBoot.dto.VendorResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.*;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IDepartmentRepo;
 import com.gsparvej.angularWithSpringBoot.repository.IItemRepo;
@@ -62,6 +61,47 @@ public class PurchaseRequisitionService {
             dto.setPrDate(req.getPrDate());
             dto.setRequestedBy(req.getRequestedBy());
             dto.setPrStatus(req.getPrStatus());
+            return dto;
+        }).toList();
+    }
+
+
+    public List<FullRequisitionResponseDTO> getFullRequisitionResponseDTOS(int id) {
+        return requisitionRepo.findById(id).stream().map(requ -> {
+            FullRequisitionResponseDTO dto = new FullRequisitionResponseDTO();
+            dto.setId(requ.getId());
+            dto.setPrDate(requ.getPrDate());
+            dto.setRequestedBy(requ.getRequestedBy());
+            dto.setPrStatus(requ.getPrStatus());
+            dto.setQuantity(requ.getQuantity());
+            dto.setApproxUnitPrice(requ.getApproxUnitPrice());
+            dto.setTotalEstPrice(requ.getTotalEstPrice());
+
+            Order order = requ.getOrder();
+            if (order != null) {
+                OrderResponseDTO orderResponseDTO = new OrderResponseDTO();
+                orderResponseDTO.setId(order.getId());
+
+                dto.setOrder(orderResponseDTO);
+
+
+            }
+
+            Item item = requ.getItem();
+            if (item != null) {
+                ItemResponseDTO itemResponseDTO = new ItemResponseDTO();
+                itemResponseDTO.setCategoryName(item.getCategoryName());
+
+                dto.setItem(itemResponseDTO);
+
+            }
+            Department department = requ.getDepartment();
+            if (department != null) {
+                DepartmentResponseDTO departmentResponseDTO = new DepartmentResponseDTO();
+                departmentResponseDTO.setName(department.getName());
+                dto.setDepartment(departmentResponseDTO);
+            }
+
             return dto;
         }).toList();
     }

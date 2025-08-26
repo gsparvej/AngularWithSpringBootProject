@@ -19,19 +19,19 @@
   <div class="row mb-4">
     <div class="col-md-4 mb-2">
       <label class="form-label fw-semibold">ID</label>
-      <div class="text-secondary border-bottom pb-1">{{ requisition.id }}</div>
+      <div class="text-secondary border-bottom pb-1">{{ requi.id }}</div>
     </div>
     <div class="col-md-4 mb-2">
       <label class="form-label fw-semibold">PR Date</label>
-      <div class="text-secondary border-bottom pb-1">{{ requisition.prDate | date: 'dd MMMM, yyyy' }}</div>
+      <div class="text-secondary border-bottom pb-1">{{ requi.prDate | date: 'dd MMMM, yyyy' }}</div>
     </div>
     <div class="col-md-4 mb-2">
       <label class="form-label fw-semibold">Requested By </label>
-      <div class="text-secondary border-bottom pb-1">{{ requisition.requestedBy}}</div>
+      <div class="text-secondary border-bottom pb-1">{{ requi.requestedBy}}</div>
     </div>
     <div class="col-md-4 mb-2">
       <label class="form-label fw-semibold">Status  </label>
-      <div class="text-secondary border-bottom pb-1">{{ requisition.prStatus}}</div>
+      <div class="text-secondary border-bottom pb-1">{{ requi.prStatus}}</div>
     </div>
   </div>
 
@@ -40,15 +40,15 @@
   <div class="row mb-4">
     <div class="col-md-4">
       <label class="form-label">Category Name</label>
-      <div class="text-secondary">{{ requisition.item.categoryName }}</div>
+      <div class="text-secondary">{{ requi.item.categoryName }}</div>
     </div>
     <div class="col-md-4">
       <label class="form-label">Department</label>
-      <div class="text-secondary">{{ requisition.department.name }}</div>
+      <div class="text-secondary">{{ requi.department.name }}</div>
     </div>
     <div class="col-md-4">
       <label class="form-label">Order ID</label>
-      <div class="text-secondary">{{ requisition.order.id }}</div>
+      <div class="text-secondary">{{ requi.order.id }}</div>
     </div>
   </div>
 
@@ -68,11 +68,11 @@
       <tbody>
         <tr >
           <td>{{  1 }}</td>
-           <td>{{ requisition.item.categoryName }}</td>
+           <td>{{ requi.item.categoryName }}</td>
 
-          <td>{{ requisition.quantity| number:'1.2-2'}}  {{requisition.item.unit}}</td>
-          <td>{{ requisition.approxUnitPrice }}</td>
-          <td>{{ requisition.totalEstPrice| number:'1.2-2' }}</td>
+          <td>{{ requi.quantity| number:'1.2-2'}}  {{requi.item.unit}}</td>
+          <td>{{ requi.approxUnitPrice }}</td>
+          <td>{{ requi.totalEstPrice| number:'1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
@@ -86,7 +86,7 @@
       <div class="border-bottom mb-2" style="height: 40px;"></div>
       <p class="mb-0"><strong>Md. Parvej Hossen</strong></p>
       <p class="mb-0">Purchase Manager</p>
-      <p>Date: {{ requisition.prDate| date:'dd MMMM, yyyy' }}</p>
+      <p>Date: {{ requi.prDate| date:'dd MMMM, yyyy' }}</p>
     </div>
     <div class="col-md-6 text-end">
       <p class="fw-semibold">Approved By (Admin):</p>

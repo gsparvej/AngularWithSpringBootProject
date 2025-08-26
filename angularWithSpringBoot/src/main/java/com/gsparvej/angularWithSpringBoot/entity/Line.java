@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "lines")
+@Table(name = "line")
 public class Line {
 
     @Id
@@ -17,18 +17,15 @@ public class Line {
     private int capacityPerHour;
 
 
-    @OneToMany(mappedBy = "line", cascade = CascadeType.ALL)
-    private List<Machine> machines;
 
     public Line() {
     }
 
-    public Line(int id, String lineCode, String floor, int capacityPerHour, List<Machine> machines) {
+    public Line(int id, String lineCode, String floor, int capacityPerHour) {
         this.id = id;
         this.lineCode = lineCode;
         this.floor = floor;
         this.capacityPerHour = capacityPerHour;
-        this.machines = machines;
     }
 
     public int getId() {
@@ -63,11 +60,5 @@ public class Line {
         this.capacityPerHour = capacityPerHour;
     }
 
-    public List<Machine> getMachines() {
-        return machines;
-    }
 
-    public void setMachines(List<Machine> machines) {
-        this.machines = machines;
-    }
 }

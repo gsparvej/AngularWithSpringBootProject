@@ -12,18 +12,15 @@ public class Machine {
     private String machineCode;
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "line_id")
-    private Line line;
+
 
     public Machine() {
     }
 
-    public Machine(int id, String machineCode, String status, Line line) {
+    public Machine(int id, String machineCode, String status) {
         this.id = id;
         this.machineCode = machineCode;
         this.status = status;
-        this.line = line;
     }
 
     public int getId() {
@@ -50,11 +47,5 @@ public class Machine {
         this.status = status;
     }
 
-    public Line getLine() {
-        return line;
-    }
 
-    public void setLine(Line line) {
-        this.line = line;
-    }
 }

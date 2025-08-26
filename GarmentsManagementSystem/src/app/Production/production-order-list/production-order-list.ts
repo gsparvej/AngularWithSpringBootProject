@@ -21,12 +21,10 @@ export class ProductionOrderList implements OnInit{
   ) {}
 
   ngOnInit(): void {
-    this.getAllProductionOrders(); // This loads all orders initially
-
+    this.getAllProductionOrders(); 
   }
 
   getAllProductionOrders(): void {
-    // Fetch all production orders once to allow local filtering
     this.productionOrderService.getAllProductionOrder().subscribe((data) => {
       
       this.productionOrders = data;
@@ -46,7 +44,7 @@ export class ProductionOrderList implements OnInit{
   }
 
    reset(): void {
-    this.searchOrderId = null as any; // or undefined
+    this.searchOrderId = null as any;
     this.filteredOrders = [...this.productionOrders];
      this.getAllProductionOrders();
     this.cdr.detectChanges();

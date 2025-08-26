@@ -47,6 +47,7 @@
             <li><strong>Plan Qty:</strong> {{ order.planQty }}</li>
             <li><strong>Start Date:</strong> {{ order.startDate | date }}</li>
             <li><strong>End Date:</strong> {{ order.endDate | date }}</li>
+            <li><strong>Size:</strong> {{ order.size }}</li>
             <li><strong>Priority:</strong>
               <span class="badge bg-warning text-dark" *ngIf="order.priority==='Urgent'">Urgent</span>
               <span class="badge bg-primary" *ngIf="order.priority==='Normal'">Normal</span>

@@ -20,7 +20,6 @@ public class Item {
     private List<PurchaseOrder> purchaseOrders;
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-
     private List<PurchaseRequisition> purchaseRequisitions;
 
     public Item() {

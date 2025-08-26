@@ -60,6 +60,8 @@ import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
+import { LineListComponent } from './Production/line-list-component/line-list-component';
+import { MachineListComponent } from './Production/machine-list-component/machine-list-component';
 
 
 const routes: Routes = [
@@ -136,6 +138,8 @@ const routes: Routes = [
   // production part
   {path: 'productionOrder', component: ProductionOrderComponenet},
   {path: 'productionorderList', component: ProductionOrderList},
+  {path: 'lineList', component: LineListComponent},
+  {path: 'machineList', component: MachineListComponent}
 
 ];
 

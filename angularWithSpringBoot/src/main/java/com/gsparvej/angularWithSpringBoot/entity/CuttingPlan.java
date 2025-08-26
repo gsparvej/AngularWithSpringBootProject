@@ -13,7 +13,7 @@ public class CuttingPlan {
     private float fabricWidth;
     private int layCount;
     private float plannedPcs;
-    private String status;
+    private float fabricUsed;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "productionOrder_id")
@@ -22,13 +22,13 @@ public class CuttingPlan {
     public CuttingPlan() {
     }
 
-    public CuttingPlan(int id, String markerNo, float fabricWidth, int layCount, float plannedPcs, String status, ProductionOrder productionOrder) {
+    public CuttingPlan(int id, String markerNo, float fabricWidth, int layCount, float plannedPcs, float fabricUsed, ProductionOrder productionOrder) {
         this.id = id;
         this.markerNo = markerNo;
         this.fabricWidth = fabricWidth;
         this.layCount = layCount;
         this.plannedPcs = plannedPcs;
-        this.status = status;
+        this.fabricUsed = fabricUsed;
         this.productionOrder = productionOrder;
     }
 
@@ -72,12 +72,12 @@ public class CuttingPlan {
         this.plannedPcs = plannedPcs;
     }
 
-    public String getStatus() {
-        return status;
+    public float getFabricUsed() {
+        return fabricUsed;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFabricUsed(float fabricUsed) {
+        this.fabricUsed = fabricUsed;
     }
 
     public ProductionOrder getProductionOrder() {

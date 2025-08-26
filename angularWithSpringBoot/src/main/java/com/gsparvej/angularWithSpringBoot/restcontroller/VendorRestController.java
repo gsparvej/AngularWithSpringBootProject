@@ -36,7 +36,7 @@ public class VendorRestController {
         return ResponseEntity.ok(savedVendor);
     }
 
-    // Get single BomStyle by id
+    // Get single Vendor by id
     @GetMapping("/{id}")
     public ResponseEntity<Vendor> getVendorById(@PathVariable int id) {
         Optional<Vendor> ven = vendorService.getAllVendors()

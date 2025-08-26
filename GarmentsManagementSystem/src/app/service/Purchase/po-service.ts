@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PurchaseOrder } from '../../../model/Purchase/po.model';
 import { environment } from '../../environments/environment';
+import { VendorModel } from '../../../model/Purchase/vendor.model';
 
 
 @Injectable({
@@ -27,6 +28,12 @@ private baseUrlPO = environment.apiBaseUrl + '/po';
    viewPODetails(id: number): Observable<any> {
     return this.http.get(this.baseUrlPO+'/'+id);
   }
+
+
+  getVendorById(id: number): Observable<VendorModel> {
+  return this.http.get<VendorModel>(`http://localhost:8080/api/vendor/${id}`);
+}
+
 
   
 }

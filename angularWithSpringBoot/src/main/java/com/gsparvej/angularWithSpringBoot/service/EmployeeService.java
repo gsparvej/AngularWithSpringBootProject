@@ -38,6 +38,13 @@ public class EmployeeService {
 
         return dtoList;
     }
+    //  public String getDesignationTitle() {
+    //        return designationTitle;
+    //    }
+
+
+    // public Designation getDesignation() {
+    //        return designation;
 
 
 

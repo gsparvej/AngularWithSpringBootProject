@@ -154,7 +154,7 @@ export class CreatePO implements OnInit {
 
 
 
-  loadVendor(): void {
+   loadVendor(): void {
     this.vendorService.getAllVendor().subscribe({
       next: vendor => {
         this.vendor = vendor;

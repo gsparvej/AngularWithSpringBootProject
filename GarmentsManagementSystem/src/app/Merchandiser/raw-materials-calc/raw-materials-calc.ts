@@ -93,7 +93,7 @@ export class RawMaterialsCalc implements OnInit {
     this.merchandiserService.getAllOrder().subscribe({
       next: (res: Order[]) => {
         this.order = res;
-        this.cdr.markForCheck();
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.error(err);
@@ -105,7 +105,7 @@ export class RawMaterialsCalc implements OnInit {
     this.merchandiserService.getAllUom().subscribe({
       next: res => {
         this.uom = res;
-        this.cdr.markForCheck();
+        this.cdr.detectChanges();
       },
       error: err => {
         console.log(err);

@@ -68,6 +68,8 @@ import { ProductionOrderComponenet } from './Production/production-order-compone
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
 import { LineListComponent } from './Production/line-list-component/line-list-component';
 import { MachineListComponent } from './Production/machine-list-component/machine-list-component';
+import { AddCuttingPlanComponent } from './Production/add-cutting-plan-component/add-cutting-plan-component';
+import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-plan';
 
 
 @NgModule({
@@ -136,6 +138,8 @@ import { MachineListComponent } from './Production/machine-list-component/machin
     ProductionOrderList,
     LineListComponent,
     MachineListComponent,
+    AddCuttingPlanComponent,
+    ViewCuttingPlan,
 
   ],
   imports: [

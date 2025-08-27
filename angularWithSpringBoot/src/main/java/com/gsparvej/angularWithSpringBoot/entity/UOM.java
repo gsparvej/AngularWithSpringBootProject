@@ -26,13 +26,15 @@ public class UOM {
     private float baseFabric;
 
     @OneToMany(mappedBy = "uom" , cascade = CascadeType.ALL)
-
     private List<BOM> boms;
+
+    @OneToMany(mappedBy = "uom" , cascade = CascadeType.ALL)
+    private List<CuttingPlan> cuttingPlans;
 
     public UOM() {
     }
 
-    public UOM(int id, String productName, String size, float body, float sleeve, float pocket, float wastage, float shrinkage, float baseFabric, List<BOM> boms) {
+    public UOM(int id, String productName, String size, float body, float sleeve, float pocket, float wastage, float shrinkage, float baseFabric, List<BOM> boms, List<CuttingPlan> cuttingPlans) {
         this.id = id;
         this.productName = productName;
         this.size = size;
@@ -43,6 +45,7 @@ public class UOM {
         this.shrinkage = shrinkage;
         this.baseFabric = baseFabric;
         this.boms = boms;
+        this.cuttingPlans = cuttingPlans;
     }
 
     public int getId() {
@@ -123,5 +126,13 @@ public class UOM {
 
     public void setBoms(List<BOM> boms) {
         this.boms = boms;
+    }
+
+    public List<CuttingPlan> getCuttingPlans() {
+        return cuttingPlans;
+    }
+
+    public void setCuttingPlans(List<CuttingPlan> cuttingPlans) {
+        this.cuttingPlans = cuttingPlans;
     }
 }

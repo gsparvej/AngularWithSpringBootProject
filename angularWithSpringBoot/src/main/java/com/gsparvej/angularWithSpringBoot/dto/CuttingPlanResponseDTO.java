@@ -1,15 +1,9 @@
-package com.gsparvej.angularWithSpringBoot.entity;
-
-import jakarta.persistence.*;
+package com.gsparvej.angularWithSpringBoot.dto;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "cuttingPlaning")
-public class CuttingPlan {
+public class CuttingPlanResponseDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String markerNo;
     private float fabricWidth;
@@ -19,18 +13,13 @@ public class CuttingPlan {
     private String status;
     private Date cuttingDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "uom_id")
-    private UOM uom;
+    private UomResponseDTO uom;
+    private ProductionOrderResponseDTO productionOrder;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productionOrder_id")
-    private ProductionOrder productionOrder;
-
-    public CuttingPlan() {
+    public CuttingPlanResponseDTO() {
     }
 
-    public CuttingPlan(int id, String markerNo, float fabricWidth, int layCount, float plannedPcs, float fabricUsed, String status, Date cuttingDate, UOM uom, ProductionOrder productionOrder) {
+    public CuttingPlanResponseDTO(int id, String markerNo, float fabricWidth, int layCount, float plannedPcs, float fabricUsed, String status, Date cuttingDate, UomResponseDTO uom, ProductionOrderResponseDTO productionOrder) {
         this.id = id;
         this.markerNo = markerNo;
         this.fabricWidth = fabricWidth;
@@ -91,14 +80,6 @@ public class CuttingPlan {
         this.fabricUsed = fabricUsed;
     }
 
-    public ProductionOrder getProductionOrder() {
-        return productionOrder;
-    }
-
-    public void setProductionOrder(ProductionOrder productionOrder) {
-        this.productionOrder = productionOrder;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -107,19 +88,27 @@ public class CuttingPlan {
         this.status = status;
     }
 
-    public UOM getUom() {
-        return uom;
-    }
-
-    public void setUom(UOM uom) {
-        this.uom = uom;
-    }
-
     public Date getCuttingDate() {
         return cuttingDate;
     }
 
     public void setCuttingDate(Date cuttingDate) {
         this.cuttingDate = cuttingDate;
+    }
+
+    public UomResponseDTO getUom() {
+        return uom;
+    }
+
+    public void setUom(UomResponseDTO uom) {
+        this.uom = uom;
+    }
+
+    public ProductionOrderResponseDTO getProductionOrder() {
+        return productionOrder;
+    }
+
+    public void setProductionOrder(ProductionOrderResponseDTO productionOrder) {
+        this.productionOrder = productionOrder;
     }
 }

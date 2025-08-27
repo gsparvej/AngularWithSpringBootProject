@@ -62,6 +62,8 @@ import { ProductionOrderComponenet } from './Production/production-order-compone
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
 import { LineListComponent } from './Production/line-list-component/line-list-component';
 import { MachineListComponent } from './Production/machine-list-component/machine-list-component';
+import { AddCuttingPlanComponent } from './Production/add-cutting-plan-component/add-cutting-plan-component';
+import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-plan';
 
 
 const routes: Routes = [
@@ -139,7 +141,9 @@ const routes: Routes = [
   {path: 'productionOrder', component: ProductionOrderComponenet},
   {path: 'productionorderList', component: ProductionOrderList},
   {path: 'lineList', component: LineListComponent},
-  {path: 'machineList', component: MachineListComponent}
+  {path: 'machineList', component: MachineListComponent},
+  {path: 'addCuttingPlan', component: AddCuttingPlanComponent},
+  {path: 'viewCuttingPlan' , component: ViewCuttingPlan}
 
 ];
 

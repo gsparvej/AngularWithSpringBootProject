@@ -36,7 +36,8 @@ export class ProductionOrderList implements OnInit{
   searchByOrderId(): void {
     if (this.searchOrderId != null) {
       this.filteredOrders = this.productionOrders.filter(
-        (order) => order.order?.id === this.searchOrderId
+        (order) => order.order?.id === this.searchOrderId,
+        console.log("++++++++", this.filteredOrders)
       );
     } else {
       this.filteredOrders = this.productionOrders;

@@ -50,7 +50,7 @@
   </div>
 
   <hr />
-
+<p>From UOM Table</p>
   <div formGroupName="uom" class="row mt-3">
     <div class="col-md-4">
       <label>Product Name</label>
@@ -68,28 +68,5 @@
       <input class="form-control" formControlName="result" readonly />
     </div>
   </div>
-
-  
-
-
-<hr/>
-
-
- <hr />
-
-  <div formGroupName="bomView" class="row">
-    <div class="col-md-4">
-      <label>Product Name</label>
-      <select class="form-select" formControlName="id">
-        <option value="">-- Select --</option>
-        <option *ngFor="let o of bomView" [value]="o.id">{{ o.material }}</option>
-      </select>
-    </div>
-     <div class="col-md-2">
-      <label>Product Quantity</label>
-      <input class="form-control" formControlName="quantity" readonly />
-    </div>
-  </div>
-
   <button class="btn btn-success mt-3" type="button">Save Raw Materials</button>
 </form>

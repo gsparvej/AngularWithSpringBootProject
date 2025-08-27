@@ -31,6 +31,10 @@ public class UOM {
     @OneToMany(mappedBy = "uom" , cascade = CascadeType.ALL)
     private List<CuttingPlan> cuttingPlans;
 
+    @OneToMany(mappedBy = "uom" ,cascade = CascadeType.ALL)
+    private List<RawMaterialsModel> rawMaterialsModels;
+
+
     public UOM() {
     }
 

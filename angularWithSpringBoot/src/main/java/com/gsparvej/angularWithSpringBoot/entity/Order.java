@@ -65,12 +65,17 @@ public class Order {
     @JoinColumn(name= "buyer_id")
     private Buyer buyer;
 
+
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
 
     private List<PurchaseRequisition> purchaseRequisitions;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<ProductionOrder> productionOrders;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<RawMaterialsModel> rawMaterialsModels;
 
     public Order() {
     }

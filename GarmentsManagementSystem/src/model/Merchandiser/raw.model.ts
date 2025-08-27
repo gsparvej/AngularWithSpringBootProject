@@ -5,9 +5,19 @@ import { Uom } from "./uom.model";
 export class RawMaterialsModel {
 
     id?: number;
-    totalQuantity!: number;
+
+    shortSTotalQuantity!: number;
+    shortMTotalQuantity!: number;
+    shortLTotalQuantity!: number;
+    shortXLTotalQuantity!: number;
+    fullSTotalQuantity!: number;
+    fullMTotalQuantity!: number;
+    fullLTotalQuantity!: number;
+    fullXLTotalQuantity!: number;
+   
+   
 
     order!: Order;
     uom!: Uom;
-    bomView!: Bomview
+    
 }

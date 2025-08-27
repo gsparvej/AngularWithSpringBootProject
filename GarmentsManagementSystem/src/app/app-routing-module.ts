@@ -64,6 +64,8 @@ import { LineListComponent } from './Production/line-list-component/line-list-co
 import { MachineListComponent } from './Production/machine-list-component/machine-list-component';
 import { AddCuttingPlanComponent } from './Production/add-cutting-plan-component/add-cutting-plan-component';
 import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-plan';
+import { AddCutBundle } from './Production/add-cut-bundle/add-cut-bundle';
+import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
 
 
 const routes: Routes = [
@@ -143,7 +145,9 @@ const routes: Routes = [
   { path: 'lineList', component: LineListComponent },
   { path: 'machineList', component: MachineListComponent },
   { path: 'addCuttingPlan', component: AddCuttingPlanComponent },
-  { path: 'viewCuttingPlan', component: ViewCuttingPlan }
+  { path: 'viewCuttingPlan', component: ViewCuttingPlan },
+  {path: 'addCutBundle', component: AddCutBundle},
+  {path: 'viewCutBundle', component: ViewCutBundle}
 
 ];
 

@@ -1,5 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.CutBundleDTO;
+import com.gsparvej.angularWithSpringBoot.dto.CuttingPlanResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.CutBundle;
 import com.gsparvej.angularWithSpringBoot.entity.CuttingPlan;
 import com.gsparvej.angularWithSpringBoot.service.CutBundleService;
@@ -18,9 +20,14 @@ public class CutBundleRestController {
     @Autowired
     private CutBundleService cutBundleService;
 
-    @GetMapping("")
+    @GetMapping("all")
     public List<CutBundle> getAllCutBundle() {
         return cutBundleService.getAllCutBundles();
+    }
+
+    @GetMapping("")
+    public List<CutBundleDTO> getAllCutBunDTOs() {
+        return cutBundleService.getAllCutBundleDTOS();
     }
     @PostMapping("")
     public ResponseEntity<CutBundle> createCutBundle(

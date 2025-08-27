@@ -1,5 +1,9 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
+import com.gsparvej.angularWithSpringBoot.dto.CutBundleDTO;
+import com.gsparvej.angularWithSpringBoot.dto.CuttingPlanResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.ProductionOrderResponseDTO;
+import com.gsparvej.angularWithSpringBoot.dto.UomResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.CutBundle;
 import com.gsparvej.angularWithSpringBoot.entity.CuttingPlan;
 import com.gsparvej.angularWithSpringBoot.entity.ProductionOrder;
@@ -40,5 +44,28 @@ public class CutBundleService {
 
     public void deleteById(Integer id) {
         cuttingPlanRepo.deleteById(id);
+    }
+
+
+    public List<CutBundleDTO> getAllCutBundleDTOS() {
+        return cutBundleRepo.findAll().stream().map(cutting -> {
+            CutBundleDTO dto = new CutBundleDTO();
+            dto.setId(cutting.getId());
+            dto.setBundleNo(cutting.getBundleNo());
+            dto.setSize(cutting.getSize());
+            dto.setColor(cutting.getColor());
+            dto.setPlannedQty(cutting.getPlannedQty());
+
+            CuttingPlan cut = cutting.getCuttingPlan();
+            if (cut != null) {
+                CuttingPlanResponseDTO cuttingPlanResponseDTO = new CuttingPlanResponseDTO();
+                cuttingPlanResponseDTO.setId(cut.getId());
+
+                dto.setCuttingPlan(cuttingPlanResponseDTO);
+
+
+            }
+            return dto;
+        }).toList();
     }
 }

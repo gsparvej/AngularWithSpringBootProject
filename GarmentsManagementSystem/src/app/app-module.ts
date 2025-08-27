@@ -70,6 +70,8 @@ import { LineListComponent } from './Production/line-list-component/line-list-co
 import { MachineListComponent } from './Production/machine-list-component/machine-list-component';
 import { AddCuttingPlanComponent } from './Production/add-cutting-plan-component/add-cutting-plan-component';
 import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-plan';
+import { AddCutBundle } from './Production/add-cut-bundle/add-cut-bundle';
+import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
 
 
 @NgModule({
@@ -140,6 +142,8 @@ import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-pla
     MachineListComponent,
     AddCuttingPlanComponent,
     ViewCuttingPlan,
+    AddCutBundle,
+    ViewCutBundle,
 
   ],
   imports: [

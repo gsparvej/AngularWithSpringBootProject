@@ -56,17 +56,12 @@ export class RawMaterialsCalc implements OnInit {
         productName: [''],
         size: [''],
         result: ['']
-      }),
-      bomView: this.fb.group({
-        id: [''],
-        material: [''],
-        quantity: ['']
       })
     });
 
     this.loadOrder();
     this.loadUom();
-    this.loadAllBomView();
+    
 
     this.formRawMaterials.get('order.id')?.valueChanges.subscribe(id => {
       const selected = this.order.find(or => or.id === id);
@@ -117,26 +112,4 @@ export class RawMaterialsCalc implements OnInit {
       }
     });
   }
-
-
-  loadAllBomView(): void {
-    this.merchandiserService.getAllBomView().subscribe({
-      next: res => {
-        this.bomView = res;
-        this.cdr.markForCheck();
-      },
-      error: err => {
-        console.log(err);
-      }
-    });
-  }
-
-
-  
-
-
-
-
-
-
 }

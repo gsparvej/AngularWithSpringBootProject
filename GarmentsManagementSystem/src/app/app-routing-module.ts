@@ -81,28 +81,28 @@ const routes: Routes = [
   { path: 'addAtten', component: AddAttendance },
   { path: 'viewAllLeave', component: ViewAllLeave },
   { path: 'addLeave', component: AddLeave },
-  {path: 'updateLeave/:id', component: UpdateLeave},
+  { path: 'updateLeave/:id', component: UpdateLeave },
 
 
 
   { path: 'viewAllBuyer', component: ViewAllBuyer },
-  {path: 'updateBuy/:id', component: UpdateBuyer},
+  { path: 'updateBuy/:id', component: UpdateBuyer },
   { path: 'addBuyer', component: AddBuyer },
 
 
-  {path: 'viewAllUser', component: ViewUsers},
-  {path: 'updateUser/:id', component: UpdateUsers},
+  { path: 'viewAllUser', component: ViewUsers },
+  { path: 'updateUser/:id', component: UpdateUsers },
 
   //role Profile
-  {path: 'userprofile', component: UserProfile },
-  {path: 'adminprofile', component: AdminProfile},
-  {path: 'superadmin', component: SuperAdmin},
-  {path: 'hrexecutive', component: HrExecutive},
-  {path: 'hradmin', component: HrAdmin},
-  {path: 'merchandiserjunior', component: MerchandiserJunior},
-  {path: 'merchandisermanager', component: MerchandiserManager},
-  {path: 'purchaseexecutive', component: PurchaseExecutive},
-  {path: 'purchasemanager', component: PurchaseManager},
+  { path: 'userprofile', component: UserProfile },
+  { path: 'adminprofile', component: AdminProfile },
+  { path: 'superadmin', component: SuperAdmin },
+  { path: 'hrexecutive', component: HrExecutive },
+  { path: 'hradmin', component: HrAdmin },
+  { path: 'merchandiserjunior', component: MerchandiserJunior },
+  { path: 'merchandisermanager', component: MerchandiserManager },
+  { path: 'purchaseexecutive', component: PurchaseExecutive },
+  { path: 'purchasemanager', component: PurchaseManager },
 
 
 
@@ -124,26 +124,26 @@ const routes: Routes = [
   { path: 'addItem', component: AddItemList },
   { path: 'viewAllItem', component: ViewAllItem },
   { path: 'inventory', component: Inventory },
-  {path: 'stockIn' ,component: StockIn},
-  {path: 'stockOut', component: StockOut},
-  {path: 'createRequisition', component: CreateRequisition},
-  {path: 'createPO', component: CreatePO},
-  {path: 'viewPO' , component: ViewAllPO},
-  {path: 'viewPODetails/:id', component: ViewPODetails},
-  {path: 'viewAllRequ' , component: ViewAllRequ},
-  {path: 'viewRequDetails/:id' ,component: ViewRequDetails},
-  {path: 'chatBox', component: ChatComponent},
+  { path: 'stockIn', component: StockIn },
+  { path: 'stockOut', component: StockOut },
+  { path: 'createRequisition', component: CreateRequisition },
+  { path: 'createPO', component: CreatePO },
+  { path: 'viewPO', component: ViewAllPO },
+  { path: 'viewPODetails/:id', component: ViewPODetails },
+  { path: 'viewAllRequ', component: ViewAllRequ },
+  { path: 'viewRequDetails/:id', component: ViewRequDetails },
+  { path: 'chatBox', component: ChatComponent },
 
 
-  {path: 'rawMateSave', component: RawMaterialsCalc},
+  { path: 'rawMateSave', component: RawMaterialsCalc },
 
   // production part
-  {path: 'productionOrder', component: ProductionOrderComponenet},
-  {path: 'productionorderList', component: ProductionOrderList},
-  {path: 'lineList', component: LineListComponent},
-  {path: 'machineList', component: MachineListComponent},
-  {path: 'addCuttingPlan', component: AddCuttingPlanComponent},
-  {path: 'viewCuttingPlan' , component: ViewCuttingPlan}
+  { path: 'productionOrder', component: ProductionOrderComponenet },
+  { path: 'productionorderList', component: ProductionOrderList },
+  { path: 'lineList', component: LineListComponent },
+  { path: 'machineList', component: MachineListComponent },
+  { path: 'addCuttingPlan', component: AddCuttingPlanComponent },
+  { path: 'viewCuttingPlan', component: ViewCuttingPlan }
 
 ];
 

@@ -11,7 +11,7 @@ import { CuttingPlanService } from '../../service/Production/cutting-plan-servic
 export class ViewCuttingPlan implements OnInit {
 
   cuttingPlans: CuttingPlan[] = [];
-  loading: boolean = true;
+  
 
   filteredCuttingPlans: CuttingPlan[] = [];
   searchOrderId!: number;
@@ -29,12 +29,12 @@ export class ViewCuttingPlan implements OnInit {
     this.cuttingPlanService.getAllCuttingPlan().subscribe({
       next: (data) => {
         this.cuttingPlans = data;
-        this.loading = false;
+       
         this.cdr.detectChanges();
       },
       error: (err) => {
         console.error('Error loading Cutting Plans:', err);
-        this.loading = false;
+       
       }
     });
   }
@@ -42,7 +42,8 @@ export class ViewCuttingPlan implements OnInit {
   searchByProductionOrderId(): void {
     if (this.searchOrderId != null) {
       this.filteredCuttingPlans = this.cuttingPlans.filter(
-        (order) => order.productionOrder?.id === this.searchOrderId
+        (order) => order.productionOrder?.id === this.searchOrderId,
+        console.log("++++++++", this.filteredCuttingPlans)
       );
     } else {
       this.filteredCuttingPlans = this.cuttingPlans;

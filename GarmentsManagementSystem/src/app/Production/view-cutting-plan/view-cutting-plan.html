@@ -25,7 +25,7 @@
   </div>
   <h3 class="text-center mb-3">All Cutting Plans</h3>
   <!-- Cutting Plans as Cards -->
-  <div *ngIf="!loading && cuttingPlans.length > 0" class="row g-3">
+  <div *ngIf="cuttingPlans.length > 0" class="row g-3">
     <div class="col-md-4" *ngFor="let cp of cuttingPlans">
       <div class="card shadow-sm h-100">
         <div class="card-body">
@@ -62,7 +62,7 @@
   </div>
 
   <!-- No Data -->
-  <div *ngIf="!loading && cuttingPlans.length === 0" class="alert alert-info text-center">
+  <div *ngIf=" cuttingPlans.length === 0" class="alert alert-info text-center">
     No Cutting Plans available.
   </div>
 </div>

@@ -85,4 +85,14 @@ public class OrderRestController {
 //                .orElseGet(()-> ResponseEntity.notFound().build());
 //}
 
+
+
+    // Example: /api/orders/by-style/ST-1001
+    @GetMapping("/by-style/{styleCode}")
+    public List<FullOrderViewResponseDTO> getOrdersByStyle(@PathVariable String styleCode) {
+        return orderService.getOrdersByStyleCode(styleCode);
+    }
+
+
+
 }

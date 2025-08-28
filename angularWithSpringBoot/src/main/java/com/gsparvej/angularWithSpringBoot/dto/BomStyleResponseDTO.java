@@ -9,6 +9,12 @@ public class BomStyleResponseDTO {
     public BomStyleResponseDTO() {
     }
 
+
+    public BomStyleResponseDTO(int id, String styleCode) {
+        this.id = id;
+        this.styleCode = styleCode;
+    }
+
     public BomStyleResponseDTO(int id, String styleCode, String styleType, String description) {
         this.id = id;
         this.styleCode = styleCode;

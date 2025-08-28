@@ -28,6 +28,9 @@ public class BuyerResponseDTO {
         this.website = website;
     }
 
+    public BuyerResponseDTO(int id, String name, String contactPerson, String email) {
+    }
+
     public int getId() {
         return id;
     }

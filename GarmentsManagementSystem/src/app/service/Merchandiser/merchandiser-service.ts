@@ -154,6 +154,10 @@ export class MerchandiserService {
     return this.http.get(this.baseUrlOrderStatus);
   }
 
+getOrderByStyle(styleCode: string): Observable<FullOrderViewResponseDTO[]> {
+  return this.http.get<FullOrderViewResponseDTO[]>(`${this.baseUrlOrder}/by-style/${styleCode}`);
+}
+
   // OrderStatus add, update, delete, view start
 
 

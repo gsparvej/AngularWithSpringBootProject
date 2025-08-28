@@ -173,6 +173,59 @@ public class OrderService {
 
 
 
+    public List<FullOrderViewResponseDTO> getOrdersByStyleCode(String styleCode) {
+        List<Order> orders = orderRepo.findByBomStyle_StyleCode(styleCode);
 
+        return orders.stream().map(this::mapToDTO).toList();
+    }
 
+    private FullOrderViewResponseDTO mapToDTO(Order order) {
+        BomStyleResponseDTO bomStyleDTO = new BomStyleResponseDTO(
+                order.getBomStyle().getId(),
+                order.getBomStyle().getStyleCode()
+
+        );
+
+        BuyerResponseDTO buyerDTO = new BuyerResponseDTO(
+                order.getBuyer().getId(),
+                order.getBuyer().getName(),
+                order.getBuyer().getContactPerson(),
+                order.getBuyer().getEmail()
+        );
+
+        return new FullOrderViewResponseDTO(
+                order.getId(),
+                order.getOrderDate(),
+                order.getDeliveryDate(),
+                order.getShortSmallSize(),
+                order.getShortSPrice(),
+                order.getShortMediumSize(),
+                order.getShortMPrice(),
+                order.getShortLargeSize(),
+                order.getShortLPrice(),
+                order.getShortXLSize(),
+                order.getShortXLPrice(),
+                order.getFullSmallSize(),
+                order.getFullSPrice(),
+                order.getFullMediumSize(),
+                order.getFullMPrice(),
+                order.getFullLargeSize(),
+                order.getFullLPrice(),
+                order.getFullXLSize(),
+                order.getFullXLPrice(),
+                order.getSubTotal(),
+                order.getVat(),
+                order.getPaidAmount(),
+                order.getDueAmount(),
+                order.getTotal(),
+                order.getRemarks(),
+                order.getOrderStatus(),
+                bomStyleDTO,
+                buyerDTO
+        );
+    }
 }
+
+
+
+

@@ -66,6 +66,8 @@ import { AddCuttingPlanComponent } from './Production/add-cutting-plan-component
 import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-plan';
 import { AddCutBundle } from './Production/add-cut-bundle/add-cut-bundle';
 import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
+import { AddDayWiseProduction } from './Production/add-day-wise-production/add-day-wise-production';
+import { ViewDayWiseProduction } from './Production/view-day-wise-production/view-day-wise-production';
 
 
 const routes: Routes = [
@@ -147,7 +149,9 @@ const routes: Routes = [
   { path: 'addCuttingPlan', component: AddCuttingPlanComponent },
   { path: 'viewCuttingPlan', component: ViewCuttingPlan },
   {path: 'addCutBundle', component: AddCutBundle},
-  {path: 'viewCutBundle', component: ViewCutBundle}
+  {path: 'viewCutBundle', component: ViewCutBundle},
+  {path: 'addDayWisePro', component: AddDayWiseProduction},
+  {path: 'viewDayWisePro', component: ViewDayWiseProduction}
 
 ];
 

@@ -32,6 +32,9 @@ public class ProductionOrder {
     @OneToMany(mappedBy = "productionOrder", cascade = CascadeType.ALL)
     private List<CuttingPlan> cuttingPlans;
 
+    @OneToMany(mappedBy = "productionOrder", cascade = CascadeType.ALL)
+    private List<DayWiseProduction> dayWiseProductions;
+
 
     public ProductionOrder() {
     }

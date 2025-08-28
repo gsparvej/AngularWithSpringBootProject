@@ -1,8 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
 import com.gsparvej.angularWithSpringBoot.dto.CuttingPlanResponseDTO;
-import com.gsparvej.angularWithSpringBoot.dto.ProductionOrderResponseDTO;
-import com.gsparvej.angularWithSpringBoot.entity.BOM;
 import com.gsparvej.angularWithSpringBoot.entity.CuttingPlan;
 import com.gsparvej.angularWithSpringBoot.service.CuttingPlanService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -72,6 +72,8 @@ import { AddCuttingPlanComponent } from './Production/add-cutting-plan-component
 import { ViewCuttingPlan } from './Production/view-cutting-plan/view-cutting-plan';
 import { AddCutBundle } from './Production/add-cut-bundle/add-cut-bundle';
 import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
+import { AddDayWiseProduction } from './Production/add-day-wise-production/add-day-wise-production';
+import { ViewDayWiseProduction } from './Production/view-day-wise-production/view-day-wise-production';
 
 
 @NgModule({
@@ -144,6 +146,8 @@ import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
     ViewCuttingPlan,
     AddCutBundle,
     ViewCutBundle,
+    AddDayWiseProduction,
+    ViewDayWiseProduction,
 
   ],
   imports: [

@@ -16,11 +16,11 @@ import { error } from 'node:console';
 })
 export class RawMaterialsCalc implements OnInit {
 
-  fullOrder: any;
+  order: any[] = [];  // Replace with your Order[] model
+  uom: any[] = [];    // Replace with your Uom[] model
 
-  order: Order[] = [];
-  uom: Uom[] = [];
   formRawMaterials!: FormGroup;
+  totalCalculatedFabric: number = 0;
 
   constructor(
     private merchandiserService: MerchandiserService,
@@ -31,171 +31,254 @@ export class RawMaterialsCalc implements OnInit {
 
   ngOnInit(): void {
     this.formRawMaterials = this.fb.group({
-      selectedStyle: [''],  // dropdown at root
+      selectedStyle: [''],
       order: this.fb.group({
         shortSmallSize: [''],
-        shortSPrice: [''],
         shortMediumSize: [''],
-        shortMPrice: [''],
         shortLargeSize: [''],
-        shortLPrice: [''],
         shortXLSize: [''],
-        shortXLPrice: [''],
-
         fullSmallSize: [''],
-        fullSPrice: [''],
         fullMediumSize: [''],
-        fullMPrice: [''],
         fullLargeSize: [''],
-        fullLPrice: [''],
-        fullXLSize: [''],
-        fullXLPrice: ['']
+        fullXLSize: ['']
       }),
-
-
-
-      uoms: this.fb.array([]) // 8 UOM rows
+      uoms: this.fb.array([])
     });
 
     this.loadOrder();
     this.loadUom();
 
-    // Initialize 8 UOM rows
+    // initialize 8 rows
     for (let i = 0; i < 8; i++) {
       this.addUomRow();
     }
   }
 
-  // --- Load Orders ---
   loadOrder(): void {
     this.merchandiserService.getAllOrder().subscribe({
-      next: (res: Order[]) => {
+      next: res => {
         this.order = res;
         this.cdr.detectChanges();
       },
-      error: (err) => console.error(err)
+      error: err => console.error(err)
     });
   }
 
-  // --- Load UOMs ---
   loadUom(): void {
     this.merchandiserService.getAllUom().subscribe({
       next: res => {
         this.uom = res;
         this.cdr.detectChanges();
       },
-      error: err => console.log(err)
+      error: err => console.error(err)
     });
   }
 
-  // --- On Style Change ---
-  onStyleChange() {
-
-
-
-    console.log(this.formRawMaterials.get('selectedStyle')?.value);
-
+  onStyleChange(): void {
     const styleCode = this.formRawMaterials.get('selectedStyle')?.value;
+    if (!styleCode) {
+      this.formRawMaterials.get('order')?.reset();
+      this.totalCalculatedFabric = 0;
+      return;
+    }
 
     this.merchandiserService.getOrderByStyle(styleCode).subscribe({
-
-      next: (data) => {
-        this.fullOrder = data[0]; // Take the first order from array
-        this.patchOrderForm(this.fullOrder);
-        console.log(this.fullOrder);
-
+      next: (data: any[]) => {
+        if (data.length > 0) {
+          this.patchOrderForm(data[0]);
+          this.calculateFabricRequirement();
+        } else {
+          this.formRawMaterials.get('order')?.reset();
+          this.totalCalculatedFabric = 0;
+        }
       },
-
-      error: error => {
-        console.log(error);
-
+      error: err => {
+        console.error(err);
+        this.formRawMaterials.get('order')?.reset();
+        this.totalCalculatedFabric = 0;
       }
-
-
     });
-
-
-    if (!styleCode) return;
-
-
-
-
-    if (this.fullOrder) {
-      this.formRawMaterials.get('order')?.patchValue({
-        shortSmallSize: this.fullOrder.shortSmallSize,
-        shortSPrice: this.fullOrder.shortSPrice,
-        shortMediumSize: this.fullOrder.shortMediumSize,
-        shortMPrice: this.fullOrder.shortMPrice,
-        shortLargeSize: this.fullOrder.shortLargeSize,
-        shortLPrice: this.fullOrder.shortLPrice,
-        shortXLSize: this.fullOrder.shortXLSize,
-        shortXLPrice: this.fullOrder.shortXLPrice,
-
-        fullSmallSize: this.fullOrder.fullSmallSize,
-        fullSPrice: this.fullOrder.fullSPrice,
-        fullMediumSize: this.fullOrder.fullMediumSize,
-        fullMPrice: this.fullOrder.fullMPrice,
-        fullLargeSize: this.fullOrder.fullLargeSize,
-        fullLPrice: this.fullOrder.fullLPrice,
-        fullXLSize: this.fullOrder.fullXLSize,
-        fullXLPrice: this.fullOrder.fullXLPrice
-      });
-    }
   }
 
-  // --- UOM Helper Functions ---
+  patchOrderForm(orderData: any): void {
+    this.formRawMaterials.get('order')?.patchValue({
+      shortSmallSize: orderData.shortSmallSize || 0,
+      shortMediumSize: orderData.shortMediumSize || 0,
+      shortLargeSize: orderData.shortLargeSize || 0,
+      shortXLSize: orderData.shortXLSize || 0,
+      fullSmallSize: orderData.fullSmallSize || 0,
+      fullMediumSize: orderData.fullMediumSize || 0,
+      fullLargeSize: orderData.fullLargeSize || 0,
+      fullXLSize: orderData.fullXLSize || 0
+    });
+  }
+
   createUomRow(): FormGroup {
-    return this.fb.group({
+    const row = this.fb.group({
       id: [''],
       productName: [''],
       size: [''],
-      baseFabric: ['']
+      type: [''],
+      baseFabric: [''],
+      calculatedFabric: ['']
     });
-  }
 
-  addUomRow() {
-    const row = this.createUomRow();
-
-    // Auto-fill when UOM id changes
     row.get('id')?.valueChanges.subscribe(id => {
+      if (!id) {
+        row.patchValue({
+          productName: '',
+          size: '',
+          type: '',
+          baseFabric: '',
+          calculatedFabric: ''
+        }, { emitEvent: false });
+        this.calculateFabricRequirement();
+        return;
+      }
+
       const selected = this.uom.find(u => u.id === +id);
       if (selected) {
+        // infer type from productName or any logic you want
+        let inferredType = '';
+        if (selected.productName.toLowerCase().includes('short')) {
+          inferredType = 'SHORT';
+        } else if (selected.productName.toLowerCase().includes('full')) {
+          inferredType = 'FULL';
+        }
+
         row.patchValue({
           productName: selected.productName,
           size: selected.size,
-          baseFabric: selected.baseFabric
+          type: inferredType,
+          baseFabric: selected.baseFabric.toString(),
+          calculatedFabric: ''
         }, { emitEvent: false });
       } else {
-        row.patchValue({ productName: '', size: '', baseFabric: '' }, { emitEvent: false });
+        row.patchValue({
+          productName: '',
+          size: '',
+          type: '',
+          baseFabric: '',
+          calculatedFabric: ''
+        }, { emitEvent: false });
       }
+
+      this.calculateFabricRequirement();
     });
 
-    (this.formRawMaterials.get('uoms') as FormArray).push(row);
+    return row;
+  }
+
+  addUomRow(): void {
+    this.uomsFormArray.push(this.createUomRow());
   }
 
   get uomsFormArray(): FormArray {
     return this.formRawMaterials.get('uoms') as FormArray;
   }
 
-  saveRawMaterials() {
-    console.log(this.formRawMaterials.value);
-    // Call API to save data here
-  }
+  calculateFabricRequirement(): void {
+    const orderGroup = this.formRawMaterials.get('order');
+    if (!orderGroup) return;
 
+    let total = 0;
 
+    this.uomsFormArray.controls.forEach((control, index) => {
+      const row = control as FormGroup;
 
-  patchOrderForm(orderData: any) {
-    this.formRawMaterials.get('order')?.patchValue({
-      shortSmallSize: orderData.shortSmallSize,
-      shortMediumSize: orderData.shortMediumSize,
-      shortLargeSize: orderData.shortLargeSize,
-      shortXLSize: orderData.shortXLSize,
-      fullSmallSize: orderData.fullSmallSize,
-      fullMediumSize: orderData.fullMediumSize,
-      fullLargeSize: orderData.fullLargeSize,
-      fullXLSize: orderData.fullXLSize
+      const size = (row.get('size')?.value || '').toString().trim().toUpperCase();
+      const type = (row.get('type')?.value || '').toString().trim().toUpperCase();
+      const baseFabric = parseFloat(row.get('baseFabric')?.value) || 0;
+
+      let quantity = 0;
+
+      if (type === 'SHORT') {
+        switch (size) {
+          case 'S':
+          case 'SMALL':
+            quantity = parseInt(orderGroup.get('shortSmallSize')?.value) || 0;
+            break;
+          case 'M':
+          case 'MEDIUM':
+            quantity = parseInt(orderGroup.get('shortMediumSize')?.value) || 0;
+            break;
+          case 'L':
+          case 'LARGE':
+            quantity = parseInt(orderGroup.get('shortLargeSize')?.value) || 0;
+            break;
+          case 'XL':
+          case 'X-LARGE':
+          case 'EXTRA LARGE':
+            quantity = parseInt(orderGroup.get('shortXLSize')?.value) || 0;
+            break;
+          default:
+            console.warn(`Row ${index + 1}: Unknown SHORT size '${size}'`);
+        }
+      } else if (type === 'FULL') {
+        switch (size) {
+          case 'S':
+          case 'SMALL':
+            quantity = parseInt(orderGroup.get('fullSmallSize')?.value) || 0;
+            break;
+          case 'M':
+          case 'MEDIUM':
+            quantity = parseInt(orderGroup.get('fullMediumSize')?.value) || 0;
+            break;
+          case 'L':
+          case 'LARGE':
+            quantity = parseInt(orderGroup.get('fullLargeSize')?.value) || 0;
+            break;
+          case 'XL':
+          case 'X-LARGE':
+          case 'EXTRA LARGE':
+            quantity = parseInt(orderGroup.get('fullXLSize')?.value) || 0;
+            break;
+          default:
+            console.warn(`Row ${index + 1}: Unknown FULL size '${size}'`);
+        }
+      } else {
+        console.warn(`Row ${index + 1}: Unknown type '${type}'`);
+      }
+
+      const calculated = quantity * baseFabric;
+      row.get('calculatedFabric')?.setValue(calculated.toFixed(2));
+      total += calculated;
     });
+
+    this.totalCalculatedFabric = total;
   }
+
+
+submitFabricData() {
+  const orderGroup = this.formRawMaterials.get('order');
+  if (!orderGroup) return;
+
+  const fabricData: RawMaterialsModel = {
+    shortSTotalQuantity: orderGroup.get('shortSmallSize')?.value || 0,
+    shortMTotalQuantity: orderGroup.get('shortMediumSize')?.value || 0,
+    shortLTotalQuantity: orderGroup.get('shortLargeSize')?.value || 0,
+    shortXLTotalQuantity: orderGroup.get('shortXLSize')?.value || 0,
+
+    fullSTotalQuantity: orderGroup.get('fullSmallSize')?.value || 0,
+    fullMTotalQuantity: orderGroup.get('fullMediumSize')?.value || 0,
+    fullLTotalQuantity: orderGroup.get('fullLargeSize')?.value || 0,
+    fullXLTotalQuantity: orderGroup.get('fullXLSize')?.value || 0,
+
+    totalFabric: this.totalCalculatedFabric,
+
+    order: this.order.find(o => o.bomStyle.styleCode === this.formRawMaterials.get('selectedStyle')?.value) 
+  };
+
+  this.merchandiserService.saveRawMaterials(fabricData).subscribe({
+    next: res => {
+      alert('Fabric data saved successfully!');
+    },
+    error: err => {
+      console.error(err);
+      alert('Error saving fabric data.');
+    }
+  });
+}
 
 
 

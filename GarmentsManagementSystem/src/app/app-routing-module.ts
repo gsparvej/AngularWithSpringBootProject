@@ -68,6 +68,7 @@ import { AddCutBundle } from './Production/add-cut-bundle/add-cut-bundle';
 import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
 import { AddDayWiseProduction } from './Production/add-day-wise-production/add-day-wise-production';
 import { ViewDayWiseProduction } from './Production/view-day-wise-production/view-day-wise-production';
+import { ViewRawMaterialsCalc } from './Merchandiser/view-raw-materials-calc/view-raw-materials-calc';
 
 
 const routes: Routes = [
@@ -140,6 +141,7 @@ const routes: Routes = [
 
 
   { path: 'rawMateSave', component: RawMaterialsCalc },
+  {path: 'viewRawMaterialsCheck' , component: ViewRawMaterialsCalc},
 
   // production part
   { path: 'productionOrder', component: ProductionOrderComponenet },

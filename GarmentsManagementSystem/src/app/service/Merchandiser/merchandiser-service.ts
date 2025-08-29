@@ -36,7 +36,7 @@ export class MerchandiserService {
   private baseUrlOrder = environment.apiBaseUrl + '/order';
 
 
-  private baseUrlRawMaterials = environment.apiBaseUrl + '/';
+  private baseUrlRawMaterials = environment.apiBaseUrl + '/raw_materials';
 
 
 

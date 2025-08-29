@@ -1,13 +1,7 @@
-package com.gsparvej.angularWithSpringBoot.entity;
+package com.gsparvej.angularWithSpringBoot.dto;
 
-import jakarta.persistence.*;
+public class RawMaterialsResponseDTO {
 
-@Entity
-@Table(name = "rawMaterialsCheck")
-public class RawMaterialsModel {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int shortSTotalQuantity;
@@ -18,22 +12,15 @@ public class RawMaterialsModel {
     private int fullMTotalQuantity;
     private int fullLTotalQuantity;
     private int fullXLTotalQuantity;
-
-
-
     private double totalFabric;
 
+    private OrderResponseDTO order;
+    private BomStyleResponseDTO bomStyle;
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
-
-    public RawMaterialsModel() {
+    public RawMaterialsResponseDTO() {
     }
 
-    public RawMaterialsModel(int id, int shortSTotalQuantity, int shortMTotalQuantity, int shortLTotalQuantity, int shortXLTotalQuantity, int fullSTotalQuantity, int fullMTotalQuantity, int fullLTotalQuantity, int fullXLTotalQuantity, double totalFabric, Order order) {
+    public RawMaterialsResponseDTO(int id, int shortSTotalQuantity, int shortMTotalQuantity, int shortLTotalQuantity, int shortXLTotalQuantity, int fullSTotalQuantity, int fullMTotalQuantity, int fullLTotalQuantity, int fullXLTotalQuantity, double totalFabric, OrderResponseDTO order, BomStyleResponseDTO bomStyle) {
         this.id = id;
         this.shortSTotalQuantity = shortSTotalQuantity;
         this.shortMTotalQuantity = shortMTotalQuantity;
@@ -45,6 +32,7 @@ public class RawMaterialsModel {
         this.fullXLTotalQuantity = fullXLTotalQuantity;
         this.totalFabric = totalFabric;
         this.order = order;
+        this.bomStyle = bomStyle;
     }
 
     public int getId() {
@@ -127,11 +115,19 @@ public class RawMaterialsModel {
         this.totalFabric = totalFabric;
     }
 
-    public Order getOrder() {
+    public OrderResponseDTO getOrder() {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public void setOrder(OrderResponseDTO order) {
         this.order = order;
+    }
+
+    public BomStyleResponseDTO getBomStyle() {
+        return bomStyle;
+    }
+
+    public void setBomStyle(BomStyleResponseDTO bomStyle) {
+        this.bomStyle = bomStyle;
     }
 }

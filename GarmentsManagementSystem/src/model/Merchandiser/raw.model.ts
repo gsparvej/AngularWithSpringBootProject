@@ -14,10 +14,13 @@ export class RawMaterialsModel {
     fullMTotalQuantity!: number;
     fullLTotalQuantity!: number;
     fullXLTotalQuantity!: number;
+
+
    
-   
+    totalFabric!: number;
+
 
     order!: Order;
-    uom!: Uom;
     
+
 }

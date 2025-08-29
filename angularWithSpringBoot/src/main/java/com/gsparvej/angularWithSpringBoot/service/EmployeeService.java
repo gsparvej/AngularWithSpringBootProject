@@ -1,6 +1,7 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
-import com.gsparvej.angularWithSpringBoot.dto.EmployeeDTO;
+import com.gsparvej.angularWithSpringBoot.dto.*;
+import com.gsparvej.angularWithSpringBoot.entity.CuttingPlan;
 import com.gsparvej.angularWithSpringBoot.entity.Department;
 import com.gsparvej.angularWithSpringBoot.entity.Designation;
 import com.gsparvej.angularWithSpringBoot.entity.Employee;
@@ -24,19 +25,41 @@ public class EmployeeService {
     @Autowired
     private IDesignationRepo designationRepo;
 
-    public List<EmployeeDTO> getAllEmployees() {
-        List<Employee> employees = employeeRepo.findAll();
-        List<EmployeeDTO> dtoList = employees.stream().map(e -> new EmployeeDTO(
-                e.getId(),
-                e.getName(),
-                e.getPhoneNumber(),
-                e.getEmail(),
-                e.getJoinDate(),
-                e.getDesignation().getDesignationTitle(),
-                e.getDesignation().getDepartment().getName()
-        )).toList();
+    public List<EmployeeDTO> getAllEmployeeDTOS() {
+        return employeeRepo.findAll().stream().map(employee -> {
+            EmployeeDTO dto = new EmployeeDTO();
+            dto.setId(employee.getId());
+            dto.setName(employee.getName());
+            dto.setEmail(employee.getEmail());
+            dto.setJoinDate(employee.getJoinDate());
+            dto.setPhoneNumber(employee.getPhoneNumber());
 
-        return dtoList;
+
+
+            Department department = employee.getDepartment();
+            if (department != null) {
+                DepartmentResponseDTO departmentResponseDTO = new DepartmentResponseDTO();
+                departmentResponseDTO.setName(department.getName());
+
+                dto.setDepartment(departmentResponseDTO);
+
+
+            }
+            Designation designation = employee.getDesignation();
+            if (designation != null) {
+                DesignationResponseDTO designationResponseDTO = new DesignationResponseDTO();
+                designationResponseDTO.setDesignationTitle(designation.getDesignationTitle());
+
+                dto.setDesignation(designationResponseDTO);
+
+
+            }
+
+
+
+
+            return dto;
+        }).toList();
     }
     //  public String getDesignationTitle() {
     //        return designationTitle;

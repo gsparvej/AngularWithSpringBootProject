@@ -17,8 +17,8 @@
     <tr *ngFor = "let p of po ">
         <td>{{p.id}}</td>
         <td>{{p.poNumber}}</td>
-        <td>{{p.poDate}}</td>
-         <td>{{p.deliveryDate}}</td>
+        <td>{{p.poDate | date: 'mediumDate'}}</td>
+         <td>{{p.deliveryDate | date: 'mediumDate'}}</td>
           <td>{{p.vendor.companyName}}</td>
         <td>
             <button class="btn btn-warning m-1 p-1" (click)="getPOById(p.id!)">View</button>

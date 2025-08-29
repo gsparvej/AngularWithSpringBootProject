@@ -8,44 +8,29 @@
     <!-- Attendance Date -->
     <div class="mb-4">
       <label for="attDate" class="form-label fw-semibold">Current Attendance Date</label>
-      <input
-        type="datetime-local"
-        class="form-control"
-        id="attDate"
-        formControlName="attDate"
-        required
-      />
+      <input type="datetime-local" class="form-control" id="attDate" formControlName="attDate" required />
     </div>
 
     <div class="row g-4">
       <!-- Employee ID Select -->
-      <div class="col-md-6" formGroupName="employees">
-        <label for="employees" class="form-label fw-semibold">Employee ID</label>
-        <select
-          id="employees"
-          formControlName="id"
-          class="form-select"
-          aria-label="Select Employee ID"
-          required
-        >
+      <div class="col-md-6" formGroupName="employee">
+        <label for="employee" class="form-label fw-semibold">Employee ID</label>
+        <select id="employees" formControlName="id" class="form-select" aria-label="Select Employee ID" required>
           <option value="" disabled selected>Select Employee</option>
           <option *ngFor="let emp of employee" [value]="emp.id">{{ emp.id }}</option>
         </select>
+
       </div>
 
       <!-- Attendance Status Select -->
-      <div class="col-md-6" formGroupName="atten_status">
-        <label for="attendanceStatus" class="form-label fw-semibold">Attendance Status</label>
-        <select
-          id="attendanceStatus"
-          formControlName="status"
-          class="form-select"
-          aria-label="Select Attendance Status"
-          required
-        >
-          <option value="" disabled selected>Select Status</option>
-          <option *ngFor="let s of status" [value]="s.status">{{ s.status }}</option>
+      <div class="">
+        <label for="orderStatus">Attendance Status:</label>
+        <select id="orderStatus" formControlName="status">
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+          <option value="Late">Late</option>
         </select>
+
       </div>
     </div>
 

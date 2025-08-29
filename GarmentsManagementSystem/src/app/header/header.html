@@ -73,6 +73,7 @@
           <a class="nav-link text-white" routerLink="/createRequisition"><i class="fas fa-file-alt me-1"></i> Create
             Requisition</a>
           <a class="nav-link text-white" routerLink="/createPO"><i class="fas fa-file-signature me-1"></i> Create PO</a>
+          <hr>
           <a class="nav-link text-white" routerLink="/viewPO"><i class="fas fa-file-invoice-dollar me-1"></i> View
             PO</a>
           <a class="nav-link text-white" routerLink="/viewAllRequ"><i class="fas fa-eye me-1"></i> View Requisitions</a>
@@ -87,55 +88,60 @@
 
 
       <!-- production planning -->
+<!-- 👷 Production Planning & Control -->
+<li class="nav-item">
+  <a class="nav-link text-white" data-bs-toggle="collapse" href="#productionPlanMenu" role="button">
+    <i class="fas fa-industry me-1 text-info"></i> Production Planning & Control
+  </a>
+  <div class="collapse ps-3" id="productionPlanMenu">
 
-      <li class="nav-item">
-        <a class="nav-link text-white" data-bs-toggle="collapse" href="#productionPlanMenu" role="button">
-          <i class="fas fa-project-diagram me-1 text-info"></i> Production Planning & Control
-        </a>
-        <div class="collapse ps-3" id="productionPlanMenu">
-          <a class="nav-link text-white" routerLink="/productionOrder">
-            <i class="fas fa-clipboard-list me-1"></i>Add Production Order
-          </a>
-          <a class="nav-link text-white" routerLink="/addDayWisePro">
-            <i class="fas fa-clipboard-list me-1"></i> Add Day Wise Production
-          </a>
-          <a class="nav-link text-white" routerLink="/lineList">
-            <i class="fas fa-stream me-1"></i> Line List
-          </a>
-          <a class="nav-link text-white" routerLink="/machineList">
-            <i class="fas fa-cogs me-1"></i> Machine List
-          </a>
-          <hr>
-          <a class="nav-link text-white" routerLink="/productionorderList">
-            <i class="fas fa-clipboard-list me-1"></i>View Production Order List
-          </a>
-          <a class="nav-link text-white" routerLink="/viewDayWisePro">
-            <i class="fas fa-clipboard-list me-1"></i> View Day Wise Production
-          </a>
-        </div>
-      </li>
+    <a class="nav-link text-white" routerLink="/proSumReport">
+      <i class="fas fa-file-alt me-1 text-success"></i> Production Summary
+    </a>
+    <a class="nav-link text-white" routerLink="/productionOrder">
+      <i class="fas fa-file-alt me-1 text-success"></i> Add Production Order
+    </a>
+    <a class="nav-link text-white" routerLink="/addDayWisePro">
+      <i class="fas fa-calendar-day me-1 text-success"></i> Add Day Wise Production
+    </a>
+    <a class="nav-link text-white" routerLink="/lineList">
+      <i class="fas fa-stream me-1 text-primary"></i> Line List
+    </a>
+    <a class="nav-link text-white" routerLink="/machineList">
+      <i class="fas fa-tools me-1 text-warning"></i> Machine List
+    </a>
+    <hr>
+    <a class="nav-link text-white" routerLink="/productionorderList">
+      <i class="fas fa-list-alt me-1 text-info"></i> View Production Orders
+    </a>
+    <a class="nav-link text-white" routerLink="/viewDayWisePro">
+      <i class="fas fa-calendar-check me-1 text-info"></i> View Day Wise Production
+    </a>
+  </div>
+</li>
 
-      <li class="nav-item">
-        <a class="nav-link text-white" data-bs-toggle="collapse" href="#CuttingMenu" role="button">
-          <i class="fas fa-cut me-1 text-warning"></i> Cutting
-        </a>
-        <div class="collapse ps-3" id="CuttingMenu">
-          <a class="nav-link text-white" routerLink="/addCuttingPlan">
-            <i class="fas fa-tasks me-1"></i>Add Cutting Plan
-          </a>
-          <a class="nav-link text-white" routerLink="/addCutBundle">
-            <i class="fas fa-box-open me-1"></i> Add Cut Bundle
-          </a>
+<!-- ✂️ Cutting -->
+<li class="nav-item">
+  <a class="nav-link text-white" data-bs-toggle="collapse" href="#CuttingMenu" role="button">
+    <i class="fas fa-cut me-1 text-warning"></i> Cutting
+  </a>
+  <div class="collapse ps-3" id="CuttingMenu">
+    <a class="nav-link text-white" routerLink="/addCuttingPlan">
+      <i class="fas fa-project-diagram me-1 text-success"></i> Add Cutting Plan
+    </a>
+    <a class="nav-link text-white" routerLink="/addCutBundle">
+      <i class="fas fa-boxes-stacked me-1 text-success"></i> Add Cut Bundle
+    </a>
+    <hr>
+    <a class="nav-link text-white" routerLink="/viewCuttingPlan">
+      <i class="fas fa-eye me-1 text-info"></i> View Cutting Plan
+    </a>
+    <a class="nav-link text-white" routerLink="/viewCutBundle">
+      <i class="fas fa-box-open me-1 text-info"></i> View Cut Bundle
+    </a>
+  </div>
+</li>
 
-          <hr>
-          <a class="nav-link text-white" routerLink="/viewCuttingPlan">
-            <i class="fas fa-box-open me-1"></i> View Cutting Plan
-          </a>
-          <a class="nav-link text-white" routerLink="/viewCutBundle">
-            <i class="fas fa-box-open me-1"></i> View Cut Bundle
-          </a>
-        </div>
-      </li>
 
       <li class="nav-item">
         <a class="nav-link text-white" data-bs-toggle="collapse" href="#SewingMenu" role="button">

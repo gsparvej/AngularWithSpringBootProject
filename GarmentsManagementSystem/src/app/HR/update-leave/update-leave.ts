@@ -1,7 +1,6 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Leave } from '../../../model/HR/leave.model';
 import { Employee } from '../../../model/HR/employee.model';
-import { LeaveStatus } from '../../../model/HR/leave_status.model';
 import { HrService } from '../../service/HR/hr-service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -15,8 +14,7 @@ export class UpdateLeave implements OnInit{
   id: string ='';
   leave: Leave = new Leave();
   employee: Employee[]=[];
-  status: LeaveStatus[]=[];
-
+  
   constructor(
   private hrService: HrService,
   private router: Router,
@@ -29,7 +27,7 @@ export class UpdateLeave implements OnInit{
     this.id = this.route.snapshot.params['id'];
     this.loadLeaveById();
     this.loadEmployeeId();
-    this.loadLeaveStatus();
+   
   }
 
 
@@ -65,15 +63,5 @@ export class UpdateLeave implements OnInit{
 }
 
 
- loadLeaveStatus(): void {
-  this.hrService.getAllLeaveStatus().subscribe({
-    next: (de) =>{
-      this.status = de;
-      this.cdr.markForCheck();
-    },
-    error: (err) => {
-      console.log(err);
-    }
-  })
-}
+
 }

@@ -15,7 +15,7 @@
 <tbody>
     <tr *ngFor = "let requ of requisition ">
         <td>{{requ.id}}</td>
-        <td>{{requ.prDate}}</td>
+        <td>{{requ.prDate | date: 'mediumDate'}}</td>
         <td>{{requ.requestedBy}}</td>
          <td>{{requ.prStatus}}</td>
         <td>

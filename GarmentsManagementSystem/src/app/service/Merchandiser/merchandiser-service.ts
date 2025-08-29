@@ -22,11 +22,11 @@ export class MerchandiserService {
 
 
 
-  
+
   private baseUrlBom = environment.apiBaseUrl + '/bomstyle';
 
 
-  
+
 
   private baseUrlBomView = environment.apiBaseUrl + '/bom';
 
@@ -41,7 +41,7 @@ export class MerchandiserService {
 
 
 
-  baseUrlOrderStatus: string = "http://localhost:3000/orderStatus";
+ 
 
 
 
@@ -150,13 +150,11 @@ export class MerchandiserService {
 
 
   // Order add, update, delete, view end
-  getAllOrderStatus(): Observable<any> {
-    return this.http.get(this.baseUrlOrderStatus);
-  }
 
-getOrderByStyle(styleCode: string): Observable<FullOrderViewResponseDTO[]> {
-  return this.http.get<FullOrderViewResponseDTO[]>(`${this.baseUrlOrder}/by-style/${styleCode}`);
-}
+
+  getOrderByStyle(styleCode: string): Observable<FullOrderViewResponseDTO[]> {
+    return this.http.get<FullOrderViewResponseDTO[]>(`${this.baseUrlOrder}/by-style/${styleCode}`);
+  }
 
   // OrderStatus add, update, delete, view start
 
@@ -183,14 +181,14 @@ getOrderByStyle(styleCode: string): Observable<FullOrderViewResponseDTO[]> {
 
 
 
-getBomsByStyleCode(styleCode: string): Observable<BomResponseDTO[]> {
-  return this.http.get<BomResponseDTO[]>(`http://localhost:8080/api/bom/style/${styleCode}`);
-}
+  getBomsByStyleCode(styleCode: string): Observable<BomResponseDTO[]> {
+    return this.http.get<BomResponseDTO[]>(`http://localhost:8080/api/bom/style/${styleCode}`);
+  }
 
 
-getFullOrderById(id: number): Observable<FullOrderViewResponseDTO> {
-  return this.http.get<FullOrderViewResponseDTO>(`http://localhost:8080/api/order/${id}`);
-}
+  getFullOrderById(id: number): Observable<FullOrderViewResponseDTO> {
+    return this.http.get<FullOrderViewResponseDTO>(`http://localhost:8080/api/order/${id}`);
+  }
 
 
 

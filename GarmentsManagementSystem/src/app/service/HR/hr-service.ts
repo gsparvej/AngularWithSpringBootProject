@@ -20,12 +20,16 @@ export class HrService {
 
 
 
-  baseUrlAtten: string = "http://localhost:3000/attendance";
-  baseUrlLeave: string = "http://localhost:3000/leave";
+private  baseUrlAtten = environment.apiBaseUrl + '/attendance';
+
+
+private  baseUrlLeave = environment.apiBaseUrl + '/leave';
+
+  
   baseUrlPay: string = "http://localhost:3000/payroll";
 
-  baseUrlAttendStatus: string = "http://localhost:3000/atten_status";
-  baseUrlLeaveStatus: string = "http://localhost:3000/leave_status";
+
+  
 
   constructor(private http: HttpClient) { }
 
@@ -195,17 +199,7 @@ export class HrService {
 
 
 
-  getAllAttendStatus(): Observable<any> {
-
-    return this.http.get(this.baseUrlAttendStatus);
-
-  }
-  getAllLeaveStatus(): Observable<any> {
-
-    return this.http.get(this.baseUrlLeaveStatus);
-
-  }
-
-
+  
+ 
 
 }

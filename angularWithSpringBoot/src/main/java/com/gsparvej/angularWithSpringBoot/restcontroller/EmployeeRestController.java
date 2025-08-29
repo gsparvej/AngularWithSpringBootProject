@@ -46,7 +46,7 @@ public class EmployeeRestController {
 
     @GetMapping("")
     public List<EmployeeDTO> getAllEmp() {
-        return employeeService.getAllEmployees();
+        return employeeService.getAllEmployeeDTOS();
     }
 
 

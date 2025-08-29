@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.PurchaseOrderResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.PurchaseOrder;
 import com.gsparvej.angularWithSpringBoot.entity.PurchaseRequisition;
 import com.gsparvej.angularWithSpringBoot.service.PurchaseOrderService;
@@ -18,9 +19,13 @@ public class PurchaseOrderRestController {
     @Autowired
     private PurchaseOrderService purchaseOrderService;
 
-    @GetMapping("")
+    @GetMapping("all")
     public List<PurchaseOrder> getAllPOs() {
         return purchaseOrderService.getAllPurchaseOrders();
+    }
+    @GetMapping("")
+    public List<PurchaseOrderResponseDTO> getAllPurchaseOrderDTOS() {
+        return purchaseOrderService.getAllPurchaseOrderResponseDTOS();
     }
 
 

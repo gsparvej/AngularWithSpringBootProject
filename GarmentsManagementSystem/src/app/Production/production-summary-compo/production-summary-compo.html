@@ -1,0 +1,43 @@
+<div class="container mt-4">
+  <h3 class="text-center text-primary mb-4">
+    <i class="fas fa-industry me-2"></i>Production Summary Report
+  </h3>
+
+  <div *ngIf="summaries.length > 0; else noData">
+    <table class="table table-bordered table-hover shadow-sm">
+      <thead class="table-dark text-center">
+        <tr>
+          <th><i class="fas fa-hashtag"></i> Order ID</th>
+          <th><i class="fas fa-cube"></i> Planned</th>
+          <th><i class="fas fa-box-open"></i> Produced</th>
+          <th><i class="fas fa-boxes-stacked"></i> Remaining</th>
+          <th><i class="fas fa-traffic-light"></i> Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of summaries" class="text-center align-middle">
+          <td>{{ item.orderId }}</td>
+          <td>{{ item.plannedQty }}</td>
+          <td class="text-success fw-semibold">{{ item.producedQty }}</td>
+          <td class="text-danger fw-semibold">{{ item.remainingQty }}</td>
+          <td>
+            <span 
+              class="badge" 
+              [ngClass]="{
+                'bg-success': item.status === 'Completed',
+                'bg-warning text-dark': item.status === 'In Progress'
+              }">
+              {{ item.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noData>
+    <div class="alert alert-info text-center">
+      <i class="fas fa-info-circle me-2"></i> No production data available.
+    </div>
+  </ng-template>
+</div>

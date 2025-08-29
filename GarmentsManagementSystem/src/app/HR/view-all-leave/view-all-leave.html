@@ -35,12 +35,12 @@
 <tbody>
     <tr *ngFor = "let l of leave | async">
         <td>{{l.id}}</td>
-        <td>{{l.employees?.id}}</td>
-         <td>{{l.employees?.name}}</td>
+        <td>{{l.employee?.id}}</td>
+         <td>{{l.employee?.name}}</td>
          <td>{{l.leaveType}}</td>
-        <td>{{l.fromDate}}</td>
-        <td>{{l.toDate}}</td>
-        <td>{{l.leave_status?.status}}</td>
+        <td>{{l.fromDate | date: 'mediumDate'}}</td>
+        <td>{{l.toDate | date: 'mediumDate'}}</td>
+        <td>{{l.status}}</td>
         <td>
             <button class="btn btn-warning m-1 p-1" (click)="getLeaveById(l.id)">Edit</button>
             <button class="btn btn-danger m-1 p-1">Delete</button>

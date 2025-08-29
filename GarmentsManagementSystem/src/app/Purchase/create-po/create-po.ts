@@ -86,16 +86,14 @@ export class CreatePO implements OnInit {
       // Safely set the form controls using optional chaining and nullish coalescing
       this.formPO.patchValue({
         vendor: {
-          contactPerson: selected?.contactPerson ?? '',
-          phone: selected?.phone ?? '',
-          address: selected?.address ?? ''
+          phone: selected?.phone ?? ''
         }
       });
 
       // Update local variables if needed
-      this.selectedPerson = selected?.contactPerson ?? '';
+     
       this.selectedPhone = selected?.phone ?? '';
-      this.selecedAddress = selected?.address ?? '';
+     
 
       console.log('Selected Vendor:', selected);
       console.log('Phone:', this.selectedPhone);

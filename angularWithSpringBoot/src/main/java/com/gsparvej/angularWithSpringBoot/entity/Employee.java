@@ -24,6 +24,13 @@ public class Employee {
     @JoinColumn(name = "department_id")
     private Department department;
 
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Attendance> attendances;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.ALL)
+    private List<Leave> leaves;
+
+
 
 
     public Employee() {

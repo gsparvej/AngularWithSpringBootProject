@@ -40,7 +40,7 @@
           <p class="card-text mb-1"><strong>Planned Pcs:</strong> {{ cp.plannedPcs }}</p>
           <p class="card-text mb-1"><strong>Fabric Used:</strong> {{ cp.fabricUsed }}</p>
           <p class="card-text mb-1">
-            <strong>Cutting Date:</strong> {{ cp.cuttingDate | date: 'yyyy-MM-dd' }}
+            <strong>Cutting Date:</strong> {{ cp.cuttingDate | date: 'mediumDate' }}
           </p>
           <p class="card-text mb-1"><strong>UOM:</strong> {{ cp.uom.baseFabric }}</p>
           <p class="card-text mb-1"><strong>Size:</strong> {{ cp.uom.size }}</p>

@@ -28,17 +28,17 @@
       <tbody>
         <tr *ngFor="let a of attendance | async">
           <td>{{ a.id }}</td>
-          <td>{{ a.employees?.id }}</td>
-          <td>{{ a.employees?.name }}</td>
+          <td>{{ a.employee?.id }}</td>
+          <td>{{ a.employee?.name }}</td>
           <td>{{ a.attDate | date: 'mediumDate' }}</td>
           <td>
             <span class="badge" [ngClass]="{
-                'bg-success': a.atten_status?.status === 'Present',
-                'bg-danger': a.atten_status?.status === 'Absent',
-                'bg-warning text-dark': a.atten_status?.status === 'Late',
+                'bg-success': a.status === 'Present',
+                'bg-danger': a.status === 'Absent',
+                'bg-warning text-dark': a.status === 'Late',
                 'bg-secondary': !a.atten_status?.status
               }">
-              {{ a.atten_status?.status || 'Unknown' }}
+              {{ a.status || 'Unknown' }}
             </span>
           </td>
           <td class="text-center">

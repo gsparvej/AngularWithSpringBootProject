@@ -75,6 +75,7 @@ import { ViewCutBundle } from './Production/view-cut-bundle/view-cut-bundle';
 import { AddDayWiseProduction } from './Production/add-day-wise-production/add-day-wise-production';
 import { ViewDayWiseProduction } from './Production/view-day-wise-production/view-day-wise-production';
 import { ViewRawMaterialsCalc } from './Merchandiser/view-raw-materials-calc/view-raw-materials-calc';
+import { ProductionSummaryCompo } from './Production/production-summary-compo/production-summary-compo';
 
 
 @NgModule({
@@ -150,6 +151,7 @@ import { ViewRawMaterialsCalc } from './Merchandiser/view-raw-materials-calc/vie
     AddDayWiseProduction,
     ViewDayWiseProduction,
     ViewRawMaterialsCalc,
+    ProductionSummaryCompo,
 
   ],
   imports: [

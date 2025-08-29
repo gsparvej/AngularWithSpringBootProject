@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.service;
 
+import com.gsparvej.angularWithSpringBoot.dto.*;
 import com.gsparvej.angularWithSpringBoot.entity.*;
 import com.gsparvej.angularWithSpringBoot.repository.IItemRepo;
 import com.gsparvej.angularWithSpringBoot.repository.IPurchaseOrderRepo;
@@ -46,5 +47,52 @@ public class PurchaseOrderService {
     public PurchaseOrder getById(Integer id) {
         return purchaseOrderRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Purchase Order not found"));
+    }
+
+
+
+    public List<PurchaseOrderResponseDTO> getAllPurchaseOrderResponseDTOS() {
+        return purchaseOrderRepo.findAll().stream().map(order -> {
+            PurchaseOrderResponseDTO dto = new PurchaseOrderResponseDTO();
+            dto.setId(order.getId());
+            dto.setPoDate(order.getPoDate());
+            dto.setDeliveryDate(order.getDeliveryDate());
+            dto.setPoNumber(order.getPoNumber());
+            dto.setQuantity(order.getQuantity());
+            dto.setRate(order.getRate());
+            dto.setSubTotal(order.getSubTotal());
+            dto.setTax(order.getTax());
+            dto.setTotalAmount(order.getTotalAmount());
+            dto.setTermsAndCondition(order.getTermsAndCondition());
+
+
+
+
+
+
+            Vendor vendor = order.getVendor();
+            if (vendor != null) {
+                VendorResponseDTO vendorResponseDTO = new VendorResponseDTO();
+                vendorResponseDTO.setCompanyName(vendor.getCompanyName());
+                vendorResponseDTO.setAddress(vendor.getAddress());
+                vendorResponseDTO.setPhone(vendor.getPhone());
+                vendorResponseDTO.setContactPerson(vendor.getContactPerson());
+                dto.setVendor(vendorResponseDTO);
+
+
+            }
+
+            Item item = order.getItem();
+            if (item != null) {
+                ItemResponseDTO itemResponseDTO = new ItemResponseDTO();
+
+                itemResponseDTO.setCategoryName(item.getCategoryName());
+
+                dto.setItem(itemResponseDTO);
+            }
+
+
+            return dto;
+        }).toList();
     }
 }

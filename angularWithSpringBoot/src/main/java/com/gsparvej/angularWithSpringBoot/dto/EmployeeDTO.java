@@ -9,41 +9,80 @@ public class EmployeeDTO {
     private String phoneNumber;
     private String email;
     private Date joinDate;
-    private String designationTitle;
-    private String departmentName;
+
+    private DesignationResponseDTO designation;
+    private DepartmentResponseDTO department;
+
 
     // Constructor
-    public EmployeeDTO(int id, String name, String phoneNumber, String email, Date joinDate, String designationTitle, String departmentName) {
+
+
+    public EmployeeDTO() {
+    }
+
+    public EmployeeDTO(int id, String name, String phoneNumber, String email, Date joinDate, DesignationResponseDTO designation, DepartmentResponseDTO department) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.joinDate = joinDate;
-        this.designationTitle = designationTitle;
-        this.departmentName = departmentName;
+        this.designation = designation;
+        this.department = department;
     }
 
-    // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public int getId() {
+        return id;
+    }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public String getPhoneNumber() { return phoneNumber; }
-    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+    public String getName() {
+        return name;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public Date getJoinDate() { return joinDate; }
-    public void setJoinDate(Date joinDate) { this.joinDate = joinDate; }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
 
-    public String getDesignationTitle() { return designationTitle; }
-    public void setDesignationTitle(String designationTitle) { this.designationTitle = designationTitle; }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
-    public String getDepartmentName() { return departmentName; }
-    public void setDepartmentName(String departmentName) { this.departmentName = departmentName; }
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public Date getJoinDate() {
+        return joinDate;
+    }
+
+    public void setJoinDate(Date joinDate) {
+        this.joinDate = joinDate;
+    }
+
+    public DesignationResponseDTO getDesignation() {
+        return designation;
+    }
+
+    public void setDesignation(DesignationResponseDTO designation) {
+        this.designation = designation;
+    }
+
+    public DepartmentResponseDTO getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(DepartmentResponseDTO department) {
+        this.department = department;
+    }
 }

@@ -1,27 +1,19 @@
-package com.gsparvej.angularWithSpringBoot.entity;
-
-
-import jakarta.persistence.*;
+package com.gsparvej.angularWithSpringBoot.dto;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "attendance")
-public class Attendance {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class AttendanceResponseDTO {
+
     private int id;
     private Date attDate;
     private String status;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_id")
-    private Employee employee;
+    private EmployeeDTO employee;
 
-    public Attendance() {
+    public AttendanceResponseDTO() {
     }
 
-    public Attendance(int id, Date attDate, String status, Employee employee) {
+    public AttendanceResponseDTO(int id, Date attDate, String status, EmployeeDTO employee) {
         this.id = id;
         this.attDate = attDate;
         this.status = status;
@@ -52,11 +44,11 @@ public class Attendance {
         this.status = status;
     }
 
-    public Employee getEmployee() {
+    public EmployeeDTO getEmployee() {
         return employee;
     }
 
-    public void setEmployee(Employee employee) {
+    public void setEmployee(EmployeeDTO employee) {
         this.employee = employee;
     }
 }

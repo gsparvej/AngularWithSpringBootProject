@@ -13,11 +13,10 @@ import { StockOutModel } from '../../../model/Purchase/stockOut.model';
   styleUrl: './stock-out.css'
 })
 export class StockOut implements OnInit {
-
-
-  inventory: InventoryModel[] = [];
+inventory: any[] = [];
   formStockOut!: FormGroup;
-  selectedItem!: InventoryModel | undefined;
+  selectedItem?: InventoryModel;
+  submitted: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -30,7 +29,7 @@ export class StockOut implements OnInit {
     this.formStockOut = this.fb.group({
       itemId: ['', Validators.required],
       quantity: ['', [Validators.required, Validators.min(1)]],
-      transactionDate: [this.getTodayDate(), Validators.required]
+      transactionDate: [this.getTodayDate(), Validators.required],
     });
 
     this.loadInventory();
@@ -42,45 +41,64 @@ export class StockOut implements OnInit {
 
   loadInventory(): void {
     this.inventoryService.getInventories().subscribe({
-      next: (data) => {
+      next: (data: InventoryModel[]) => {
         this.inventory = data;
+        console.log('Loaded inventory:', this.inventory);
         this.cdr.detectChanges();
       },
-      error: (err) => console.error('Error loading inventory:', err)
+      error: (err) => console.error('Error loading inventory:', err),
     });
   }
 
-  onItemSelect(event: any): void {
-    const id = event.target.value;
-    this.selectedItem = this.inventory.find(i => i.id === id);
-    console.log('Selected for Stock Out:', this.selectedItem);
+  onItemSelect(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const id = Number(selectElement.value); // Ensure type match
+    this.selectedItem = this.inventory.find((i) => i.id === id);
+
+    if (!this.selectedItem) {
+      console.warn('Item not found for ID:', id);
+    } else {
+      console.log('Selected for Stock Out:', this.selectedItem);
+    }
   }
 
   addStockOut(): void {
+    this.submitted = true;
+
     if (this.formStockOut.invalid || !this.selectedItem) {
       this.formStockOut.markAllAsTouched();
       return;
     }
 
     const outQty = this.formStockOut.value.quantity;
+
     if (outQty > this.selectedItem.quantity) {
       alert('Not enough stock!');
       return;
     }
 
-    const stockOut: StockOutModel = this.formStockOut.value;
+    const stockOut: any = {
+      itemId: this.selectedItem!.id, // ✅ Safe non-null assertion
+      quantity: outQty,
+      transactionDate: this.formStockOut.value.transactionDate
+    };
 
     this.inventoryService.saveStockOut(stockOut).subscribe({
       next: () => {
         const newQty = this.selectedItem!.quantity - outQty;
-        const updatedInventory = new InventoryModel(newQty, this.selectedItem!.categoryName);
-        this.inventoryService.updateQuantity(this.selectedItem?.id!, updatedInventory).subscribe(() => {
+
+        const updatedInventory = new InventoryModel(newQty, this.selectedItem!.item);
+        updatedInventory.id = this.selectedItem!.id;
+
+        this.inventoryService.updateQuantity(updatedInventory).subscribe(() => {
           this.loadInventory();
           this.formStockOut.reset({ transactionDate: this.getTodayDate() });
-          this.router.navigate(['']); // Optional
+          this.selectedItem = undefined;
+          this.submitted = false;
+          this.router.navigate(['']); // Optional navigation
         });
       },
-      error: (err) => console.error('Error on stock out:', err)
+      error: (err) => console.error('Error on stock out:', err),
     });
   }
 

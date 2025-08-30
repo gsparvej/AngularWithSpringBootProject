@@ -1,10 +1,14 @@
-export class InventoryModel {
-  id!: string;
-  quantity!: number;
-  categoryName!: string;
+import { Item } from "./item.model";
 
-  constructor(quantity: number, categoryName: string){
+export class InventoryModel {
+  id!: number;
+  quantity!: number;
+  item!: Item;
+
+  constructor(quantity: number, item: Item ) {
     this.quantity = quantity;
-    this.categoryName = categoryName;
+    this.item = item;
   }
+
+
 }

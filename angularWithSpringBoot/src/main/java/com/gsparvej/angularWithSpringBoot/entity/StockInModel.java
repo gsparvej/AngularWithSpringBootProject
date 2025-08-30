@@ -2,25 +2,28 @@ package com.gsparvej.angularWithSpringBoot.entity;
 
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "inventories")
-public class InventoryModel {
+import java.util.Date;
 
+@Entity
+@Table(name = "stock_in")
+public class StockInModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private Date receivedTransactionDate;
     private int quantity;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
-    public InventoryModel() {
+    public StockInModel() {
     }
 
-    public InventoryModel(int id, int quantity, Item item) {
+    public StockInModel(int id, Date receivedTransactionDate, int quantity, Item item) {
         this.id = id;
+        this.receivedTransactionDate = receivedTransactionDate;
         this.quantity = quantity;
         this.item = item;
     }
@@ -31,6 +34,14 @@ public class InventoryModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Date getReceivedTransactionDate() {
+        return receivedTransactionDate;
+    }
+
+    public void setReceivedTransactionDate(Date receivedTransactionDate) {
+        this.receivedTransactionDate = receivedTransactionDate;
     }
 
     public int getQuantity() {

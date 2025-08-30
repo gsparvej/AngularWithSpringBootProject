@@ -22,6 +22,14 @@ public class Item {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
     private List<PurchaseRequisition> purchaseRequisitions;
 
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<InventoryModel> inventoryModels;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<StockInModel> stockInModels;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private List<StockOutModel> stockOutModels;
+
     public Item() {
     }
 

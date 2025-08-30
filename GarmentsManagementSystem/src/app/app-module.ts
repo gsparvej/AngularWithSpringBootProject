@@ -76,6 +76,7 @@ import { AddDayWiseProduction } from './Production/add-day-wise-production/add-d
 import { ViewDayWiseProduction } from './Production/view-day-wise-production/view-day-wise-production';
 import { ViewRawMaterialsCalc } from './Merchandiser/view-raw-materials-calc/view-raw-materials-calc';
 import { ProductionSummaryCompo } from './Production/production-summary-compo/production-summary-compo';
+import { ProductionReport } from './Production/production-report/production-report';
 
 
 @NgModule({
@@ -152,6 +153,7 @@ import { ProductionSummaryCompo } from './Production/production-summary-compo/pr
     ViewDayWiseProduction,
     ViewRawMaterialsCalc,
     ProductionSummaryCompo,
+    ProductionReport,
 
   ],
   imports: [

@@ -19,25 +19,25 @@ public interface IProductionOrderRepo extends JpaRepository<ProductionOrder, Int
 
 
 
-
-
-    @Query("""
-    SELECT new com.gsparvej.angularWithSpringBoot.dto.ProductionSummaryResponseDTO(
-        po.id,
-        po.planQty,
-        COALESCE(SUM(dwp.shortSQty + dwp.shortMQty + dwp.shortLQty + dwp.shortXLQty
-                   + dwp.fullSQty + dwp.fullMQty + dwp.fullLQty + dwp.fullXLQty), 0),
-        po.planQty - COALESCE(SUM(dwp.shortSQty + dwp.shortMQty + dwp.shortLQty + dwp.shortXLQty
-                   + dwp.fullSQty + dwp.fullMQty + dwp.fullLQty + dwp.fullXLQty), 0),
-        CASE WHEN COALESCE(SUM(dwp.shortSQty + dwp.shortMQty + dwp.shortLQty + dwp.shortXLQty
-                   + dwp.fullSQty + dwp.fullMQty + dwp.fullLQty + dwp.fullXLQty), 0) >= po.planQty
-             THEN 'Completed'
-             ELSE 'In Progress'
-        END
-    )
-    FROM ProductionOrder po
-    LEFT JOIN po.dayWiseProductions dwp
-    GROUP BY po.id, po.planQty
-""")
-    List<ProductionSummaryResponseDTO> fetchProductionSummary();
+//
+//
+//    @Query("""
+//    SELECT new com.gsparvej.angularWithSpringBoot.dto.ProductionSummaryResponseDTO(
+//        po.id,
+//        po.planQty,
+//        COALESCE(SUM(dwp.shortSQty + dwp.shortMQty + dwp.shortLQty + dwp.shortXLQty
+//                   + dwp.fullSQty + dwp.fullMQty + dwp.fullLQty + dwp.fullXLQty), 0),
+//        po.planQty - COALESCE(SUM(dwp.shortSQty + dwp.shortMQty + dwp.shortLQty + dwp.shortXLQty
+//                   + dwp.fullSQty + dwp.fullMQty + dwp.fullLQty + dwp.fullXLQty), 0),
+//        CASE WHEN COALESCE(SUM(dwp.shortSQty + dwp.shortMQty + dwp.shortLQty + dwp.shortXLQty
+//                   + dwp.fullSQty + dwp.fullMQty + dwp.fullLQty + dwp.fullXLQty), 0) >= po.planQty
+//             THEN 'Completed'
+//             ELSE 'In Progress'
+//        END
+//    )
+//    FROM ProductionOrder po
+//    LEFT JOIN po.dayWiseProductions dwp
+//    GROUP BY po.id, po.planQty
+//""")
+//    List<ProductionSummaryResponseDTO> fetchProductionSummary();
 }

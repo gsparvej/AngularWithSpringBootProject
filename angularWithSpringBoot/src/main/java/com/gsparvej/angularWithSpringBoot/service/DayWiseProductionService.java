@@ -44,6 +44,7 @@ public class DayWiseProductionService {
     public List<DayWiseProductionResponseDTO> getAllDayWiseProductionResponseDTOS() {
         return dayWiseProductionRepo.findAll().stream().map(dayWise -> {
             DayWiseProductionResponseDTO dto = new DayWiseProductionResponseDTO();
+
             dto.setId(dayWise.getId());
             dto.setUpdatedDate(dayWise.getUpdatedDate());
 
@@ -80,4 +81,5 @@ public class DayWiseProductionService {
             return dto;
         }).toList();
     }
+
 }

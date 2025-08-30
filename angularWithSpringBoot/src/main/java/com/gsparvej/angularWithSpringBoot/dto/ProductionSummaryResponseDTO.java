@@ -2,60 +2,90 @@ package com.gsparvej.angularWithSpringBoot.dto;
 
 public class ProductionSummaryResponseDTO {
 
-    private int orderId;
-    private int plannedQty;
-    private int producedQty;
-    private int remainingQty;
-    private String status;
+    private int shortSQtySum;
+    private int shortMQtySum;
+    private int shortLQtySum;
+    private int shortXLQtySum;
+    private int fullSQtySum;
+    private int fullMQtySum;
+    private int fullLQtySum;
+    private int fullXLQtySum;
 
     public ProductionSummaryResponseDTO() {
     }
 
-    public ProductionSummaryResponseDTO(int orderId, int plannedQty, int producedQty, int remainingQty, String status) {
-        this.orderId = orderId;
-        this.plannedQty = plannedQty;
-        this.producedQty = producedQty;
-        this.remainingQty = remainingQty;
-        this.status = status;
+    public ProductionSummaryResponseDTO(int shortSQtySum, int shortMQtySum, int shortLQtySum, int shortXLQtySum, int fullSQtySum, int fullMQtySum, int fullLQtySum, int fullXLQtySum) {
+        this.shortSQtySum = shortSQtySum;
+        this.shortMQtySum = shortMQtySum;
+        this.shortLQtySum = shortLQtySum;
+        this.shortXLQtySum = shortXLQtySum;
+        this.fullSQtySum = fullSQtySum;
+        this.fullMQtySum = fullMQtySum;
+        this.fullLQtySum = fullLQtySum;
+        this.fullXLQtySum = fullXLQtySum;
     }
 
-    public int getOrderId() {
-        return orderId;
+    public int getShortSQtySum() {
+        return shortSQtySum;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setShortSQtySum(int shortSQtySum) {
+        this.shortSQtySum = shortSQtySum;
     }
 
-    public int getPlannedQty() {
-        return plannedQty;
+    public int getShortMQtySum() {
+        return shortMQtySum;
     }
 
-    public void setPlannedQty(int plannedQty) {
-        this.plannedQty = plannedQty;
+    public void setShortMQtySum(int shortMQtySum) {
+        this.shortMQtySum = shortMQtySum;
     }
 
-    public int getProducedQty() {
-        return producedQty;
+    public int getShortLQtySum() {
+        return shortLQtySum;
     }
 
-    public void setProducedQty(int producedQty) {
-        this.producedQty = producedQty;
+    public void setShortLQtySum(int shortLQtySum) {
+        this.shortLQtySum = shortLQtySum;
     }
 
-    public int getRemainingQty() {
-        return remainingQty;
+    public int getShortXLQtySum() {
+        return shortXLQtySum;
     }
 
-    public void setRemainingQty(int remainingQty) {
-        this.remainingQty = remainingQty;
+    public void setShortXLQtySum(int shortXLQtySum) {
+        this.shortXLQtySum = shortXLQtySum;
     }
 
-    public String getStatus() {
-        return status;
+    public int getFullSQtySum() {
+        return fullSQtySum;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setFullSQtySum(int fullSQtySum) {
+        this.fullSQtySum = fullSQtySum;
+    }
+
+    public int getFullMQtySum() {
+        return fullMQtySum;
+    }
+
+    public void setFullMQtySum(int fullMQtySum) {
+        this.fullMQtySum = fullMQtySum;
+    }
+
+    public int getFullLQtySum() {
+        return fullLQtySum;
+    }
+
+    public void setFullLQtySum(int fullLQtySum) {
+        this.fullLQtySum = fullLQtySum;
+    }
+
+    public int getFullXLQtySum() {
+        return fullXLQtySum;
+    }
+
+    public void setFullXLQtySum(int fullXLQtySum) {
+        this.fullXLQtySum = fullXLQtySum;
     }
 }

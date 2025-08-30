@@ -3,6 +3,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DayWiseProduction } from '../../../model/Production/dayWiseProduction.model';
+import { DayWiseProductionResponseDTO } from '../../../model/productionReportResponseDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -31,4 +32,17 @@ export class DayWiseProService {
   deleteDayWiseProduction(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+
+
+  // testing production report 
+  getDayWiseProByOrderId(orderId: number): Observable<DayWiseProduction[]> {
+    return this.http.get<DayWiseProduction[]>(`${this.baseUrl}/searchByOrderId/${orderId}`);
+  }
+
+
+  getDayWiseProductionDTOs(): Observable<DayWiseProductionResponseDTO[]> {
+  return this.http.get<DayWiseProductionResponseDTO[]>(this.baseUrl);
+}
+
 }

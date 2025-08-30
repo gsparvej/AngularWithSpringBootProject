@@ -28,6 +28,11 @@ public class PurchaseOrderRestController {
         return purchaseOrderService.getAllPurchaseOrderResponseDTOS();
     }
 
+    @GetMapping("/id/{id}")
+    public List<PurchaseOrderResponseDTO> getAllPurchaseDTOS() {
+        return purchaseOrderService.getAllPurchaseOrderResponseDTOS();
+    }
+
 
 
     // create new Purchase

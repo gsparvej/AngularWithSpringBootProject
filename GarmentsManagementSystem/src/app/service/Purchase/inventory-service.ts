@@ -5,6 +5,7 @@ import { StockInModel } from '../../../model/Purchase/stockIn.model';
 import { InventoryModel } from '../../../model/Purchase/inventory.model';
 import { StockOutModel } from '../../../model/Purchase/stockOut.model';
 import { environment } from '../../environments/environment';
+import { InventoryResponseDTO } from '../../../model/stockRequestDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -28,7 +29,7 @@ export class InventoryService {
 
   // Update the quantity of an existing inventory item
   updateQuantity(inventory: InventoryModel): Observable<any> {
-    return this.http.post(`${this.baseUrlInventory}/remove`, inventory);
+    return this.http.post(`${this.baseUrlStockOut}`, inventory);
   }
 
   // Delete an inventory item
@@ -54,5 +55,26 @@ export class InventoryService {
   // Save a new stock-out record
   saveStockOut(stockOut: StockOutModel): Observable<StockOutModel> {
     return this.http.post<StockOutModel>(this.baseUrlStockOut, stockOut);
+  }
+
+
+
+
+  //test
+
+   private baseUrl = 'http://localhost:8080/api/inventory';
+
+  
+
+  addStock(stock: InventoryModel): Observable<string> {
+    return this.http.post(`${this.baseUrl}/add`, stock, { responseType: 'text' });
+  }
+
+  removeStock(stock: InventoryModel): Observable<string> {
+    return this.http.post(`${this.baseUrl}/remove`, stock, { responseType: 'text' });
+  }
+
+  getAllInventories(): Observable<InventoryResponseDTO[]> {
+    return this.http.get<InventoryResponseDTO[]>(this.baseUrl);
   }
 }

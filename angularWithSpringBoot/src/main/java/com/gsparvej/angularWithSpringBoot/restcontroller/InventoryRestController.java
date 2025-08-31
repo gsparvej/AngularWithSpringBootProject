@@ -18,16 +18,18 @@ public class InventoryRestController {
     private InventoryService inventoryService;
 
     @PostMapping("/add")
-    public String addStock(@RequestBody StockRequestDTO stockRequest) {
-        int itemId = stockRequest.getItemId();
+    public String addStock(@RequestBody InventoryModel stockRequest) {
+        int itemId = stockRequest.getItem().getId();  // ✔️ cleaner and more correct
         int quantity = stockRequest.getQuantity();
+
         inventoryService.addStock(itemId, quantity);
         return "Stock added successfully!";
     }
 
+
     @PostMapping("/remove")
-    public String removeStock(@RequestBody StockRequestDTO stockRequest) {
-        int itemId = stockRequest.getItemId();
+    public String removeStock(@RequestBody InventoryModel stockRequest) {
+        int itemId = stockRequest.getItem().getId();
         int quantity = stockRequest.getQuantity();
 
         inventoryService.addStockOut(itemId, quantity);

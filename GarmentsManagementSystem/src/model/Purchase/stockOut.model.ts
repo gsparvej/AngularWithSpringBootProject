@@ -1,5 +1,5 @@
 export class StockOutModel {
-  itemId!: number;
+  id!: number;
   quantity!: number;
   transactionDate!: Date;
 }

@@ -7,6 +7,7 @@ import { InventoryService } from '../../service/Purchase/inventory-service';
 import { ItemService } from '../../service/Purchase/item-service';
 import { InventoryModel } from '../../../model/Purchase/inventory.model';
 import { StockInModel } from '../../../model/Purchase/stockIn.model';
+import { Item } from '../../../model/Purchase/item.model';
 
 @Component({
   selector: 'app-stock-in',
@@ -15,68 +16,65 @@ import { StockInModel } from '../../../model/Purchase/stockIn.model';
   styleUrl: './stock-in.css'
 })
 
-export class StockIn implements OnInit {
-  formStockIn!: FormGroup;
-  inventories: any[] = [];
-  selectedItem!: InventoryModel | undefined;
+export class StockIn  {
+   stock: InventoryModel = {
+    item: { id: 0, categoryName: '',unit:'' },
+    quantity: 0
+  };
+
+  items: Item[] = [];
+  message = '';
 
   constructor(
-    private fb: FormBuilder,
     private inventoryService: InventoryService,
-    private router: Router
+    private itemService: ItemService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.formStockIn = this.fb.group({
-      itemId: ['', Validators.required],
-      quantity: ['', [Validators.required, Validators.min(1)]],
-      transactionDate: [this.getTodayDate(), Validators.required],
-    });
+    // this.itemService.getAllItem().subscribe({
+      
+    //   next: (data) => this.items = data,
+      
+    //   error: (err) => console.error('Failed to fetch items', err)
+    // });
 
-    this.loadInventories();
+    this.loadAllItems();
   }
 
-  loadInventories(): void {
-    this.inventoryService.getInventories().subscribe({
-      next: (data) => {
-        this.inventories = data;
-        console.log(this.inventories)
+  loadAllItems(): void {
+   
+      po: this.itemService.getAllItem().subscribe({
+      next: (result) => {
+        this.items = result;     
+
+        console.log('Items:', this.items);
+        this.cdr.detectChanges();
+
+
+        
       },
-      error: (err) => console.error('Error loading inventories:', err),
+      error: (err) => {
+        console.error('Error loading data:', err);
+        alert('Failed to load POs data');
+      }
     });
   }
 
-  getTodayDate(): string {
-    return new Date().toISOString().split('T')[0];
-  }
 
-  onItemSelect(event: any): void {
-    const selectedId = event.target.value;
-    this.selectedItem = this.inventories.find(i => i.id === selectedId);
-  }
-
-  addStockIn(): void {
-    if (this.formStockIn.invalid) {
-      return;
+  addStock(): void {
+    if (this.stock.item.id > 0 && this.stock.quantity > 0) {
+      this.inventoryService.addStock(this.stock).subscribe({
+        next: (res) => {
+          this.message = res;
+          this.stock.quantity = 0;
+          this.stock.item.id = 0;
+        },
+        error: (err) => this.message = err.error || 'Failed to add stock.'
+      });
+    } else {
+      this.message = 'Please select an item and enter a quantity.';
     }
-
-    const stockIn: StockInModel = this.formStockIn.value;
-
-    this.inventoryService.saveStockIn(stockIn).subscribe({
-      next: () => {
-        const id = stockIn.itemId;
-        const quantity = Number(stockIn.quantity) + (this.selectedItem?.quantity || 0);
-
-        // Fix: Correct the item reference when creating InventoryModel
-        const updatedInventory = new InventoryModel(quantity, this.selectedItem?.item!);
-
-        this.inventoryService.updateQuantity(updatedInventory).subscribe(() => {
-          this.loadInventories();
-          this.formStockIn.reset();
-        });
-      },
-      error: (err) => console.error('Error adding stock:', err),
-    });
   }
 
 

@@ -5,6 +5,7 @@ import { ItemService } from '../../service/Purchase/item-service';
 import { Router } from '@angular/router';
 import { InventoryModel } from '../../../model/Purchase/inventory.model';
 import { StockOutModel } from '../../../model/Purchase/stockOut.model';
+import { Item } from '../../../model/Purchase/item.model';
 
 @Component({
   selector: 'app-stock-out',
@@ -12,93 +13,64 @@ import { StockOutModel } from '../../../model/Purchase/stockOut.model';
   templateUrl: './stock-out.html',
   styleUrl: './stock-out.css'
 })
-export class StockOut implements OnInit {
-inventory: any[] = [];
-  formStockOut!: FormGroup;
-  selectedItem?: InventoryModel;
-  submitted: boolean = false;
+export class StockOut  {
+  stock: InventoryModel = {
+    item: { id: 0, categoryName: '', unit:'' },
+    quantity: 0
+  };
+
+  items: Item[] = [];
+  message: string = '';
 
   constructor(
-    private fb: FormBuilder,
     private inventoryService: InventoryService,
-    private cdr: ChangeDetectorRef,
-    private router: Router
+    private itemService: ItemService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.formStockOut = this.fb.group({
-      itemId: ['', Validators.required],
-      quantity: ['', [Validators.required, Validators.min(1)]],
-      transactionDate: [this.getTodayDate(), Validators.required],
-    });
+    // this.itemService.getAllItem().subscribe({
+    //   next: (data) => this.items = data,
+    //   error: (err) => console.error('Failed to fetch items', err)
+    // });
 
-    this.loadInventory();
+    this.loadAllItems();
   }
 
-  getTodayDate(): string {
-    return new Date().toISOString().split('T')[0];
-  }
-
-  loadInventory(): void {
-    this.inventoryService.getInventories().subscribe({
-      next: (data: InventoryModel[]) => {
-        this.inventory = data;
-        console.log('Loaded inventory:', this.inventory);
-        this.cdr.detectChanges();
-      },
-      error: (err) => console.error('Error loading inventory:', err),
-    });
-  }
-
-  onItemSelect(event: Event): void {
-    const selectElement = event.target as HTMLSelectElement;
-    const id = Number(selectElement.value); // Ensure type match
-    this.selectedItem = this.inventory.find((i) => i.id === id);
-
-    if (!this.selectedItem) {
-      console.warn('Item not found for ID:', id);
+  removeStock(): void {
+    if (this.stock.item.id > 0 && this.stock.quantity > 0) {
+      this.inventoryService.removeStock(this.stock).subscribe({
+        next: (res) => {
+          this.message = res;
+          this.stock.quantity = 0;
+          this.stock.item.id = 0;
+        },
+        error: (err) => {
+          console.error(err);
+          this.message = err.error || 'Failed to remove stock.';
+        }
+      });
     } else {
-      console.log('Selected for Stock Out:', this.selectedItem);
+      this.message = 'Please select an item and enter a valid quantity.';
     }
   }
 
-  addStockOut(): void {
-    this.submitted = true;
+    loadAllItems(): void {
+   
+      po: this.itemService.getAllItem().subscribe({
+      next: (result) => {
+        this.items = result;     
 
-    if (this.formStockOut.invalid || !this.selectedItem) {
-      this.formStockOut.markAllAsTouched();
-      return;
-    }
+        console.log('Items:', this.items);
+        this.cdr.detectChanges();
 
-    const outQty = this.formStockOut.value.quantity;
 
-    if (outQty > this.selectedItem.quantity) {
-      alert('Not enough stock!');
-      return;
-    }
-
-    const stockOut: any = {
-      itemId: this.selectedItem!.id, // ✅ Safe non-null assertion
-      quantity: outQty,
-      transactionDate: this.formStockOut.value.transactionDate
-    };
-
-    this.inventoryService.saveStockOut(stockOut).subscribe({
-      next: () => {
-        const newQty = this.selectedItem!.quantity - outQty;
-
-        const updatedInventory = new InventoryModel(newQty, this.selectedItem!.item);
-        updatedInventory.id = this.selectedItem!.id;
-
-        this.inventoryService.updateQuantity(updatedInventory).subscribe(() => {
-          this.loadInventory();
-          this.formStockOut.reset({ transactionDate: this.getTodayDate() });
-          this.selectedItem = undefined;
-          this.submitted = false;
-          this.router.navigate(['']); // Optional navigation
-        });
+        
       },
-      error: (err) => console.error('Error on stock out:', err),
+      error: (err) => {
+        console.error('Error loading data:', err);
+        alert('Failed to load POs data');
+      }
     });
   }
 

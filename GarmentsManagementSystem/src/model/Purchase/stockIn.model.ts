@@ -1,3 +1,4 @@
+import { Item } from "./item.model";
 
 
 export class StockInModel{
@@ -5,4 +6,6 @@ export class StockInModel{
     receivedTransactionDate!: Date;
     itemId!: string;
     quantity!:number;
+
+    item!: Item;
 }

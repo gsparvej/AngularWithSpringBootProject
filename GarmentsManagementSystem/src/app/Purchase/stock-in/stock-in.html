@@ -51,3 +51,43 @@
   </form>
 </div>
 
+
+
+<hr>
+
+<!-- view stock table -->
+
+<div class="container mt-4 p-4 shadow-sm bg-white rounded">
+  <h3 class="text-center mb-4 text-primary">📦 Stock In List</h3>
+
+  
+
+  <div *ngIf="stockIn.length === 0">
+    <p>No stock in records found.</p>
+  </div>
+
+  <div *ngIf="stockIn.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Item Name</th>
+         
+          <th>Quantity</th>
+          <th>Date Added</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stock of stockIn; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ stock.item.categoryName }}</td>
+         
+         
+          <td>{{ stock.quantity }}</td>
+          <td>{{ stock.receivedTransactionDate| date: 'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+

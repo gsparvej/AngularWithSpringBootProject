@@ -41,3 +41,37 @@
     </p>
   </form>
 </div>
+
+<hr>
+
+
+<div class="container mt-4 p-4 shadow-sm bg-white rounded">
+  <h3 class="text-center mb-4 text-primary">📦 Stock Out List</h3>
+
+  
+
+  <div *ngIf="stockOut.length === 0">
+    <p>No stock out records found.</p>
+  </div>
+
+  <div *ngIf="stockOut.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead class="table-primary">
+        <tr>
+          <th>#</th>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Stock Out Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stock of stockOut; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ stock.item.categoryName }}</td>
+          <td>{{ stock.quantity }}</td>
+          <td>{{ stock.transactionDate| date: 'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

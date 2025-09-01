@@ -12,8 +12,8 @@ import { InventoryResponseDTO } from '../../../model/stockRequestDTO';
 })
 export class InventoryService {
   private baseUrlInventory = environment.apiBaseUrl + '/inventory';
-  private baseUrlStockIn = environment.apiBaseUrl + '/inventory/add';
-  private baseUrlStockOut = environment.apiBaseUrl + '/inventory/remove'; 
+  // private baseUrlStockIn = environment.apiBaseUrl + '/inventory/add';
+  // private baseUrlStockOut = environment.apiBaseUrl + '/inventory/remove'; 
 
   constructor(private http: HttpClient) {}
 
@@ -27,35 +27,35 @@ export class InventoryService {
     return this.http.post<InventoryModel>(this.baseUrlInventory, data);
   }
 
-  // Update the quantity of an existing inventory item
-  updateQuantity(inventory: InventoryModel): Observable<any> {
-    return this.http.post(`${this.baseUrlStockOut}`, inventory);
-  }
+  // // Update the quantity of an existing inventory item
+  // updateQuantity(inventory: InventoryModel): Observable<any> {
+  //   return this.http.post(`${this.baseUrlStockOut}`, inventory);
+  // }
 
-  // Delete an inventory item
-  deleteInventory(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrlInventory}/${id}`);
-  }
+  // // Delete an inventory item
+  // deleteInventory(id: string): Observable<void> {
+  //   return this.http.delete<void>(`${this.baseUrlInventory}/${id}`);
+  // }
 
-  // Get all stock-in records
-  getAllStockIn(): Observable<StockInModel[]> {
-    return this.http.get<StockInModel[]>(this.baseUrlStockIn);
-  }
+  // // Get all stock-in records
+  // getAllStockIn(): Observable<StockInModel[]> {
+  //   return this.http.get<StockInModel[]>(this.baseUrlStockIn);
+  // }
 
-  // Save a new stock-in record
-  saveStockIn(stockIn: StockInModel): Observable<StockInModel> {
-    return this.http.post<StockInModel>(this.baseUrlStockIn, stockIn);
-  }
+  // // Save a new stock-in record
+  // saveStockIn(stockIn: StockInModel): Observable<StockInModel> {
+  //   return this.http.post<StockInModel>(this.baseUrlStockIn, stockIn);
+  // }
 
-  // Get all stock-out records
-  getAllStockOut(): Observable<StockOutModel[]> {
-    return this.http.get<StockOutModel[]>(this.baseUrlStockOut);
-  }
+  // // Get all stock-out records
+  // getAllStockOut(): Observable<StockOutModel[]> {
+  //   return this.http.get<StockOutModel[]>(this.baseUrlStockOut);
+  // }
 
-  // Save a new stock-out record
-  saveStockOut(stockOut: StockOutModel): Observable<StockOutModel> {
-    return this.http.post<StockOutModel>(this.baseUrlStockOut, stockOut);
-  }
+  // // Save a new stock-out record
+  // saveStockOut(stockOut: StockOutModel): Observable<StockOutModel> {
+  //   return this.http.post<StockOutModel>(this.baseUrlStockOut, stockOut);
+  // }
 
 
 

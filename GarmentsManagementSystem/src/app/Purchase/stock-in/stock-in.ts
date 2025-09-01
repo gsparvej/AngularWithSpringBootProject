@@ -8,6 +8,7 @@ import { ItemService } from '../../service/Purchase/item-service';
 import { InventoryModel } from '../../../model/Purchase/inventory.model';
 import { StockInModel } from '../../../model/Purchase/stockIn.model';
 import { Item } from '../../../model/Purchase/item.model';
+import { ViewStockService } from '../../service/Purchase/view-stock-service';
 
 @Component({
   selector: 'app-stock-in',
@@ -23,23 +24,21 @@ export class StockIn  {
   };
 
   items: Item[] = [];
+  stockIn: StockInModel[] = [];
   message = '';
+
 
   constructor(
     private inventoryService: InventoryService,
     private itemService: ItemService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private viewStockService: ViewStockService
   ) {}
 
   ngOnInit(): void {
-    // this.itemService.getAllItem().subscribe({
-      
-    //   next: (data) => this.items = data,
-      
-    //   error: (err) => console.error('Failed to fetch items', err)
-    // });
-
+    this.loadAllStockIn();
     this.loadAllItems();
+
   }
 
   loadAllItems(): void {
@@ -60,6 +59,47 @@ export class StockIn  {
       }
     });
   }
+
+    loadAllStockIn(): void {
+   
+      stock: this.viewStockService.getAllStockIn().subscribe({
+      next: (result) => {
+        this.stockIn = result;     
+
+        console.log('stockIn:', this.stockIn);
+        this.cdr.detectChanges();
+
+
+        
+      },
+      error: (err) => {
+        console.error('Error loading data:', err);
+        alert('Failed to load Stock In data');
+      }
+    });
+  }
+  //   loadAll(): void {
+   
+  //     stock: this.viewStockService.getAllStockIn().subscribe({
+  //     next: (result) => {
+  //       this.stockIn = result;     
+
+  //       console.log('stockIn:', this.stockIn);
+  //       this.cdr.detectChanges();
+
+
+        
+  //     },
+  //     error: (err) => {
+  //       console.error('Error loading data:', err);
+  //       alert('Failed to load Stock In data');
+  //     }
+  //   });
+  // }
+
+
+
+
 
 
   addStock(): void {

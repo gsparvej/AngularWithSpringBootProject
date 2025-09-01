@@ -95,4 +95,47 @@ public class PurchaseOrderService {
             return dto;
         }).toList();
     }
+
+
+    public List<PurchaseOrderResponseDTO> getPurchaseOrderFullViewResponseDTOS(int id) {
+        return purchaseOrderRepo.findById(id).stream().map(order -> {
+            PurchaseOrderResponseDTO dto = new PurchaseOrderResponseDTO();
+            dto.setId(order.getId());
+            dto.setPoDate(order.getPoDate());
+            dto.setDeliveryDate(order.getDeliveryDate());
+            dto.setPoNumber(order.getPoNumber());
+            dto.setQuantity(order.getQuantity());
+            dto.setRate(order.getRate());
+            dto.setSubTotal(order.getSubTotal());
+            dto.setTax(order.getTax());
+            dto.setTotalAmount(order.getTotalAmount());
+            dto.setTermsAndCondition(order.getTermsAndCondition());
+
+
+
+
+            Vendor vendor = order.getVendor();
+            if (vendor != null) {
+                VendorResponseDTO vendorResponseDTO = new VendorResponseDTO();
+                vendorResponseDTO.setCompanyName(vendor.getCompanyName());
+                vendorResponseDTO.setAddress(vendor.getAddress());
+                vendorResponseDTO.setPhone(vendor.getPhone());
+                vendorResponseDTO.setContactPerson(vendor.getContactPerson());
+                dto.setVendor(vendorResponseDTO);
+
+
+            }
+
+            Item item = order.getItem();
+            if (item != null) {
+                ItemResponseDTO itemResponseDTO = new ItemResponseDTO();
+
+                itemResponseDTO.setCategoryName(item.getCategoryName());
+
+                dto.setItem(itemResponseDTO);
+            }
+
+            return dto;
+        }).toList();
+    }
 }

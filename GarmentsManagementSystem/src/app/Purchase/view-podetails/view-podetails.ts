@@ -24,20 +24,24 @@ export class ViewPODetails implements OnInit{
 
   ngOnInit(): void {
     this.id = this.ar.snapshot.params['id'];
-    this.viewPOs();
+    this.viewFullPOs();
   }
 
-   viewPOs(): void {
-    this.poService.viewPODetails(this.id).subscribe({
-      next: (data) => {
-        this.po = data;
-        console.log(data);
+  viewFullPOs(): void {
+  this.poService.getFullPurchaseOrderById(this.id).subscribe({
+    next: (data) => {
+      if (Array.isArray(data) && data.length > 0) {
+        this.po = data[0];  // take the first object
         this.cdr.markForCheck();
-      },
-      error: (error) => {
-        console.log(error);
+      } else {
+        console.warn('No order found for ID:', this.id);
       }
-    })
-  }
+      console.log("Full Order:", this.po);
+    },
+    error: (error) => {
+      console.log(error);
+    }
+  });
+}
 
 }

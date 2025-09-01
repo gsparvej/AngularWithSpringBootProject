@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { PurchaseOrder } from '../../../model/Purchase/po.model';
 import { environment } from '../../environments/environment';
 import { VendorModel } from '../../../model/Purchase/vendor.model';
+import { PurchaseOrderResponseDTO } from '../../../model/poResponseDTOs';
 
 
 @Injectable({
@@ -33,6 +34,10 @@ private baseUrlPO = environment.apiBaseUrl + '/po';
   getVendorById(id: number): Observable<VendorModel> {
   return this.http.get<VendorModel>(`http://localhost:8080/api/vendor/${id}`);
 }
+
+ getFullPurchaseOrderById(id: number): Observable<PurchaseOrderResponseDTO> {
+    return this.http.get<PurchaseOrderResponseDTO>(`http://localhost:8080/api/po/id/${id}`);
+  }
 
 
   

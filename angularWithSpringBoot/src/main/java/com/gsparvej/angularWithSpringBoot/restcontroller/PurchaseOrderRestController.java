@@ -1,5 +1,6 @@
 package com.gsparvej.angularWithSpringBoot.restcontroller;
 
+import com.gsparvej.angularWithSpringBoot.dto.FullOrderViewResponseDTO;
 import com.gsparvej.angularWithSpringBoot.dto.PurchaseOrderResponseDTO;
 import com.gsparvej.angularWithSpringBoot.entity.PurchaseOrder;
 import com.gsparvej.angularWithSpringBoot.entity.PurchaseRequisition;
@@ -29,8 +30,8 @@ public class PurchaseOrderRestController {
     }
 
     @GetMapping("/id/{id}")
-    public List<PurchaseOrderResponseDTO> getAllPurchaseDTOS() {
-        return purchaseOrderService.getAllPurchaseOrderResponseDTOS();
+    public List<PurchaseOrderResponseDTO> getPOOrderByIdFromDTOs(@PathVariable int id) {
+        return purchaseOrderService.getPurchaseOrderFullViewResponseDTOS(id);
     }
 
 

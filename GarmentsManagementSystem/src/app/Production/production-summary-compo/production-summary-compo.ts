@@ -42,7 +42,7 @@ export class ProductionSummaryCompo implements OnInit {
 
   loadAllSummaries(): void {
     this.orders.forEach(order => {
-      this.proSummarySer.getProductionSummary(order.id).subscribe({
+      this.proSummarySer.getProductionSummaryAll(order.id).subscribe({
         next: (summary) => {
           this.orderSummaries[order.id] = summary;
           console.log(`Summary for Order ${order.id}:`, summary);

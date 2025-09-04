@@ -19,6 +19,9 @@ public class ProductionSummaryRestController {
     @Autowired
     private ProductionSummaryService productionSummaryService;
 
+
+
+    // ei method ta apatoto off kora ase
     @GetMapping("/production-summary")
     public ReportDTO getProductionSummary(
             @RequestParam Integer orderId
@@ -26,6 +29,14 @@ public class ProductionSummaryRestController {
         Order order = new Order();
         order.setId(orderId);
         return productionSummaryService.findByOrder(order);
+    }
+
+
+
+//    its works perfectly
+    @GetMapping("/production-summaryAll")
+    public ReportDTO getProductionSummaryAll(@RequestParam Integer orderId) {
+        return productionSummaryService.findByOrderId(orderId);
     }
 
 

@@ -18,6 +18,11 @@ export class ProductionSummaryService {
       params: { orderId: orderId.toString() }
     });
   }
+  getProductionSummaryAll(orderId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/production-summaryAll`, {
+      params: { orderId: orderId.toString() }
+    });
+  }
 
 
 }

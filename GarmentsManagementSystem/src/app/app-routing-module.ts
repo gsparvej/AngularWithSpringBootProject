@@ -9,7 +9,6 @@ import { AddAttendance } from './HR/add-attendance/add-attendance';
 import { ViewAllLeave } from './HR/view-all-leave/view-all-leave';
 import { AddLeave } from './HR/add-leave/add-leave';
 import { Registration } from './Auth/registration/registration';
-import { Login } from './Auth/login/login';
 import { Home } from './home/home';
 import { ViewAllBuyer } from './Merchandiser/view-all-buyer/view-all-buyer';
 import { AddBuyer } from './Merchandiser/add-buyer/add-buyer';
@@ -43,19 +42,10 @@ import { ViewAllRequ } from './Purchase/view-all-requ/view-all-requ';
 import { ViewRequDetails } from './Purchase/view-requ-details/view-requ-details';
 import { UpdateBuyer } from './Merchandiser/update-buyer/update-buyer';
 import { UpdateLeave } from './HR/update-leave/update-leave';
-import { UserGuard } from './Guards/user-guard';
-import { AdminGuard } from './Guards/admin-guard';
-import { Logout } from './Auth/logout/logout';
-import { AdminProfile } from './Auth/admin-profile/admin-profile';
 import { ViewUsers } from './User/view-users/view-users';
 import { UpdateUsers } from './User/update-users/update-users';
 import { ChatComponent } from './Chat/chat-component/chat-component';
 import { SuperAdmin } from './Auth/super-admin/super-admin';
-import { HrExecutive } from './Auth/hr-executive/hr-executive';
-import { HrAdmin } from './Auth/hr-admin/hr-admin';
-import { MerchandiserJunior } from './Auth/merchandiser-junior/merchandiser-junior';
-import { MerchandiserManager } from './Auth/merchandiser-manager/merchandiser-manager';
-import { PurchaseExecutive } from './Auth/purchase-executive/purchase-executive';
 import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
@@ -76,8 +66,7 @@ import { ProductionReport } from './Production/production-report/production-repo
 const routes: Routes = [
   { path: '', component: Home },
   { path: 'reg', component: Registration },
-  { path: 'login', component: Login },
-
+  
 
   { path: 'viewAllEmp', component: ViewAllEmployee },
   { path: 'addEmp', component: AddEmployee },
@@ -102,13 +91,7 @@ const routes: Routes = [
 
   //role Profile
   { path: 'userprofile', component: UserProfile },
-  { path: 'adminprofile', component: AdminProfile },
   { path: 'superadmin', component: SuperAdmin },
-  { path: 'hrexecutive', component: HrExecutive },
-  { path: 'hradmin', component: HrAdmin },
-  { path: 'merchandiserjunior', component: MerchandiserJunior },
-  { path: 'merchandisermanager', component: MerchandiserManager },
-  { path: 'purchaseexecutive', component: PurchaseExecutive },
   { path: 'purchasemanager', component: PurchaseManager },
 
 

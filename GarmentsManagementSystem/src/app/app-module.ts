@@ -64,6 +64,8 @@ import { ProductionSummaryCompo } from './Production/production-summary-compo/pr
 import { ProductionReport } from './Production/production-report/production-report';
 import { Login } from './Registration/login/login';
 import { Admin } from './Registration/admin/admin';
+import { MerchandiserManager } from './Registration/merchandiser-manager/merchandiser-manager';
+import { PurchaseManager } from './Registration/purchase-manager/purchase-manager';
 
 
 
@@ -128,7 +130,9 @@ import { Admin } from './Registration/admin/admin';
     ProductionSummaryCompo,
     ProductionReport,
     Login,
-    Admin
+    Admin,
+    MerchandiserManager,
+    PurchaseManager
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,36 @@
       </li>
 
 
+       @if(userRole === 'SUPERADMIN') {
+        
+      <li class="nav-item">
+        <!-- Trigger for Collapsible Menu -->
+        <a class="nav-link text-white" data-bs-toggle="collapse" href="#registrationMenu">
+          <i class="fas fa-home me-1 text-primary"></i> Registration
+        </a>
+        <!-- Collapsible Menu for Subcategories -->
+        <div class="collapse ps-3" id="registrationMenu">
+          <a class="nav-link text-white" routerLink="/adminReg">
+            <i class="fas fa-user-shield me-1"></i> Admin Registration
+          </a>
+          <a class="nav-link text-white" routerLink="/hrAdminReg">
+            <i class="fas fa-users-cog me-1"></i> HR Admin Registration
+          </a>
+          <a class="nav-link text-white" routerLink="/merchandiserManagerReg">
+            <i class="fas fa-user-tie me-1"></i> Merchandiser Manager Registration
+          </a>
+          <a class="nav-link text-white" routerLink="/purchaseManagerReg">
+            <i class="fas fa-box-open me-1"></i> Purchase Manager Registration
+          </a>
+          <a class="nav-link text-white" routerLink="/productionManagerReg">
+            <i class="fas fa-industry me-1"></i> Production Manager Registration
+          </a>
+        </div>
+      </li>
+      }
+
+
+
       <li class="nav-item">
         <a class="nav-link text-white" routerLink="/addEmp"><i class="fas fa-user-plus me-1 text-info"></i> Add
           Employee</a>

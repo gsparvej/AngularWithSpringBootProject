@@ -56,6 +56,8 @@ import { ProductionSummaryCompo } from './Production/production-summary-compo/pr
 import { ProductionReport } from './Production/production-report/production-report';
 import { Login } from './Registration/login/login';
 import { Admin } from './Registration/admin/admin';
+import { MerchandiserManager } from './Registration/merchandiser-manager/merchandiser-manager';
+import { PurchaseManager } from './Registration/purchase-manager/purchase-manager';
 
 
 const routes: Routes = [
@@ -130,7 +132,9 @@ const routes: Routes = [
   // Registration Part
 
   {path: 'login' , component: Login},
-  {path: 'adminReg' , component: Admin}
+  {path: 'adminReg' , component: Admin},
+  {path: 'merchandiserManagerReg' , component: MerchandiserManager},
+  {path: 'purchaseManagerReg', component: PurchaseManager}
 
 
 ];

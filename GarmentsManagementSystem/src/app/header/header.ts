@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AuthService } from '../service/Auth/auth-service';
 import { User } from '../../model/Auth/user.model';
 
+
 @Component({
   selector: 'app-header',
   standalone: false,
@@ -20,12 +21,14 @@ export class Header implements OnInit{
   
   
      ngOnInit(): void {
-      this.authService.currentUser$.subscribe(user=>{
-        this.currentUser = user;
-        this.userRole = user?.role || null;
-  
-      });
-    }
+    // Subscribe to role changes
+    this.authService.userRole$.subscribe(role => {
+      this.userRole = role;
+    });
+
+    // Also initialize with current role (in case of refresh)
+    this.userRole = this.authService.getUserRole();
+  }
 
 
 }

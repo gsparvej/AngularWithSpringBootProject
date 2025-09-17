@@ -19,9 +19,6 @@ import { ViewAllAttendance } from './HR/view-all-attendance/view-all-attendance'
 import { AddAttendance } from './HR/add-attendance/add-attendance';
 import { ViewAllLeave } from './HR/view-all-leave/view-all-leave';
 import { AddLeave } from './HR/add-leave/add-leave';
-
-import { Registration } from './Auth/registration/registration';
-import { UserProfile } from './Auth/user-profile/user-profile';
 import { Home } from './home/home';
 import { ViewAllBuyer } from './Merchandiser/view-all-buyer/view-all-buyer';
 import { AddBuyer } from './Merchandiser/add-buyer/add-buyer';
@@ -51,11 +48,6 @@ import { ViewAllRequ } from './Purchase/view-all-requ/view-all-requ';
 import { ViewRequDetails } from './Purchase/view-requ-details/view-requ-details';
 import { UpdateBuyer } from './Merchandiser/update-buyer/update-buyer';
 import { UpdateLeave } from './HR/update-leave/update-leave';
-import { ViewUsers } from './User/view-users/view-users';
-import { UpdateUsers } from './User/update-users/update-users';
-import { ChatComponent } from './Chat/chat-component/chat-component';
-import { SuperAdmin } from './Auth/super-admin/super-admin';
-import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
@@ -70,8 +62,9 @@ import { ViewDayWiseProduction } from './Production/view-day-wise-production/vie
 import { ViewRawMaterialsCalc } from './Merchandiser/view-raw-materials-calc/view-raw-materials-calc';
 import { ProductionSummaryCompo } from './Production/production-summary-compo/production-summary-compo';
 import { ProductionReport } from './Production/production-report/production-report';
+import { Login } from './Registration/login/login';
 import { Admin } from './Registration/admin/admin';
-import { ProductionManager } from './Registration/production-manager/production-manager';
+
 
 
 @NgModule({
@@ -91,9 +84,6 @@ import { ProductionManager } from './Registration/production-manager/production-
     AddAttendance,
     ViewAllLeave,
     AddLeave,
-    Registration,
-    UserProfile,
- 
     Home,
     ViewAllBuyer,
     AddBuyer,
@@ -123,9 +113,6 @@ import { ProductionManager } from './Registration/production-manager/production-
     ViewRequDetails,
     UpdateBuyer,
     UpdateLeave,
-    ViewUsers,
-    UpdateUsers,
-    ChatComponent,
     RawMaterialsCalc,
     ProductionOrderComponenet,
     ProductionOrderList,
@@ -140,9 +127,8 @@ import { ProductionManager } from './Registration/production-manager/production-
     ViewRawMaterialsCalc,
     ProductionSummaryCompo,
     ProductionReport,
-    Admin,
-    ProductionManager,
-
+    Login,
+    Admin
   ],
   imports: [
     BrowserModule,

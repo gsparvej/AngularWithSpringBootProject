@@ -8,11 +8,9 @@ import { ViewAllAttendance } from './HR/view-all-attendance/view-all-attendance'
 import { AddAttendance } from './HR/add-attendance/add-attendance';
 import { ViewAllLeave } from './HR/view-all-leave/view-all-leave';
 import { AddLeave } from './HR/add-leave/add-leave';
-import { Registration } from './Auth/registration/registration';
 import { Home } from './home/home';
 import { ViewAllBuyer } from './Merchandiser/view-all-buyer/view-all-buyer';
 import { AddBuyer } from './Merchandiser/add-buyer/add-buyer';
-import { UserProfile } from './Auth/user-profile/user-profile';
 import { Designation } from '../model/HR/designation.model';
 import { AddDesignation } from './HR/add-designation/add-designation';
 import { AddUom } from './Merchandiser/add-uom/add-uom';
@@ -42,11 +40,6 @@ import { ViewAllRequ } from './Purchase/view-all-requ/view-all-requ';
 import { ViewRequDetails } from './Purchase/view-requ-details/view-requ-details';
 import { UpdateBuyer } from './Merchandiser/update-buyer/update-buyer';
 import { UpdateLeave } from './HR/update-leave/update-leave';
-import { ViewUsers } from './User/view-users/view-users';
-import { UpdateUsers } from './User/update-users/update-users';
-import { ChatComponent } from './Chat/chat-component/chat-component';
-import { SuperAdmin } from './Auth/super-admin/super-admin';
-import { PurchaseManager } from './Auth/purchase-manager/purchase-manager';
 import { RawMaterialsCalc } from './Merchandiser/raw-materials-calc/raw-materials-calc';
 import { ProductionOrderComponenet } from './Production/production-order-componenet/production-order-componenet';
 import { ProductionOrderList } from './Production/production-order-list/production-order-list';
@@ -61,11 +54,13 @@ import { ViewDayWiseProduction } from './Production/view-day-wise-production/vie
 import { ViewRawMaterialsCalc } from './Merchandiser/view-raw-materials-calc/view-raw-materials-calc';
 import { ProductionSummaryCompo } from './Production/production-summary-compo/production-summary-compo';
 import { ProductionReport } from './Production/production-report/production-report';
+import { Login } from './Registration/login/login';
+import { Admin } from './Registration/admin/admin';
 
 
 const routes: Routes = [
   { path: '', component: Home },
-  { path: 'reg', component: Registration },
+ 
   
 
   { path: 'viewAllEmp', component: ViewAllEmployee },
@@ -84,16 +79,6 @@ const routes: Routes = [
   { path: 'viewAllBuyer', component: ViewAllBuyer },
   { path: 'updateBuy/:id', component: UpdateBuyer },
   { path: 'addBuyer', component: AddBuyer },
-
-
-  { path: 'viewAllUser', component: ViewUsers },
-  { path: 'updateUser/:id', component: UpdateUsers },
-
-  //role Profile
-  { path: 'userprofile', component: UserProfile },
-  { path: 'superadmin', component: SuperAdmin },
-  { path: 'purchasemanager', component: PurchaseManager },
-
 
 
   { path: 'addUom', component: AddUom },
@@ -122,7 +107,7 @@ const routes: Routes = [
   { path: 'viewPODetails/:id', component: ViewPODetails },
   { path: 'viewAllRequ', component: ViewAllRequ },
   { path: 'viewRequDetails/:id', component: ViewRequDetails },
-  { path: 'chatBox', component: ChatComponent },
+ 
 
 
   { path: 'rawMateSave', component: RawMaterialsCalc },
@@ -140,7 +125,13 @@ const routes: Routes = [
   {path: 'addDayWisePro', component: AddDayWiseProduction},
   {path: 'viewDayWisePro', component: ViewDayWiseProduction},
   {path: 'proSumReport' , component: ProductionSummaryCompo},
-  {path: 'report', component: ProductionReport}
+  {path: 'report', component: ProductionReport},
+
+  // Registration Part
+
+  {path: 'login' , component: Login},
+  {path: 'adminReg' , component: Admin}
+
 
 ];
 

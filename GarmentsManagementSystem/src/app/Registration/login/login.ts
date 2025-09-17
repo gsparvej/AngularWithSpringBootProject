@@ -11,7 +11,8 @@ import { Router } from '@angular/router';
 })
 export class Login {
 
-
+  
+  
   loginForm!: FormGroup;
   errorMessage: string | null = null;
   successMessage: string | null = null;
@@ -51,15 +52,15 @@ export class Login {
         } else if (role === 'ADMIN') {
           this.router.navigate(['/adminProfile']);
         }
-        else if (role === 'MERCHANDISERMANAGER') {
+         else if (role === 'MERCHANDISERMANAGER') {
           this.router.navigate(['/merchanProfile']);
-        }
-        else if (role === 'PURCHASEMANAGER') {
+        } 
+         else if (role === 'PURCHASEMANAGER') {
           this.router.navigate(['/purchaseManagerProfile']);
-        }
-        else if (role === 'PRODUCTIONMANAGER') {
+        } 
+         else if (role === 'PRODUCTIONMANAGER') {
           this.router.navigate(['/proManagerProfile']);
-        }
+        } 
         else {
           this.router.navigate(['/']); // fallback
         }
